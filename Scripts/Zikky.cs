@@ -1,4 +1,5 @@
 // Zikky.cs
+using DialogueManagerRuntime;
 using EngineeredAngel.Interfaces;
 using EngineeredAngel.PlayerStates;
 using EngineeredAngel.Stats;
@@ -22,6 +23,7 @@ public partial class Zikky : CharacterBody2D
     public bool IsAttacking = false;
     public bool HasTakenDamage = false;
     public bool EnemyInRange { get; set; } = false;
+    private bool hasPlayedIntro = false;
 
     private Label _damageLabel;
     private Timer _combatTextTimer;
@@ -33,7 +35,12 @@ public partial class Zikky : CharacterBody2D
     public override void _Ready()
     {
         CharacterStats = new PlayerStats(hp: 100, maxHp: 100, strength: 5, defense: 5, gold: 0);
-
+        if(hasPlayedIntro == false) {
+            var dialogueResource = (Resource)GD.Load("res://dialogue/intro_dialogue.dialogue");
+            CallDeferred(nameof(ShowIntroDialogue), dialogueResource);
+            hasPlayedIntro = true;
+        }
+      
         AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         HealingAnimation = GetNode<AnimatedSprite2D>("HealingAnimation");
         _hitbox = GetNode<Area2D>("HitBox");
@@ -94,10 +101,27 @@ public partial class Zikky : CharacterBody2D
         MoveAndSlide();
     }
 
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (!hasPlayedIntro && Input.IsActionJustPressed("ui_accept"))
+        {
+            var dialogueResource = (Resource)GD.Load("res://dialogue/intro_dialogue.dialogue");
+            DialogueManager.ShowExampleDialogueBalloon(dialogueResource, "start");
+            hasPlayedIntro = true;
+        }
+    }
+
+    private void ShowIntroDialogue(Resource dialogueResource)
+    {
+        DialogueManager.ShowExampleDialogueBalloon(dialogueResource, "start");
+    }
+
     public void Heal(int healAmount)
     {
         ShowCombatText(null, healAmount);
         Health.Value += healAmount;
+        CharacterStats.HP += healAmount;
         RecentlyHealed = true;
         HealingAnimation.Visible = true;
         HealingAnimation.Play("heal");

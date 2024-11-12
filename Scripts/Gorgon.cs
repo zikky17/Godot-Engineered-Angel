@@ -218,6 +218,7 @@ public partial class Gorgon : CharacterBody2D
         {
             QueueFree();
             zikky.CharacterStats.Gold += GenerateLoot();
+            GD.Print($"Zikky's gold is now {zikky.CharacterStats.Gold}");
         }
     }
 
@@ -236,7 +237,6 @@ public partial class Gorgon : CharacterBody2D
     private int GenerateLoot()
     {
         var loot = new Loot();
-        loot.Gold = 5;
-        return loot.Gold;
+        return loot.Gold = 5;
     }
 }
