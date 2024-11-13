@@ -1,5 +1,7 @@
 // Zikky.cs
 using DialogueManagerRuntime;
+using EngineeredAngel.Database.DbServices;
+using EngineeredAngel.Database.Models;
 using EngineeredAngel.Interfaces;
 using EngineeredAngel.PlayerStates;
 using EngineeredAngel.Stats;
@@ -32,9 +34,44 @@ public partial class Zikky : CharacterBody2D
 
     private Label _healingLabel;
 
-    public override void _Ready()
+    private readonly PlayerDataRepository _playerDataRepository = new PlayerDataRepository();
+
+    public async override void _Ready()
     {
-        CharacterStats = new PlayerStats(hp: 100, maxHp: 100, strength: 5, defense: 5, gold: 0);
+        var existingPlayer = await _playerDataRepository.GetPlayerDataAsync(1);
+
+        if (existingPlayer != null)
+        {
+            CharacterStats = new PlayerStats(
+                level: existingPlayer.Level,
+                hp: existingPlayer.CurrentHP,
+                maxHp: existingPlayer.MaxHealth,
+                strength: existingPlayer.Strength,
+                defense: existingPlayer.Defence,
+                gold: existingPlayer.Gold,
+                experience: existingPlayer.Experience,
+                intelligence: existingPlayer.Intelligence
+            );
+        }
+        else
+        {
+            CharacterStats = new PlayerStats(level: 1, hp: 100, maxHp: 100, strength: 5, defense: 5, gold: 0, experience: 0, intelligence: 0);
+
+            var player = new GamePlayerEntity
+            {
+                Level = CharacterStats.Level,
+                CurrentHP = CharacterStats.HP,
+                MaxHealth = CharacterStats.MaxHP,
+                Strength = CharacterStats.Strength,
+                Defence = CharacterStats.Defense,
+                Gold = CharacterStats.Gold,
+                Experience = CharacterStats.Experience,
+                Intelligence = CharacterStats.Intelligence
+            };
+
+            await _playerDataRepository.AddOrUpdatePlayerDataAsync(player);
+        }
+
         if(hasPlayedIntro == false) {
             var dialogueResource = (Resource)GD.Load("res://dialogue/intro_dialogue.dialogue");
             CallDeferred(nameof(ShowIntroDialogue), dialogueResource);

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpksigsu4b1gs"
-path="res://.godot/imported/death_normal.png-41efa0330882f773f0fc979f38c85bc2.ctex"
+uid="uid://cntm00d872uyh"
+path="res://.godot/imported/zikky_swingatk.png-dfc6f8445bec1aea81d3db042cf83b41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Zikky/death_normal.png"
-dest_files=["res://.godot/imported/death_normal.png-41efa0330882f773f0fc979f38c85bc2.ctex"]
+source_file="res://Assets/Sprites/Zikky/zikky_swingatk.png"
+dest_files=["res://.godot/imported/zikky_swingatk.png-dfc6f8445bec1aea81d3db042cf83b41.ctex"]
 
 [params]
 

@@ -1,4 +1,5 @@
 using EngineeredAngel.Loot;
+using EngineeredAngel.Services;
 using EngineeredAngel.Stats;
 using Godot;
 using System;
@@ -22,12 +23,15 @@ public partial class Gorgon : CharacterBody2D
     private AudioStream deathSound;
     private Label _damageLabel;
     private Timer _damageLabelTimer;
+    private LevelUpService _levelUpService;
 
     public Vector2 LastDirection { get; set; } = Vector2.Zero;
     public AnimatedSprite2D AnimatedSprite { get; private set; }
     private Random random = new Random();
 
     public Timer Direction_Change_Timer { get; private set; }
+
+    private RewardService _rewardService;
 
     public override void _Ready()
     {
@@ -69,6 +73,9 @@ public partial class Gorgon : CharacterBody2D
         _hitbox.Connect(Area2D.SignalName.BodyExited, new Callable(this, nameof(OnHitboxBodyExited)));
 
         zikky = GetNode<Zikky>("../Zikky");
+
+        _levelUpService = new LevelUpService();
+        _rewardService = new RewardService(zikky, _levelUpService);
 
         AddToGroup("Enemy");
     }
@@ -217,8 +224,7 @@ public partial class Gorgon : CharacterBody2D
         if (IsDead)
         {
             QueueFree();
-            zikky.CharacterStats.Gold += GenerateLoot();
-            GD.Print($"Zikky's gold is now {zikky.CharacterStats.Gold}");
+            _rewardService.GrantRewards(GenerateLoot(), 100);
         }
     }
 

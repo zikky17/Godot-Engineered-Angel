@@ -17,21 +17,9 @@ namespace EngineeredAngel.PlayerStates
             }
             else
             {
-                if (direction.X != 0)
-                {
-                    player.AnimatedSprite.Play("walk_right");
-                    player.AnimatedSprite.FlipH = direction.X < 0;
-                }
-                else if (direction.Y < 0)
-                {
-                    player.AnimatedSprite.Play("walk_up");
-                    player.AnimatedSprite.FlipH = false;
-                }
-                else if (direction.Y > 0)
-                {
-                    player.AnimatedSprite.Play("walk_down");
-                    player.AnimatedSprite.FlipH = false;
-                }
+                player.AnimatedSprite.Play("walk_left");
+
+                player.AnimatedSprite.FlipH = direction.X > 0;
 
                 player.LastDirection = direction;
             }

@@ -17,22 +17,9 @@ namespace EngineeredAngel.PlayerStates
             }
             else
             {
-                if (player.LastDirection == Vector2.Zero || player.LastDirection.X != 0)
-                {
-                    player.AnimatedSprite.Play("idle_right");
-                }
-                else if (player.LastDirection.Y < 0)
-                {
-                    player.AnimatedSprite.Play("idle_up");
-                }
-                else if (player.LastDirection.Y > 0)
-                {
-                    player.AnimatedSprite.Play("idle_down");
-                }
-                else
-                {
-                    player.AnimatedSprite.Play("idle_left");
-                }
+                player.AnimatedSprite.Play("idle_left");
+
+                player.AnimatedSprite.FlipH = player.LastDirection.X > 0;
             }
         }
 

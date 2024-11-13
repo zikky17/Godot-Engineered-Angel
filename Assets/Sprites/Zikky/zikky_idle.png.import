@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c23t1ec2q8j1x"
-path="res://.godot/imported/walk.png-0cb15cd2df3b742cc2eafc12d912261b.ctex"
+uid="uid://5vieffbgpl0c"
+path="res://.godot/imported/zikky_idle.png-5bc17416304ccfcfbeb08ab03d5247b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Zikky/walk.png"
-dest_files=["res://.godot/imported/walk.png-0cb15cd2df3b742cc2eafc12d912261b.ctex"]
+source_file="res://Assets/Sprites/Zikky/zikky_idle.png"
+dest_files=["res://.godot/imported/zikky_idle.png-5bc17416304ccfcfbeb08ab03d5247b6.ctex"]
 
 [params]
 

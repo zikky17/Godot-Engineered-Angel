@@ -4,19 +4,30 @@ namespace EngineeredAngel.Stats
 {
     public class PlayerStats
     {
+        public int Level { get; set; }
         public int HP { get; set; }
         public int MaxHP { get; set; }
         public int Strength { get; set; }
         public int Defense { get; set; }
         public int Gold { get; set; }
+        public int Experience { get; set; }
+        public int Intelligence { get; set; }
 
-        public PlayerStats(int hp, int maxHp, int strength, int defense, int gold)
+        public PlayerStats()
         {
+            
+        }
+        public PlayerStats(int level, int hp, int maxHp, int strength, int defense, int gold, int experience, int intelligence)
+        {
+            Level = level;
             HP = hp;
             MaxHP = maxHp;
             Strength = strength;
             Defense = defense;
             Gold = gold;
+            Experience = experience;
+            Intelligence = intelligence;    
+
         }
 
         public int CalculateDamage(int incomingDamage)
