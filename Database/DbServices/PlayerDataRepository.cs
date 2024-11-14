@@ -28,6 +28,7 @@ namespace EngineeredAngel.Database.DbServices
                 existingPlayer.Strength = player.Strength;
                 existingPlayer.Defence = player.Defence;
                 existingPlayer.Gold = player.Gold;
+                existingPlayer.Experience = player.Experience;
             }
             else
             {

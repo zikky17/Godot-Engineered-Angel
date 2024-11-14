@@ -225,6 +225,7 @@ public partial class Gorgon : CharacterBody2D
         {
             QueueFree();
             _rewardService.GrantRewards(GenerateLoot(), 100);
+            _levelUpService.GetExperience(100);
         }
     }
 

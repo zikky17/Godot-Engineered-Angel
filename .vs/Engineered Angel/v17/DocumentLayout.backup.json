@@ -3,27 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\zikky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\zikky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\statsui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\statsui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\stats\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:stats\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\database\\dbservices\\playerdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:database\\dbservices\\playerdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\services\\rewardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:services\\rewardservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\gorgon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\gorgon.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gusta\\AppData\\Local\\Temp\\.vsdbgsrc\\970bfc1649f0178017ae95d9a9c203189cde742fef48d879c4824abe453a314a\\GodotSynchronizationContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\playerui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\playerui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -58,83 +43,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Zikky.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\Zikky.cs",
-              "RelativeDocumentMoniker": "Scripts\\Zikky.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\Zikky.cs*",
-              "RelativeToolTip": "Scripts\\Zikky.cs*",
-              "ViewState": "AgIAADQAAAAAAAAAAAAiwD4AAAAuAAAAAAAAAA==",
+              "Title": "StatsUi.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\StatsUi.cs",
+              "RelativeDocumentMoniker": "Scripts\\StatsUi.cs",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\StatsUi.cs",
+              "RelativeToolTip": "Scripts\\StatsUi.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADIAAABBAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T12:34:51.771Z",
+              "WhenOpened": "2024-11-14T14:41:17.754Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PlayerStats.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Stats\\PlayerStats.cs",
-              "RelativeDocumentMoniker": "Stats\\PlayerStats.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Stats\\PlayerStats.cs",
-              "RelativeToolTip": "Stats\\PlayerStats.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAgwBkAAAAeAAAAAAAAAA==",
+              "Title": "PlayerUI.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI.cs",
+              "RelativeDocumentMoniker": "Scripts\\PlayerUI.cs",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI.cs*",
+              "RelativeToolTip": "Scripts\\PlayerUI.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T12:31:31.986Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PlayerDataRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerDataRepository.cs",
-              "RelativeDocumentMoniker": "Database\\DbServices\\PlayerDataRepository.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerDataRepository.cs*",
-              "RelativeToolTip": "Database\\DbServices\\PlayerDataRepository.cs*",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAABaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T12:20:54.594Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "GodotSynchronizationContext.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\AppData\\Local\\Temp\\.vsdbgsrc\\970bfc1649f0178017ae95d9a9c203189cde742fef48d879c4824abe453a314a\\GodotSynchronizationContext.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\970bfc1649f0178017ae95d9a9c203189cde742fef48d879c4824abe453a314a\\GodotSynchronizationContext.cs",
-              "ToolTip": "C:\\Users\\gusta\\AppData\\Local\\Temp\\.vsdbgsrc\\970bfc1649f0178017ae95d9a9c203189cde742fef48d879c4824abe453a314a\\GodotSynchronizationContext.cs [Read Only]",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\970bfc1649f0178017ae95d9a9c203189cde742fef48d879c4824abe453a314a\\GodotSynchronizationContext.cs [Read Only]",
-              "ViewState": "AgIAABgAAAAAAAAAAAAMwCkAAAAmAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T12:17:02.141Z",
-              "EditorCaption": " [Read Only]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Gorgon.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\Gorgon.cs",
-              "RelativeDocumentMoniker": "Scripts\\Gorgon.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\Gorgon.cs",
-              "RelativeToolTip": "Scripts\\Gorgon.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAqwE0AAABDAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T12:14:51.764Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "RewardService.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Services\\RewardService.cs",
-              "RelativeDocumentMoniker": "Services\\RewardService.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Services\\RewardService.cs",
-              "RelativeToolTip": "Services\\RewardService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T12:13:26.546Z",
+              "WhenOpened": "2024-11-13T14:57:57.226Z",
               "EditorCaption": ""
             }
           ]
@@ -154,6 +83,10 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         },

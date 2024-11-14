@@ -20,11 +20,13 @@ namespace EngineeredAngel.Services
         public async void GrantRewards(int gold, int experience)
         {
             _zikky.CharacterStats.Gold += gold;
+            _zikky.CharacterStats.Experience += experience;
             _levelUpService.GetExperience(experience);
 
             await _playerDataRepository.UpdatePlayerGoldAsync(gold);
             await _playerDataRepository.UpdatePlayerExperienceAsync(experience);
             GD.Print($"Zikky's gold is now {_zikky.CharacterStats.Gold}");
+            GD.Print($"Zikky's experience is now {_zikky.CharacterStats.Experience}");
         }
     }
 }

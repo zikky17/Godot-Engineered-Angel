@@ -17,6 +17,7 @@ namespace EngineeredAngel.Stats
         {
             
         }
+
         public PlayerStats(int level, int hp, int maxHp, int strength, int defense, int gold, int experience, int intelligence)
         {
             Level = level;

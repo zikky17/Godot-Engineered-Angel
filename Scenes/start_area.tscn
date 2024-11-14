@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bse7a8r0vowa7"]
+[gd_scene load_steps=13 format=4 uid="uid://bse7a8r0vowa7"]
 
 [ext_resource type="Texture2D" uid="uid://gruns34wg3rh" path="res://Assets/Tilemap/MainTextures.png" id="1_f6afb"]
 [ext_resource type="Texture2D" uid="uid://bot1yweoa4x3i" path="res://Assets/Doors/!Demon Door.png" id="2_ue58b"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://do84heumt7qdf" path="res://Scenes/Consumables/health_potion.tscn" id="6_21k5l"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="6_g85r6"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI.cs" id="7_jxe3o"]
+[ext_resource type="Script" path="res://Scripts/StatsUi.cs" id="8_exge7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l7v6"]
 texture = ExtResource("1_f6afb")
@@ -8537,7 +8538,7 @@ position = Vector2(145, 42)
 position = Vector2(169, 42)
 
 [node name="Gorgon" parent="." instance=ExtResource("6_g85r6")]
-position = Vector2(225, 153)
+position = Vector2(402, 67)
 
 [node name="PlayerUI" type="CanvasLayer" parent="."]
 script = ExtResource("7_jxe3o")
@@ -8571,3 +8572,58 @@ text = "Gold: "
 
 [node name="Zikky" parent="." instance=ExtResource("2_xt1uq")]
 position = Vector2(80, 77)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("6_g85r6")]
+position = Vector2(402, 137)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("6_g85r6")]
+position = Vector2(336, 167)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("6_g85r6")]
+position = Vector2(259, 207)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("6_g85r6")]
+position = Vector2(248, 83)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("6_g85r6")]
+position = Vector2(155, 206)
+
+[node name="StatsUI" type="CanvasLayer" parent="."]
+script = ExtResource("8_exge7")
+
+[node name="Panel" type="Panel" parent="StatsUI"]
+offset_left = 8.0
+offset_top = 36.0
+offset_right = 47.0
+offset_bottom = 73.0
+
+[node name="GridContainer" type="GridContainer" parent="StatsUI/Panel"]
+layout_mode = 0
+offset_right = 114.0
+offset_bottom = 103.0
+scale = Vector2(0.35, 0.35)
+
+[node name="Strength" type="Label" parent="StatsUI/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Strength"
+
+[node name="Defence" type="Label" parent="StatsUI/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Defence"
+
+[node name="Intelligence" type="Label" parent="StatsUI/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Intelligence"
+
+[node name="Max_HP" type="Label" parent="StatsUI/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Max HP"
+
+[node name="Experience" type="Label" parent="StatsUI/Panel/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Experience"

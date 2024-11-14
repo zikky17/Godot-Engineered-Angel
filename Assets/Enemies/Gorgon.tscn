@@ -269,7 +269,7 @@ animations = [{
 size = Vector2(42, 68)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5882"]
-radius = 99.5113
+radius = 78.0577
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_5w6dx")
@@ -279,7 +279,8 @@ position = Vector2(-4, 14)
 shape = SubResource("CapsuleShape2D_qcbw1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -15)
+position = Vector2(-1, 4)
+scale = Vector2(0.375, 0.359375)
 sprite_frames = SubResource("SpriteFrames_fh0y2")
 animation = &"move_right"
 autoplay = "move_right"
@@ -302,7 +303,7 @@ shape = SubResource("RectangleShape2D_mlban")
 position = Vector2(-3.5, 14.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Territory"]
-position = Vector2(-0.5, -0.5)
+position = Vector2(-0.5, -3.5)
 shape = SubResource("CircleShape2D_u5882")
 
 [node name="GorgonSounds" type="AudioStreamPlayer" parent="."]
