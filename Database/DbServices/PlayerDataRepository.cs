@@ -79,29 +79,33 @@ namespace EngineeredAngel.Database.DbServices
 
         public async Task UpdatePlayerLevelAsync(int level)
         {
-            var existingPlayer = await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == 1);
+            using var context = new GameDbContext();
+            var player = await context.Player.FirstOrDefaultAsync(p => p.Id == 1);
 
-            if (existingPlayer != null)
+            if (player != null)
             {
-                existingPlayer.Level += level;
-                await _gameDbContext.SaveChangesAsync();
+                player.Level = level;
+                context.Player.Update(player);
+                await context.SaveChangesAsync();
             }
         }
 
         public async Task UpdatePlayerLevelUpStatsAsync(int playerId, int maxHPIncrease, int strengthIncrease, int defenseIncrease, int intelligenceIncrease)
         {
-            var existingPlayer = await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == playerId);
+            using var context = new GameDbContext();
+            var player = await context.Player.FirstOrDefaultAsync(p => p.Id == playerId);
 
-            if (existingPlayer != null)
+            if (player != null)
             {
-                existingPlayer.MaxHealth += maxHPIncrease;
-                existingPlayer.Strength += strengthIncrease;
-                existingPlayer.Defence += defenseIncrease;
-                existingPlayer.Intelligence += intelligenceIncrease;
+                player.MaxHealth += maxHPIncrease;
+                player.Strength += strengthIncrease;
+                player.Defence += defenseIncrease;
+                player.Intelligence += intelligenceIncrease;
 
-                await _gameDbContext.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
         }
+
 
 
     }

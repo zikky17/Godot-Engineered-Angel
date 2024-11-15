@@ -95,7 +95,7 @@ public partial class Zikky : CharacterBody2D
         {
             return new PlayerStats(
                 playerData.Level,
-                playerData.CurrentHP,
+                playerData.MaxHealth,
                 playerData.MaxHealth,
                 playerData.Strength,
                 playerData.Defence,
@@ -122,7 +122,7 @@ public partial class Zikky : CharacterBody2D
 
             return new PlayerStats(
                 newPlayerData.Level,
-                newPlayerData.CurrentHP,
+                newPlayerData.MaxHealth,
                 newPlayerData.MaxHealth,
                 newPlayerData.Strength,
                 newPlayerData.Defence,
