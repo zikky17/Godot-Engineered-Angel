@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EngineeredAngel.Database.DbServices;
+using System;
+using System.Threading.Tasks;
 
 namespace EngineeredAngel.Stats
 {
@@ -13,9 +15,11 @@ namespace EngineeredAngel.Stats
         public int Experience { get; set; }
         public int Intelligence { get; set; }
 
+        private readonly PlayerDataRepository _playerDataRepository = new();
+
         public PlayerStats()
         {
-            
+
         }
 
         public PlayerStats(int level, int hp, int maxHp, int strength, int defense, int gold, int experience, int intelligence)

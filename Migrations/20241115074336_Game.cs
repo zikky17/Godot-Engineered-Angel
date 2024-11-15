@@ -4,7 +4,7 @@
 
 namespace EngineeredAngel.Migrations
 {
-    public partial class CreatingDB : Migration
+    public partial class Game : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

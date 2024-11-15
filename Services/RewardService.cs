@@ -1,5 +1,4 @@
 ﻿using EngineeredAngel.Database.DbServices;
-using EngineeredAngel.Database.Models;
 using EngineeredAngel.Stats;
 using Godot;
 
@@ -8,7 +7,7 @@ namespace EngineeredAngel.Services
     public class RewardService
     {
         private readonly Zikky _zikky;
-        private readonly LevelUpService _levelUpService = new();
+        public readonly LevelUpService _levelUpService;
         private readonly PlayerDataRepository _playerDataRepository = new();
 
         public RewardService(Zikky zikky, LevelUpService levelUpService)
@@ -21,12 +20,10 @@ namespace EngineeredAngel.Services
         {
             _zikky.CharacterStats.Gold += gold;
             _zikky.CharacterStats.Experience += experience;
-            _levelUpService.GetExperience(experience);
-
+            _levelUpService.AddExperience(experience, _zikky);
             await _playerDataRepository.UpdatePlayerGoldAsync(gold);
             await _playerDataRepository.UpdatePlayerExperienceAsync(experience);
-            GD.Print($"Zikky's gold is now {_zikky.CharacterStats.Gold}");
-            GD.Print($"Zikky's experience is now {_zikky.CharacterStats.Experience}");
+            GD.Print($"Gold: {_zikky.CharacterStats.Gold}, Experience: {_zikky.CharacterStats.Experience}");
         }
     }
 }

@@ -1,7 +1,6 @@
 using EngineeredAngel.Interfaces;
 using Godot;
 using System.Threading.Tasks;
-using static Godot.TextServer;
 
 namespace EngineeredAngel.PlayerStates
 {
@@ -21,26 +20,25 @@ namespace EngineeredAngel.PlayerStates
 
         public async void Update(Zikky player)
         {
+            player.IsAttacking = true;
 
             if (player.LastDirection.X != 0)
             {
                 player.AnimatedSprite.Play("attack_left");
                 player._audioPlayer.Stream = player.attackSound;
-                //player._audioPlayer.Play();
+                player._audioPlayer.Play();
             }
-            if (player.LastDirection.X == 0)
+            else
             {
                 player.AnimatedSprite.Play("attack_left");
                 player.AnimatedSprite.FlipH = player.LastDirection.X < 0;
                 player._audioPlayer.Stream = player.attackSound;
-                //player._audioPlayer.Play();
+                player._audioPlayer.Play();
             }
 
+            await Task.Delay(500); 
 
-            await Task.Delay(2000);
             player.IsAttacking = false;
-
         }
-
     }
 }

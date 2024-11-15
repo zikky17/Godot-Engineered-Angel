@@ -4,13 +4,17 @@ using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Database.Models;
 using EngineeredAngel.Interfaces;
 using EngineeredAngel.PlayerStates;
+using EngineeredAngel.Services;
 using EngineeredAngel.Stats;
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class Zikky : CharacterBody2D
 {
-    public PlayerStats CharacterStats { get; private set; }
+    public PlayerStats CharacterStats { get; set; }
+    public RewardService RewardService { get; set; }
+
     [Export] public int Speed = 100;
     public Vector2 LastDirection { get; set; } = Vector2.Zero;
     public AnimatedSprite2D AnimatedSprite { get; private set; }
@@ -38,41 +42,12 @@ public partial class Zikky : CharacterBody2D
 
     public async override void _Ready()
     {
-        var existingPlayer = await _playerDataRepository.GetPlayerDataAsync(1);
+        CharacterStats = await LoadPlayerStats();
 
-        if (existingPlayer != null)
-        {
-            CharacterStats = new PlayerStats(
-                level: existingPlayer.Level,
-                hp: existingPlayer.CurrentHP,
-                maxHp: existingPlayer.MaxHealth,
-                strength: existingPlayer.Strength,
-                defense: existingPlayer.Defence,
-                gold: existingPlayer.Gold,
-                experience: existingPlayer.Experience,
-                intelligence: existingPlayer.Intelligence
-            );
-        }
-        else
-        {
-            CharacterStats = new PlayerStats(level: 1, hp: 100, maxHp: 100, strength: 5, defense: 5, gold: 0, experience: 0, intelligence: 0);
+        var levelUpService = new LevelUpService();
+        RewardService = new RewardService(this, levelUpService);
 
-            var player = new GamePlayerEntity
-            {
-                Level = CharacterStats.Level,
-                CurrentHP = CharacterStats.HP,
-                MaxHealth = CharacterStats.MaxHP,
-                Strength = CharacterStats.Strength,
-                Defence = CharacterStats.Defense,
-                Gold = CharacterStats.Gold,
-                Experience = CharacterStats.Experience,
-                Intelligence = CharacterStats.Intelligence
-            };
-
-            await _playerDataRepository.AddOrUpdatePlayerDataAsync(player);
-        }
-
-        if(hasPlayedIntro == false) {
+        if (hasPlayedIntro == false) {
             var dialogueResource = (Resource)GD.Load("res://dialogue/intro_dialogue.dialogue");
             CallDeferred(nameof(ShowIntroDialogue), dialogueResource);
             hasPlayedIntro = true;
@@ -112,9 +87,55 @@ public partial class Zikky : CharacterBody2D
         SetState(new IdleState());
     }
 
+    private async Task<PlayerStats> LoadPlayerStats()
+    {
+        var playerData = await _playerDataRepository.GetPlayerDataAsync(1);
+
+        if (playerData != null)
+        {
+            return new PlayerStats(
+                playerData.Level,
+                playerData.CurrentHP,
+                playerData.MaxHealth,
+                playerData.Strength,
+                playerData.Defence,
+                playerData.Gold,
+                playerData.Experience,
+                playerData.Intelligence
+            );
+        }
+        else
+        {
+            var newPlayerData = new GamePlayerEntity
+            {
+                Level = 1,
+                CurrentHP = 100,
+                MaxHealth = 100,
+                Strength = 5,
+                Defence = 5,
+                Gold = 0,
+                Experience = 0,
+                Intelligence = 0
+            };
+
+            await _playerDataRepository.SavePlayerDataAsync(newPlayerData);
+
+            return new PlayerStats(
+                newPlayerData.Level,
+                newPlayerData.CurrentHP,
+                newPlayerData.MaxHealth,
+                newPlayerData.Strength,
+                newPlayerData.Defence,
+                newPlayerData.Gold,
+                newPlayerData.Experience,
+                newPlayerData.Intelligence
+            );
+        }
+    }
+
+
     public override void _PhysicsProcess(double delta)
     {
-
         AttackedByEnemy();
 
         if (CharacterStats.HP <= 0 && !IsDead)
@@ -129,8 +150,8 @@ public partial class Zikky : CharacterBody2D
 
         Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
-        _currentState.HandleInput(this, direction, IsAttacking);
-        _currentState.Update(this);
+        _currentState?.HandleInput(this, direction, IsAttacking);
+        _currentState?.Update(this);
         UpdateHealthBar();
 
 
@@ -259,6 +280,6 @@ public partial class Zikky : CharacterBody2D
         CharacterStats.HP = 100;
         Health.Value = CharacterStats.HP;
         Position = new Vector2(100, 100);
-        AnimatedSprite.Play("idle_down");
+        AnimatedSprite.Play("idle_left");
     }
 }

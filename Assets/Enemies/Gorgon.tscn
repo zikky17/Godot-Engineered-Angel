@@ -282,7 +282,7 @@ shape = SubResource("CapsuleShape2D_qcbw1")
 position = Vector2(-1, 4)
 scale = Vector2(0.375, 0.359375)
 sprite_frames = SubResource("SpriteFrames_fh0y2")
-animation = &"move_right"
+animation = &"die"
 autoplay = "move_right"
 
 [node name="healthbar" type="ProgressBar" parent="."]

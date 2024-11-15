@@ -1,5 +1,6 @@
 ﻿using EngineeredAngel.Database.Context;
 using EngineeredAngel.Database.Models;
+using EngineeredAngel.Stats;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,23 @@ namespace EngineeredAngel.Database.DbServices
             return await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == playerId);
         }
 
-        public async Task AddOrUpdatePlayerDataAsync(GamePlayerEntity player)
+        public async Task<PlayerStats> GetPlayerStatsAsync(int playerId)
+        {
+            var entity = await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == playerId);
+            return new PlayerStats
+            {
+                Level = entity.Level,
+                HP = entity.CurrentHP,
+                MaxHP = entity.MaxHealth,
+                Strength = entity.Strength,
+                Defense = entity.Defence,
+                Gold = entity.Gold,
+                Experience = entity.Experience,
+                Intelligence = entity.Intelligence
+            };
+        }
+
+        public async Task SavePlayerDataAsync(GamePlayerEntity player)
         {
             var existingPlayer = await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == 1);
 
@@ -71,6 +88,20 @@ namespace EngineeredAngel.Database.DbServices
             }
         }
 
+        public async Task UpdatePlayerLevelUpStatsAsync(int playerId, int maxHPIncrease, int strengthIncrease, int defenseIncrease, int intelligenceIncrease)
+        {
+            var existingPlayer = await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == playerId);
+
+            if (existingPlayer != null)
+            {
+                existingPlayer.MaxHealth += maxHPIncrease;
+                existingPlayer.Strength += strengthIncrease;
+                existingPlayer.Defence += defenseIncrease;
+                existingPlayer.Intelligence += intelligenceIncrease;
+
+                await _gameDbContext.SaveChangesAsync();
+            }
+        }
 
 
     }

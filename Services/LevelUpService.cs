@@ -1,70 +1,59 @@
 ﻿using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Stats;
 using Godot;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Threading.Tasks;
 
 namespace EngineeredAngel.Services
 {
-    public class LevelUpService
+    public partial class LevelUpService : Node
     {
-        public int Experience { get; private set; }
-        public int Level { get; private set; } = 1;
-        public int ExpForNextLevel { get; private set; }
-        public PlayerStats PlayerStats { get; set; }
+        [Signal]
+        public delegate void LevelUpOccurredEventHandler(int newLevel, int experience);
 
-        private readonly List<int> experienceRequirements;
         private readonly PlayerDataRepository _playerDataRepository = new();
-        private bool isCheckingLevelUp = false;
+        private Zikky _zikky;
 
-        public LevelUpService()
-        {
-            experienceRequirements = GenerateExperienceRequirements(30, 100, 1.25);
-            ExpForNextLevel = experienceRequirements[Level - 1];
-        }
 
-        private List<int> GenerateExperienceRequirements(int maxLevel, int baseExp, double multiplier)
+        public async void AddExperience(int experience, Zikky zikky)
         {
-            var requirements = new List<int> { baseExp };
-            for (int i = 1; i < maxLevel; i++)
-            {
-                var previousExp = requirements[i - 1];
-                var newExp = (int)(previousExp * multiplier);
-                requirements.Add(newExp);
-                GD.Print($"Level {i + 1} requires {newExp} experience");
-            }
-            return requirements;
-        }
-
-        public void GetExperience(int experience)
-        {
-            Experience += experience;
+            _zikky = zikky;
+            _zikky.CharacterStats.Experience += experience;
             CheckLevelUp();
+
+            await _playerDataRepository.UpdatePlayerExperienceAsync(experience);
         }
 
         private async void CheckLevelUp()
         {
-            if (isCheckingLevelUp) return;
-            isCheckingLevelUp = true;
+            var level = _zikky.CharacterStats.Level;
+            var expNeededForNextLevel = GetExpForNextLevel(level);
 
-            while (Level < experienceRequirements.Count && Experience >= ExpForNextLevel)
+            if (_zikky.CharacterStats.Experience >= expNeededForNextLevel)
             {
-                Experience -= ExpForNextLevel;
-                Level += 1;
-                PlayerStats.Level = Level;
-                ExpForNextLevel = experienceRequirements[Level - 1];
-                await _playerDataRepository.UpdatePlayerLevelAsync(Level);
+                _zikky.CharacterStats.Level++;
+                _zikky.CharacterStats.Experience = 0;
+                EmitSignal(nameof(LevelUpOccurredEventHandler), _zikky.CharacterStats.Level, _zikky.CharacterStats.Experience);
                 ApplyLevelUpBonus();
-            }
 
-            isCheckingLevelUp = false;
+                await _playerDataRepository.UpdatePlayerLevelAsync(_zikky.CharacterStats.Level);
+            }
         }
 
-        private void ApplyLevelUpBonus()
+        private int GetExpForNextLevel(int level)
         {
-            PlayerStats.MaxHP += 10;
-            PlayerStats.Strength += 2;
-            PlayerStats.Defense += 1;
-            GD.Print($"Leveled up to {Level}! New stats - HP: {PlayerStats.MaxHP}, Strength: {PlayerStats.Strength}, Defense: {PlayerStats.Defense}");
+            return 100 + (level - 1) * 125;
+        }
+
+        private async void ApplyLevelUpBonus()
+        {
+            _zikky.CharacterStats.MaxHP += 10;
+            _zikky.CharacterStats.Strength += 2;
+            _zikky.CharacterStats.Defense += 1;
+            _zikky.CharacterStats.Intelligence += 1;
+
+            await _playerDataRepository.UpdatePlayerLevelUpStatsAsync(1, 10, 2, 1, 1);
+            GD.Print($"Leveled up to {_zikky.CharacterStats.Level}! New stats - HP: {_zikky.CharacterStats.MaxHP}, Strength: {_zikky.CharacterStats.Strength}, Defense: {_zikky.CharacterStats.Defense}");
         }
     }
 }

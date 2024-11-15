@@ -3,7 +3,6 @@ using EngineeredAngel.Services;
 using EngineeredAngel.Stats;
 using Godot;
 using System;
-using System.Threading.Tasks;
 
 public partial class Gorgon : CharacterBody2D
 {
@@ -13,97 +12,78 @@ public partial class Gorgon : CharacterBody2D
     public bool PlayerInRange = false;
     public bool IsAttacking = false;
     public bool IsDead = false;
-    public Zikky zikky;
-    public ProgressBar Health;
-    public bool HasTakenDamage = false;
+    private Zikky _zikky;
+    private ProgressBar _health;
     private Area2D _hitbox;
     private Area2D _territory;
     private AudioStreamPlayer _audioPlayer;
-    private AudioStream chargeSound;
-    private AudioStream deathSound;
+    private AudioStream _chargeSound;
+    private AudioStream _deathSound;
     private Label _damageLabel;
     private Timer _damageLabelTimer;
-    private LevelUpService _levelUpService;
+    private Random _random = new Random();
+    private RewardService _rewardService;
 
     public Vector2 LastDirection { get; set; } = Vector2.Zero;
     public AnimatedSprite2D AnimatedSprite { get; private set; }
-    private Random random = new Random();
-
-    public Timer Direction_Change_Timer { get; private set; }
-
-    private RewardService _rewardService;
+    private Timer _directionChangeTimer;
 
     public override void _Ready()
     {
-
+        _zikky = GetNode<Zikky>("../Zikky");
         AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        AnimatedSprite.Connect("animation_finished", new Callable(this, nameof(OnAnimationFinished)));
 
-        Direction_Change_Timer = new Timer();
-        AddChild(Direction_Change_Timer);
-        Direction_Change_Timer.WaitTime = 2;
-        Direction_Change_Timer.OneShot = false;
-        Direction_Change_Timer.Connect(Timer.SignalName.Timeout, Callable.From(OnDirectionChangeTimeout));
-        Direction_Change_Timer.Start();
+        _directionChangeTimer = new Timer { WaitTime = 2, OneShot = false };
+        AddChild(_directionChangeTimer);
+        _directionChangeTimer.Connect("timeout", new Callable(this, nameof(OnDirectionChangeTimeout)));
+        _directionChangeTimer.Start();
 
         _damageLabel = GetNode<Label>("DamageLabel");
         _damageLabel.Visible = false;
-        _damageLabelTimer = new Timer();
-        _damageLabelTimer.WaitTime = 0.5f;
-        _damageLabelTimer.OneShot = true;
+        _damageLabelTimer = new Timer { WaitTime = 0.5f, OneShot = true };
         AddChild(_damageLabelTimer);
-
         _damageLabelTimer.Connect("timeout", new Callable(this, nameof(HideDamageLabel)));
 
-        Health = GetNode<ProgressBar>("healthbar");
-        Health.MaxValue = 100;
-        Health.Value = Health.MaxValue;
+        _health = GetNode<ProgressBar>("healthbar");
+        _health.MaxValue = 100;
+        _health.Value = _health.MaxValue;
 
         _hitbox = GetNode<Area2D>("Gorgon_Hitbox");
         _territory = GetNode<Area2D>("Territory");
         _audioPlayer = GetNode<AudioStreamPlayer>("GorgonSounds");
-        chargeSound = (AudioStream)GD.Load("res://Assets/SoundEffects/ScarySounds/Gorgon_Laugh.mp3");
-        deathSound = (AudioStream)GD.Load("res://Assets/SoundEffects/ScarySounds/Gorgon_Death.mp3");
+        _chargeSound = GD.Load<AudioStream>("res://Assets/SoundEffects/ScarySounds/Gorgon_Laugh.mp3");
+        _deathSound = GD.Load<AudioStream>("res://Assets/SoundEffects/ScarySounds/Gorgon_Death.mp3");
 
-        AnimatedSprite.Connect(AnimatedSprite2D.SignalName.AnimationFinished, Callable.From(OnAnimationFinished));
+        _hitbox.Connect("body_entered", new Callable(this, nameof(OnHitboxBodyEntered)));
+        _hitbox.Connect("body_exited", new Callable(this, nameof(OnHitboxBodyExited)));
+        _territory.Connect("body_entered", new Callable(this, nameof(OnTerritoryBodyEntered)));
+        _territory.Connect("body_exited", new Callable(this, nameof(OnTerritoryBodyExited)));
 
-        _territory.Connect(Area2D.SignalName.BodyEntered, new Callable(this, nameof(OnTerritoryBodyEntered)));
-        _territory.Connect(Area2D.SignalName.BodyExited, new Callable(this, nameof(OnTerritoryBodyExited)));
 
-        _hitbox.Connect(Area2D.SignalName.BodyEntered, new Callable(this, nameof(OnHitboxBodyEntered)));
-        _hitbox.Connect(Area2D.SignalName.BodyExited, new Callable(this, nameof(OnHitboxBodyExited)));
-
-        zikky = GetNode<Zikky>("../Zikky");
-
-        _levelUpService = new LevelUpService();
-        _rewardService = new RewardService(zikky, _levelUpService);
+        var levelUpService = new LevelUpService();
+        _rewardService = new RewardService(_zikky, levelUpService);
 
         AddToGroup("Enemy");
     }
 
-    public void PickRandomDirection()
+    private void OnDirectionChangeTimeout()
     {
-        LastDirection = new Vector2(
-            random.Next(-1, 2),
-            random.Next(-1, 2)
-        );
-
+        LastDirection = new Vector2(_random.Next(-1, 2), _random.Next(-1, 2));
         if (LastDirection == Vector2.Zero)
         {
-            PickRandomDirection();
+            OnDirectionChangeTimeout();
         }
-
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        HasTakenDamage = false;
-        OnPlayerAttacked();
-
-        if (GorgonCharge && zikky != null)
+        if (IsDead) return;
+        if (GorgonCharge && _zikky != null)
         {
-            var playerDirection = (zikky.Position - Position).Normalized();
+            var playerDirection = (_zikky.Position - Position).Normalized();
             Position += playerDirection * ChargeSpeed * (float)delta;
-            UpdateAnimation(playerDirection, true);
+            UpdateAnimation(playerDirection);
         }
         else
         {
@@ -112,126 +92,98 @@ public partial class Gorgon : CharacterBody2D
 
         MoveAndSlide();
 
-        if (Health.Value <= 0)
+        if (PlayerInRange && _zikky.IsAttacking)
         {
-            Speed = 0;
-            GorgonCharge = false;
-            Velocity = LastDirection * Speed;
-            Die();
-        }
-
-    }
-
-    private void OnDirectionChangeTimeout()
-    {
-        PickRandomDirection();
-        Direction_Change_Timer.Start();
-    }
-
-    public void UpdateAnimation(Vector2 position, bool? charge)
-    {
-
-        if (PlayerInRange)
-        {
-            AnimatedSprite.Play("fight");
-            AnimatedSprite.FlipH = position.X < 0;
-            AnimatedSprite.FlipV = false;
-        }
-        else if (!PlayerInRange)
-        {
-            AnimatedSprite.Play("move_right");
-            AnimatedSprite.FlipH = false;
-            AnimatedSprite.FlipV = false;
-        }
-
-        if (position.X == 0)
-        {
-            AnimatedSprite.Play("move_left");
-            AnimatedSprite.FlipH = position.X < 0;
+            OnPlayerAttacked();
         }
     }
-
 
     private void OnHitboxBodyEntered(Node body)
     {
-        if (body is CharacterBody2D characterBody && body.IsInGroup("Player"))
+        if (IsDead) return;
+        if (body.IsInGroup("Player"))
         {
             PlayerInRange = true;
             IsAttacking = true;
-            UpdateAnimation(Position, null);
+            UpdateAnimation(Position);
         }
     }
 
-
     private void OnHitboxBodyExited(Node body)
     {
-        if (body is CharacterBody2D characterBody && body.IsInGroup("Player"))
+        if (IsDead) return;
+        if (body.IsInGroup("Player"))
         {
             PlayerInRange = false;
-            UpdateAnimation(Position, null);
+            UpdateAnimation(Position);
         }
     }
 
     private void OnTerritoryBodyEntered(Node body)
     {
-        if (body is CharacterBody2D characterBody && body.IsInGroup("Player"))
+        if (IsDead) return;
+        if (body.IsInGroup("Player"))
         {
             GorgonCharge = true;
-            _audioPlayer.Stream = chargeSound;
+            _audioPlayer.Stream = _chargeSound;
             _audioPlayer.Play();
         }
     }
 
     private void OnTerritoryBodyExited(Node body)
     {
-        if (body is CharacterBody2D characterBody && body.IsInGroup("Player"))
+        if (IsDead) return;
+        if (body.IsInGroup("Player"))
         {
             GorgonCharge = false;
-            PickRandomDirection();
+            LastDirection = Vector2.Zero;
+            OnDirectionChangeTimeout();
         }
     }
 
     private void OnPlayerAttacked()
     {
-        if (PlayerInRange && !HasTakenDamage && zikky.IsAttacking)
+        if (IsDead || !PlayerInRange || !_zikky.IsAttacking) return;
+
+        var damage = _zikky.CharacterStats.DealDamage();
+        _health.Value -= damage;
+        ShowDamage(damage);
+
+        if (_health.Value <= 0 && !IsDead)
         {
-            var damage = zikky.CharacterStats.DealDamage();
-            Health.Value -= damage;
-            HasTakenDamage = true;
-            GD.Print($"Gorgon took {damage} damage, remaining health: " + Health.Value);
-            ShowDamage(damage);
-            zikky.IsAttacking = false;
-            HasTakenDamage = false;
+            Die();
         }
     }
 
-    public void UpdateHealthBar()
+    private void UpdateAnimation(Vector2 direction)
     {
-        Health.Value = 50;
-        Health.Visible = true;
+        if (IsDead) return;
+        if (PlayerInRange)
+        {
+            AnimatedSprite.Play("fight");
+            AnimatedSprite.FlipH = direction.X < 0;
+        }
+        else
+        {
+            AnimatedSprite.Play("move_right");
+        }
     }
 
-    public void Die()
+    private void Die()
     {
         IsDead = true;
+        Speed = 0;
+        GorgonCharge = false;
+        PlayerInRange = false;
         AnimatedSprite.Play("die");
-        _audioPlayer.Stream = deathSound;
+        _audioPlayer.Stream = _deathSound;
         _audioPlayer.Play();
-    }
-
-    private void OnAnimationFinished()
-    {
-        if (IsDead)
-        {
-            QueueFree();
-            _rewardService.GrantRewards(GenerateLoot(), 100);
-            _levelUpService.GetExperience(100);
-        }
     }
 
     private void ShowDamage(int damage)
     {
-        _damageLabel.Text = "-" + damage.ToString();
+        if (IsDead) return;
+        _damageLabel.Text = $"-{damage}";
         _damageLabel.Visible = true;
         _damageLabelTimer.Start();
     }
@@ -241,9 +193,17 @@ public partial class Gorgon : CharacterBody2D
         _damageLabel.Visible = false;
     }
 
+    private void OnAnimationFinished()
+    {
+        if (IsDead && AnimatedSprite.Animation == "die")
+        {
+            QueueFree();
+            _rewardService.GrantRewards(GenerateLoot(), 100);
+        }
+    }
+
     private int GenerateLoot()
     {
-        var loot = new Loot();
-        return loot.Gold = 5;
+        return new Loot().Gold = 5;
     }
 }
