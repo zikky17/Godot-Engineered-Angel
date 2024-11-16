@@ -41,12 +41,15 @@ public partial class PlayerUI : CanvasLayer
         _maxHpLabel = GetNode<Label>("Panel/Attributes/Max_HP");
         _experienceLabel = GetNode<Label>("Panel/Attributes/Experience");
 
-        var levelUpService = zikky.RewardService._levelUpService;
-        levelUpService.Connect(nameof(LevelUpService.LevelUpOccurred), new Callable(this, nameof(OnLevelUpOccurred)));
-
-        levelLabel.SelfModulate = new Color("#fc3503");
-        goldLabel.SelfModulate = new Color("#fc3503");
+        levelLabel.SelfModulate = new Color("#f542c5");
+        goldLabel.SelfModulate = new Color("#c4ae04");
         healthLabel.SelfModulate = new Color("#0bfc03");
+
+        _strengthLabel.SelfModulate = new Color("#71eef0");
+        _defenceLabel.SelfModulate = new Color("#71eef0");
+        _intelligenceLabel.SelfModulate = new Color("#71eef0");
+        _maxHpLabel.SelfModulate = new Color("#71eef0");
+        _experienceLabel.SelfModulate = new Color("#71eef0");
 
 
         UpdateUI();

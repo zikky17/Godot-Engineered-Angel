@@ -1,6 +1,7 @@
 ﻿using EngineeredAngel.Database.Context;
 using EngineeredAngel.Database.Models;
 using EngineeredAngel.Stats;
+using Godot;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
@@ -77,33 +78,29 @@ namespace EngineeredAngel.Database.DbServices
             }
         }
 
-        public async Task UpdatePlayerLevelAsync(int level)
+        public async Task UpdatePlayerLevelAndStatsAsync(int level, int maxHPIncrease, int strengthIncrease, int defenseIncrease, int intelligenceIncrease)
         {
-            using var context = new GameDbContext();
-            var player = await context.Player.FirstOrDefaultAsync(p => p.Id == 1);
-
-            if (player != null)
+            try
             {
-                player.Level = level;
-                context.Player.Update(player);
-                await context.SaveChangesAsync();
+                using var context = new GameDbContext();
+                var player = await context.Player.FirstOrDefaultAsync(p => p.Id == 1);
+
+                if (player != null)
+                {
+                    player.Level = level;
+                    player.MaxHealth += maxHPIncrease;
+                    player.Strength += strengthIncrease;
+                    player.Defence += defenseIncrease;
+                    player.Intelligence += intelligenceIncrease;
+
+                    await context.SaveChangesAsync();
+                }
             }
-        }
-
-        public async Task UpdatePlayerLevelUpStatsAsync(int playerId, int maxHPIncrease, int strengthIncrease, int defenseIncrease, int intelligenceIncrease)
-        {
-            using var context = new GameDbContext();
-            var player = await context.Player.FirstOrDefaultAsync(p => p.Id == playerId);
-
-            if (player != null)
+            catch
             {
-                player.MaxHealth += maxHPIncrease;
-                player.Strength += strengthIncrease;
-                player.Defence += defenseIncrease;
-                player.Intelligence += intelligenceIncrease;
-
-                await context.SaveChangesAsync();
+                GD.Print("Error saving data.");
             }
+          
         }
 
 

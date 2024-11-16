@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\services\\levelupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:services\\levelupservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\database\\dbservices\\playerdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:database\\dbservices\\playerdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\zikky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\zikky.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\playerui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\playerui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -47,40 +39,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LevelUpService.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Services\\LevelUpService.cs",
-              "RelativeDocumentMoniker": "Services\\LevelUpService.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Services\\LevelUpService.cs",
-              "RelativeToolTip": "Services\\LevelUpService.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Title": "PlayerUI.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI.cs",
+              "RelativeDocumentMoniker": "Scripts\\PlayerUI.cs",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI.cs",
+              "RelativeToolTip": "Scripts\\PlayerUI.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAQwCUAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T16:45:34.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PlayerDataRepository.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerDataRepository.cs",
-              "RelativeDocumentMoniker": "Database\\DbServices\\PlayerDataRepository.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerDataRepository.cs",
-              "RelativeToolTip": "Database\\DbServices\\PlayerDataRepository.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAcwGYAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-15T16:44:37.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Zikky.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\Zikky.cs",
-              "RelativeDocumentMoniker": "Scripts\\Zikky.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\Zikky.cs",
-              "RelativeToolTip": "Scripts\\Zikky.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAApwEYAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T20:55:17.001Z",
+              "WhenOpened": "2024-11-16T07:07:00.288Z",
               "EditorCaption": ""
             }
           ]

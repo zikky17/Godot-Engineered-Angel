@@ -2,47 +2,41 @@
 using EngineeredAngel.Stats;
 using Godot;
 using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 using System.Threading.Tasks;
 
 namespace EngineeredAngel.Services
 {
     public partial class LevelUpService : Node
     {
-        [Signal]
-        public delegate void LevelUpOccurredEventHandler(int newLevel, int experience);
 
         private readonly PlayerDataRepository _playerDataRepository = new();
         private Zikky _zikky;
 
-
-        public async void AddExperience(int experience, Zikky zikky)
+        public async void CheckLevelUp(int experience, Zikky zikky)
         {
             _zikky = zikky;
-            _zikky.CharacterStats.Experience += experience;
-            CheckLevelUp();
-
             await _playerDataRepository.UpdatePlayerExperienceAsync(experience);
-        }
 
-        private async void CheckLevelUp()
-        {
-            var level = _zikky.CharacterStats.Level;
-            var expNeededForNextLevel = GetExpForNextLevel(level);
-
-            if (_zikky.CharacterStats.Experience >= expNeededForNextLevel)
+            while (_zikky.CharacterStats.Experience >= GetExpForNextLevel(_zikky.CharacterStats.Level))
             {
-                _zikky.CharacterStats.Level++;
-                _zikky.CharacterStats.Experience = 0;
-                EmitSignal(nameof(LevelUpOccurredEventHandler), _zikky.CharacterStats.Level, _zikky.CharacterStats.Experience);
-                ApplyLevelUpBonus();
+                var expNeededForNextLevel = GetExpForNextLevel(_zikky.CharacterStats.Level);
+                GD.Print($"Experience needed for next level: {expNeededForNextLevel}");
 
-                await _playerDataRepository.UpdatePlayerLevelAsync(_zikky.CharacterStats.Level);
+                _zikky.CharacterStats.Experience -= expNeededForNextLevel;
+
+                _zikky.CharacterStats.Level++;
+                ApplyLevelUpBonus();
             }
         }
 
         private int GetExpForNextLevel(int level)
         {
-            return 100 + (level - 1) * 125;
+            const int baseExp = 100;
+
+            const double scaleFactor = 2.2;
+
+            return (int)(baseExp * Math.Pow(scaleFactor, level - 1));
         }
 
         private async void ApplyLevelUpBonus()
@@ -52,8 +46,13 @@ namespace EngineeredAngel.Services
             _zikky.CharacterStats.Defense += 1;
             _zikky.CharacterStats.Intelligence += 1;
 
-            await _playerDataRepository.UpdatePlayerLevelUpStatsAsync(1, 10, 2, 1, 1);
-            GD.Print($"Leveled up to {_zikky.CharacterStats.Level}! New stats - HP: {_zikky.CharacterStats.MaxHP}, Strength: {_zikky.CharacterStats.Strength}, Defense: {_zikky.CharacterStats.Defense}");
+            await _playerDataRepository.UpdatePlayerLevelAndStatsAsync(_zikky.CharacterStats.Level, 10, 2, 1, 1);
+            GD.Print($"Leveled up to {_zikky.CharacterStats.Level}!");
+            GD.Print("New stats:");
+            GD.Print($"- HP: {_zikky.CharacterStats.MaxHP}");
+            GD.Print($"- Strength: {_zikky.CharacterStats.Strength}");
+            GD.Print($"- Defense: {_zikky.CharacterStats.Defense}");
+            GD.Print($"- Intelligence: {_zikky.CharacterStats.Intelligence}");
         }
     }
 }
