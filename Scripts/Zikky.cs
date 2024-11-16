@@ -136,6 +136,13 @@ public partial class Zikky : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
+
+        if (CharacterStats == null)
+        {
+            GD.PrintErr("CharacterStats is null, skipping physics processing.");
+            return;
+        }
+
         AttackedByEnemy();
 
         if (CharacterStats.HP <= 0 && !IsDead)

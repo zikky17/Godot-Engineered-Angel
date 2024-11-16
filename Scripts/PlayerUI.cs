@@ -63,6 +63,12 @@ public partial class PlayerUI : CanvasLayer
     public override void _Process(double delta)
     {
 
+        if (zikky == null || zikky.CharacterStats == null)
+        {
+            GD.PrintErr("Zikky or its CharacterStats is null. Skipping UI update.");
+            return;
+        }
+
         health = zikky.CharacterStats.HP;
         gold = zikky.CharacterStats.Gold;
         level = zikky.CharacterStats.Level;
@@ -73,6 +79,8 @@ public partial class PlayerUI : CanvasLayer
         defence = zikky.CharacterStats.Defense;
         intelligence = zikky.CharacterStats.Intelligence;
         
+        if (health >= 100)
+            healthLabel.SelfModulate = new Color("#0bfc03");
         if (health <= 100)
             healthLabel.SelfModulate = new Color("#0bfc03");
         if (health <= 70)

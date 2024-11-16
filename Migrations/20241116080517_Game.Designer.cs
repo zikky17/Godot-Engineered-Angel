@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EngineeredAngel.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20241116070426_Game")]
+    [Migration("20241116080517_Game")]
     partial class Game
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

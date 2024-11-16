@@ -92,7 +92,7 @@ namespace EngineeredAngel.Database.DbServices
                     player.Strength += strengthIncrease;
                     player.Defence += defenseIncrease;
                     player.Intelligence += intelligenceIncrease;
-
+                    player.Experience = 0;
                     await context.SaveChangesAsync();
                 }
             }
