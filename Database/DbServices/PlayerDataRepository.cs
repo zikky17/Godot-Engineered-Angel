@@ -3,6 +3,7 @@ using EngineeredAngel.Database.Models;
 using EngineeredAngel.Stats;
 using Godot;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -56,29 +57,14 @@ namespace EngineeredAngel.Database.DbServices
             await _gameDbContext.SaveChangesAsync();
         }
 
-        public async Task UpdatePlayerGoldAsync(int gold)
-        {
-            var existingPlayer = await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == 1);
-
-            if (existingPlayer != null)
-            {
-                existingPlayer.Gold += gold;
-                await _gameDbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task UpdatePlayerExperienceAsync(int experience)
-        {
-            var existingPlayer = await _gameDbContext.Player.FirstOrDefaultAsync(p => p.Id == 1);
-
-            if (existingPlayer != null)
-            {
-                existingPlayer.Experience += experience;
-                await _gameDbContext.SaveChangesAsync();
-            }
-        }
-
-        public async Task UpdatePlayerLevelAndStatsAsync(int level, int maxHPIncrease, int strengthIncrease, int defenseIncrease, int intelligenceIncrease)
+        public async Task UpdatePlayerStatsAndLevelAsync(
+            int? gold,
+            int? experience,
+            int? level,
+            int? maxHPIncrease,
+            int? strengthIncrease,
+            int? defenseIncrease,
+            int? intelligenceIncrease)
         {
             try
             {
@@ -87,21 +73,51 @@ namespace EngineeredAngel.Database.DbServices
 
                 if (player != null)
                 {
-                    player.Level = level;
-                    player.MaxHealth += maxHPIncrease;
-                    player.Strength += strengthIncrease;
-                    player.Defence += defenseIncrease;
-                    player.Intelligence += intelligenceIncrease;
-                    player.Experience = 0;
+                    if (gold.HasValue)
+                    {
+                        player.Gold += gold.Value;
+                    }
+
+                    if (experience.HasValue)
+                    {
+                        player.Experience += experience.Value;
+                    }
+
+                    if (level.HasValue)
+                    {
+                        player.Level = level.Value;
+                        player.Experience = 0;
+                    }
+
+                    if (maxHPIncrease.HasValue)
+                    {
+                        player.MaxHealth += maxHPIncrease.Value;
+                    }
+
+                    if (strengthIncrease.HasValue)
+                    {
+                        player.Strength += strengthIncrease.Value;
+                    }
+
+                    if (defenseIncrease.HasValue)
+                    {
+                        player.Defence += defenseIncrease.Value;
+                    }
+
+                    if (intelligenceIncrease.HasValue)
+                    {
+                        player.Intelligence += intelligenceIncrease.Value;
+                    }
+
                     await context.SaveChangesAsync();
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                GD.Print("Error saving data.");
+                GD.Print($"Error saving data: {ex.Message}");
             }
-          
         }
+
 
 
 

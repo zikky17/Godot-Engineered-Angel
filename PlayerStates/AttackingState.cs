@@ -26,14 +26,14 @@ namespace EngineeredAngel.PlayerStates
             {
                 player.AnimatedSprite.Play("attack_left");
                 player._audioPlayer.Stream = player.attackSound;
-                player._audioPlayer.Play();
+                //player._audioPlayer.Play();
             }
             else
             {
                 player.AnimatedSprite.Play("attack_left");
                 player.AnimatedSprite.FlipH = player.LastDirection.X < 0;
                 player._audioPlayer.Stream = player.attackSound;
-                player._audioPlayer.Play();
+                //player._audioPlayer.Play();
             }
 
             await Task.Delay(500); 

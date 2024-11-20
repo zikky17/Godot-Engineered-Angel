@@ -14,7 +14,7 @@ namespace EngineeredAngel.Services
         {
             _zikky = zikky;
             _levelUpAnimation = _zikky.GetNode<AnimatedSprite2D>("LevelUpAnimation");
-            await _playerDataRepository.UpdatePlayerExperienceAsync(experience);
+            await _playerDataRepository.UpdatePlayerStatsAndLevelAsync(null, experience, null, null, null, null, null);
 
             while (_zikky.CharacterStats.Experience >= GetExpForNextLevel(_zikky.CharacterStats.Level))
             {
@@ -47,7 +47,7 @@ namespace EngineeredAngel.Services
 
             _zikky.CharacterStats.HP = _zikky.CharacterStats.MaxHP;
 
-            await _playerDataRepository.UpdatePlayerLevelAndStatsAsync(_zikky.CharacterStats.Level, 10, 2, 1, 1);
+            await _playerDataRepository.UpdatePlayerStatsAndLevelAsync(null, null, _zikky.CharacterStats.Level, 10, 2, 1, 1);
             GD.Print($"Leveled up to {_zikky.CharacterStats.Level}!");
             GD.Print("New stats:");
             GD.Print($"- HP: {_zikky.CharacterStats.MaxHP}");

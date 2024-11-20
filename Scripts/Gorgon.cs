@@ -1,8 +1,8 @@
 using EngineeredAngel.Loot;
 using EngineeredAngel.Services;
-using EngineeredAngel.Stats;
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Gorgon : CharacterBody2D
 {
@@ -24,12 +24,23 @@ public partial class Gorgon : CharacterBody2D
     private Random _random = new Random();
     private RewardService _rewardService;
 
+    public List<LootItem> LootTable { get; private set; }
+
     public Vector2 LastDirection { get; set; } = Vector2.Zero;
     public AnimatedSprite2D AnimatedSprite { get; private set; }
     private Timer _directionChangeTimer;
 
     public override void _Ready()
     {
+
+        LootTable = new List<LootItem>
+        {
+            new LootItem("Experience", "Resource", 100, 1.0f),
+            new LootItem("Gold", "Resource", 10, 0.8f),
+            new LootItem("Iron Sword", "Weapon", 1, 1.0f),
+            new LootItem("Healing Potion", "Resource", 1, 0.1f)
+        };
+
         _zikky = GetNode<Zikky>("../Zikky");
         AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         AnimatedSprite.Connect("animation_finished", new Callable(this, nameof(OnAnimationFinished)));
@@ -126,7 +137,7 @@ public partial class Gorgon : CharacterBody2D
         {
             GorgonCharge = true;
             _audioPlayer.Stream = _chargeSound;
-            _audioPlayer.Play();
+            //_audioPlayer.Play();
         }
     }
 
@@ -177,7 +188,7 @@ public partial class Gorgon : CharacterBody2D
         PlayerInRange = false;
         AnimatedSprite.Play("die");
         _audioPlayer.Stream = _deathSound;
-        _audioPlayer.Play();
+        //_audioPlayer.Play();
     }
 
     private void ShowDamage(int damage)
@@ -197,13 +208,79 @@ public partial class Gorgon : CharacterBody2D
     {
         if (IsDead && AnimatedSprite.Animation == "die")
         {
+            DropLoot();
+            
             QueueFree();
-            _rewardService.GrantRewards(GenerateLoot(), 100);
         }
     }
 
-    private int GenerateLoot()
+    private void DropLoot()
     {
-        return new Loot().Gold = 5;
+        List<string> droppedItems = new List<string>();
+
+        foreach (var item in LootTable)
+        {
+            float roll = (float)_random.NextDouble();
+            if (roll <= item.DropChance)
+            {
+                GD.Print($"Rolled: {roll:F2} for {item.Name} (DropChance: {item.DropChance:F2}) - SUCCESS");
+                droppedItems.Add($"{item.Name} x{item.Quantity}");
+
+                if (item.Name == "Gold")
+                {
+                    _rewardService.GrantRewards(item.Quantity, null);
+                }
+                else if (item.Name == "Experience")
+                {
+                    _rewardService.GrantRewards(null, item.Quantity);
+                }
+                else
+                {
+                    SpawnLoot(item);
+                }
+            }
+            else
+            {
+                GD.Print($"Rolled: {roll:F2} for {item.Name} (DropChance: {item.DropChance:F2}) - FAIL");
+            }
+        }
+
+        if (droppedItems.Count > 0)
+        {
+            GD.Print("Dropped items:");
+            foreach (var dropped in droppedItems)
+            {
+                GD.Print(dropped);
+            }
+        }
+        else
+        {
+            GD.Print("No loot dropped this time.");
+        }
+    }
+
+
+    private void SpawnLoot(LootItem item)
+    {
+        if(item.Name == "Iron Sword")
+        {
+            var lootNode = GD.Load<PackedScene>("res://Loot/IronSword.tscn").Instantiate<Loot>();
+            lootNode.Name = item.Name;
+            lootNode.Type = item.Type;
+            lootNode.Quantity = item.Quantity;
+            lootNode.Position = GlobalPosition;
+
+            GetParent().AddChild(lootNode);
+        }
+
+        if (item.Name == "Healing Potion")
+        {
+            var lootNode = GD.Load<PackedScene>("res://Scenes/Consumables/health_potion.tscn").Instantiate<Area2D>();
+            lootNode.Name = item.Name;
+            lootNode.Position = GlobalPosition;
+
+            GetParent().AddChild(lootNode);
+        }
+
     }
 }

@@ -1,17 +1,19 @@
-// Zikky.cs
 using DialogueManagerRuntime;
 using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Database.Models;
 using EngineeredAngel.Interfaces;
+using EngineeredAngel.Inventory;
 using EngineeredAngel.PlayerStates;
 using EngineeredAngel.Services;
 using EngineeredAngel.Stats;
 using Godot;
-using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public partial class Zikky : CharacterBody2D
 {
+    private Dictionary<string, InventoryItem> inventory = new Dictionary<string, InventoryItem>();
+
     public PlayerStats CharacterStats { get; set; }
     public RewardService RewardService { get; set; }
 
@@ -225,7 +227,7 @@ public partial class Zikky : CharacterBody2D
 
     public void UpdateHealthBar()
     {
-        Health.Visible = Health.Value < 100;
+        Health.Visible = Health.Value < CharacterStats.MaxHP;
     }
 
     public void Die()
@@ -289,4 +291,37 @@ public partial class Zikky : CharacterBody2D
         Position = new Vector2(100, 100);
         AnimatedSprite.Play("idle_left");
     }
+
+    // INVENTORY SECTION //
+
+    public void AddToInventory(string itemName, string itemType, int quantity)
+    {
+        if (inventory.ContainsKey(itemName))
+        {
+            inventory[itemName].Quantity += quantity;
+        }
+        else
+        {
+            inventory[itemName] = new InventoryItem(itemName, itemType, quantity);
+        }
+        GD.Print($"Added {quantity} x {itemName} to inventory.");
+    }
+
+    public void RemoveFromInventory(string itemName, int quantity)
+    {
+        if (inventory.ContainsKey(itemName))
+        {
+            inventory[itemName].Quantity -= quantity;
+            if (inventory[itemName].Quantity <= 0)
+                inventory.Remove(itemName);
+        }
+    }
+
+    public Dictionary<string, InventoryItem> GetInventory()
+    {
+        return inventory;
+    }
+
+
+
 }

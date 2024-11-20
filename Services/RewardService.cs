@@ -16,14 +16,27 @@ namespace EngineeredAngel.Services
             _levelUpService = levelUpService;
         }
 
-        public async void GrantRewards(int gold, int experience)
+        public async void GrantRewards(int? gold, int? experience)
         {
-            _zikky.CharacterStats.Gold += gold;
-            _zikky.CharacterStats.Experience += experience;
-            _levelUpService.CheckLevelUp(experience, _zikky);
-            await _playerDataRepository.UpdatePlayerGoldAsync(gold);
-            await _playerDataRepository.UpdatePlayerExperienceAsync(experience);
+            if (gold.HasValue)
+            {
+                _zikky.CharacterStats.Gold += gold.Value;
+            }
+
+            if (experience.HasValue)
+            {
+                _zikky.CharacterStats.Experience += experience.Value;
+            }
+
+            await _playerDataRepository.UpdatePlayerStatsAndLevelAsync(gold, experience, null, null, null, null, null);
+
+            if (experience.HasValue)
+            {
+                _levelUpService.CheckLevelUp(experience.Value, _zikky);
+            }
+
             GD.Print($"Gold: {_zikky.CharacterStats.Gold}, Experience: {_zikky.CharacterStats.Experience}");
         }
+
     }
 }
