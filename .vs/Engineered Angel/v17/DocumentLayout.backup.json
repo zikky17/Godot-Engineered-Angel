@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\playerui\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\database\\dbservices\\playerinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:database\\dbservices\\playerinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\playerui\\loot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\playerui\\loot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,8 +22,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 197,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayerInventoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerInventoryRepository.cs",
+              "RelativeDocumentMoniker": "Database\\DbServices\\PlayerInventoryRepository.cs",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerInventoryRepository.cs",
+              "RelativeToolTip": "Database\\DbServices\\PlayerInventoryRepository.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAADwvz4AAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T09:37:15.86Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -46,24 +63,24 @@
               "Title": "InventoryUi.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\InventoryUi.cs",
               "RelativeDocumentMoniker": "Scripts\\PlayerUI\\InventoryUi.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\InventoryUi.cs*",
-              "RelativeToolTip": "Scripts\\PlayerUI\\InventoryUi.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAABwAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\InventoryUi.cs",
+              "RelativeToolTip": "Scripts\\PlayerUI\\InventoryUi.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADcAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T14:22:54.043Z",
+              "WhenOpened": "2024-11-22T09:39:24.906Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Loot.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\Loot.cs",
               "RelativeDocumentMoniker": "Scripts\\PlayerUI\\Loot.cs",
-              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\Loot.cs*",
-              "RelativeToolTip": "Scripts\\PlayerUI\\Loot.cs*",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAB8AAABPAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\Loot.cs",
+              "RelativeToolTip": "Scripts\\PlayerUI\\Loot.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-20T14:21:43.868Z",
+              "WhenOpened": "2024-11-22T09:36:12.389Z",
               "EditorCaption": ""
             }
           ]

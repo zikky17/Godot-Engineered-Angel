@@ -18,5 +18,6 @@ namespace EngineeredAngel.Database.Models
 
         [ForeignKey("PlayerInventoryEntity")]
         public int InventoryId { get; set; }
+        public PlayerInventoryEntity Inventory { get; set; }
     }
 }

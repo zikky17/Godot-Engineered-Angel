@@ -4,7 +4,7 @@
 
 namespace EngineeredAngel.Migrations
 {
-    public partial class AddedTablesInventoryandLootItems : Migration
+    public partial class Game : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -21,6 +21,26 @@ namespace EngineeredAngel.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Player",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    CurrentHP = table.Column<int>(type: "int", nullable: false),
+                    MaxHealth = table.Column<int>(type: "int", nullable: false),
+                    Strength = table.Column<int>(type: "int", nullable: false),
+                    Defence = table.Column<int>(type: "int", nullable: false),
+                    Intelligence = table.Column<int>(type: "int", nullable: false),
+                    Experience = table.Column<int>(type: "int", nullable: false),
+                    Gold = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Player", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LootItems",
                 columns: table => new
                 {
@@ -29,7 +49,8 @@ namespace EngineeredAngel.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    InventoryId = table.Column<int>(type: "int", nullable: false)
+                    InventoryId = table.Column<int>(type: "int", nullable: false),
+                    InventoryId1 = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -40,18 +61,31 @@ namespace EngineeredAngel.Migrations
                         principalTable: "Inventory",
                         principalColumn: "InventoryId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_LootItems_Inventory_InventoryId1",
+                        column: x => x.InventoryId1,
+                        principalTable: "Inventory",
+                        principalColumn: "InventoryId");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_LootItems_InventoryId",
                 table: "LootItems",
                 column: "InventoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_LootItems_InventoryId1",
+                table: "LootItems",
+                column: "InventoryId1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "LootItems");
+
+            migrationBuilder.DropTable(
+                name: "Player");
 
             migrationBuilder.DropTable(
                 name: "Inventory");

@@ -1,7 +1,5 @@
 using Godot;
-using System.Collections.Generic;
 using EngineeredAngel.Database.DbServices;
-using EngineeredAngel.Database.Models;
 
 public partial class InventoryUi : Control
 {
@@ -10,14 +8,18 @@ public partial class InventoryUi : Control
 
     public override void _Ready()
     {
-        var lootNodes = GetTree().GetNodesInGroup("Loot");
-
-        foreach (Node lootNode in lootNodes)
+        if (GameManager.Instance != null)
         {
-            if (lootNode is Loot loot)
-            {
-                loot.Connect(nameof(Loot.ItemPickedUpEventHandler), new Callable(this, nameof(OnItemPickedUp)));
-            }
+            GD.Print("Connecting signal...");
+            GameManager.Instance.Connect(
+                nameof(GameManager.ItemPickedUpEventHandler),
+                new Callable(this, nameof(OnItemPickedUp))
+            );
+            GD.Print("Signal connected.");
+        }
+        else
+        {
+            GD.Print("GameManager instance is null. Cannot connect signal.");
         }
 
         _gridContainer = GetNode<GridContainer>("PanelContainer/ScrollContainer/GridContainer");
@@ -29,40 +31,54 @@ public partial class InventoryUi : Control
     private void OnItemPickedUp(string itemName, string itemType, int quantity)
     {
         GD.Print($"Received Signal: {quantity} x {itemName} ({itemType}) picked up.");
-        UpdateInventoryUI();
+        UpdateItemQuantityInUI(itemName, quantity);
     }
+
+    private void UpdateItemQuantityInUI(string itemName, int quantity)
+    {
+        GD.Print($"Updating {itemName} with quantity {quantity} in UI...");
+        bool itemExists = false;
+
+        foreach (Label label in _gridContainer.GetChildren())
+        {
+            if (label.Text.StartsWith(itemName))
+            {
+                var currentQuantity = int.Parse(label.Text.Split('x')[1].Trim());
+                var newQuantity = currentQuantity + quantity;
+                label.Text = $"{itemName} x{newQuantity}";
+                label.TooltipText = $"Quantity: {newQuantity}";
+                itemExists = true;
+                break;
+            }
+        }
+
+        if (!itemExists)
+        {
+            var newItemLabel = new Label
+            {
+                Text = $"{itemName} x{quantity}",
+                TooltipText = $"Quantity: {quantity}",
+            };
+            _gridContainer.AddChild(newItemLabel);
+        }
+    }
+
 
     public async void UpdateInventoryUI()
     {
+
         var playerInventory = await _inventoryRepository.GetPlayerInventoryAsync();
         if (playerInventory != null)
         {
             foreach (var item in playerInventory.LootItems)
             {
-                bool itemExists = false;
-                foreach (Label label in _gridContainer.GetChildren())
+                var itemLabel = new Label
                 {
-                    if (label.Text.StartsWith(item.Name))
-                    {
-                        var existingQuantity = int.Parse(label.Text.Split('x')[1].Trim());
-                        var newQuantity = existingQuantity + item.Quantity;
-                        label.Text = $"{item.Name} x{newQuantity}";
-                        label.TooltipText = $"Type: {item.Type}\nQuantity: {newQuantity}";
-                        itemExists = true;
-                        break;
-                    }
-                }
+                    Text = $"{item.Name} x{item.Quantity}",
+                    TooltipText = $"Type: {item.Type}\nQuantity: {item.Quantity}",
+                };
 
-                if (!itemExists)
-                {
-                    var itemLabel = new Label
-                    {
-                        Text = $"{item.Name} x{item.Quantity}",
-                        TooltipText = $"Type: {item.Type}\nQuantity: {item.Quantity}",
-                    };
-
-                    _gridContainer.AddChild(itemLabel);
-                }
+                _gridContainer.AddChild(itemLabel);
             }
         }
         else
@@ -71,3 +87,4 @@ public partial class InventoryUi : Control
         }
     }
 }
+
