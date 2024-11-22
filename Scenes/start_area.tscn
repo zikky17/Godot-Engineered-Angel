@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bse7a8r0vowa7"]
+[gd_scene load_steps=13 format=4 uid="uid://bse7a8r0vowa7"]
 
 [ext_resource type="PackedScene" uid="uid://bqhyu0lqpq54d" path="res://GameManager/GameManager.tscn" id="1_7qia8"]
 [ext_resource type="Texture2D" uid="uid://gruns34wg3rh" path="res://Assets/Tilemap/MainTextures.png" id="1_f6afb"]
@@ -7,8 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cc7w8xtv34oms" path="res://Assets/Music/Sirens_Song.mp3" id="4_8cuyq"]
 [ext_resource type="PackedScene" uid="uid://do84heumt7qdf" path="res://Scenes/Consumables/health_potion.tscn" id="6_21k5l"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="6_g85r6"]
-[ext_resource type="Script" path="res://Scripts/PlayerUI.cs" id="7_jxe3o"]
-[ext_resource type="PackedScene" uid="uid://b514wl0iwsih" path="res://Inventory/InventoryUI.tscn" id="8_kshjo"]
+[ext_resource type="PackedScene" uid="uid://bgq30apu6lmfe" path="res://Scripts/PlayerUI/PlayerUI.tscn" id="7_lfu50"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l7v6"]
 texture = ExtResource("1_f6afb")
@@ -8542,80 +8541,17 @@ position = Vector2(169, 42)
 [node name="Gorgon" parent="." instance=ExtResource("6_g85r6")]
 position = Vector2(402, 67)
 
-[node name="PlayerUI" type="CanvasLayer" parent="."]
-script = ExtResource("7_jxe3o")
-
-[node name="InventoryUI" parent="PlayerUI" instance=ExtResource("8_kshjo")]
-offset_left = -144.0
-offset_top = -34.0
-offset_right = -144.0
-offset_bottom = -34.0
-
-[node name="Panel" type="Panel" parent="PlayerUI"]
-z_index = 1
-offset_left = 9.0
-offset_top = 7.0
-offset_right = 46.0
-offset_bottom = 76.0
-
-[node name="Main_Stats" type="GridContainer" parent="PlayerUI/Panel"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 150.0
-offset_bottom = 79.0
-scale = Vector2(0.25, 0.25)
-
-[node name="Level" type="Label" parent="PlayerUI/Panel/Main_Stats"]
-layout_mode = 2
-text = "Level: "
-
-[node name="Health" type="Label" parent="PlayerUI/Panel/Main_Stats"]
-layout_mode = 2
-text = "Health: "
-
-[node name="Gold" type="Label" parent="PlayerUI/Panel/Main_Stats"]
-layout_mode = 2
-text = "Gold: "
-
-[node name="Attributes" type="GridContainer" parent="PlayerUI/Panel"]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 29.0
-offset_right = 116.0
-offset_bottom = 132.0
-scale = Vector2(0.35, 0.35)
-
-[node name="Strength" type="Label" parent="PlayerUI/Panel/Attributes"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Strength:"
-
-[node name="Defence" type="Label" parent="PlayerUI/Panel/Attributes"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Defence:"
-
-[node name="Intelligence" type="Label" parent="PlayerUI/Panel/Attributes"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Intelligence:"
-
-[node name="Max_HP" type="Label" parent="PlayerUI/Panel/Attributes"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Max HP:"
-
-[node name="Experience" type="Label" parent="PlayerUI/Panel/Attributes"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Experience:"
+[node name="PlayerUI" parent="." instance=ExtResource("7_lfu50")]
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 163.0
+offset_bottom = 114.0
 
 [node name="Zikky" parent="." instance=ExtResource("2_xt1uq")]
 position = Vector2(80, 77)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("6_g85r6")]
-position = Vector2(402, 137)
+position = Vector2(449, 181)
 
 [node name="CharacterBody2D2" parent="." instance=ExtResource("6_g85r6")]
 position = Vector2(336, 167)

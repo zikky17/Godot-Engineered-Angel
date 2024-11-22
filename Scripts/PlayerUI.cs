@@ -4,10 +4,10 @@ using Godot;
 
 public partial class PlayerUI : CanvasLayer
 {
-    private Zikky zikky;
-    private Label levelLabel;
-    private Label goldLabel;
-    private Label healthLabel;
+    private Zikky _zikky;
+    private Label _levelLabel;
+    private Label _goldLabel;
+    private Label _healthLabel;
 
     private Label _experienceLabel;
     private Label _strengthLabel;
@@ -30,20 +30,20 @@ public partial class PlayerUI : CanvasLayer
     public override void _Ready()
     {
 
-        zikky = GetNode<Zikky>("../Zikky");
-        levelLabel = GetNode<Label>("Panel/Main_Stats/Level");
-        goldLabel = GetNode<Label>("Panel/Main_Stats/Gold");
-        healthLabel = GetNode<Label>("Panel/Main_Stats/Health");
+        _zikky = GetNode<Zikky>("../../Zikky");
+        _levelLabel = GetNode<Label>("Main_Stats/Main_Stats/Level");
+        _healthLabel = GetNode<Label>("Main_Stats/Main_Stats/Health");
+        _goldLabel = GetNode<Label>("Main_Stats/Main_Stats/Gold");
 
-        _strengthLabel = GetNode<Label>("Panel/Attributes/Strength");
-        _defenceLabel = GetNode<Label>("Panel/Attributes/Defence");
-        _intelligenceLabel = GetNode<Label>("Panel/Attributes/Intelligence");
-        _maxHpLabel = GetNode<Label>("Panel/Attributes/Max_HP");
-        _experienceLabel = GetNode<Label>("Panel/Attributes/Experience");
+        _strengthLabel = GetNode<Label>("Main_Stats/Attributes/Strength");
+        _defenceLabel = GetNode<Label>("Main_Stats/Attributes/Defence");
+        _intelligenceLabel = GetNode<Label>("Main_Stats/Attributes/Intelligence");
+        _maxHpLabel = GetNode<Label>("Main_Stats/Attributes/Max_HP");
+        _experienceLabel = GetNode<Label>("Main_Stats/Attributes/Experience");
 
-        levelLabel.SelfModulate = new Color("#f542c5");
-        goldLabel.SelfModulate = new Color("#c4ae04");
-        healthLabel.SelfModulate = new Color("#0bfc03");
+        _levelLabel.SelfModulate = new Color("#f542c5");
+        _goldLabel.SelfModulate = new Color("#c4ae04");
+        _healthLabel.SelfModulate = new Color("#0bfc03");
 
         _strengthLabel.SelfModulate = new Color("#71eef0");
         _defenceLabel.SelfModulate = new Color("#71eef0");
@@ -63,32 +63,32 @@ public partial class PlayerUI : CanvasLayer
     public override void _Process(double delta)
     {
 
-        if (zikky == null || zikky.CharacterStats == null)
+        if (_zikky == null || _zikky.CharacterStats == null)
         {
             GD.PrintErr("Zikky or its CharacterStats is null. Skipping UI update.");
             return;
         }
 
-        health = zikky.CharacterStats.HP;
-        gold = zikky.CharacterStats.Gold;
-        level = zikky.CharacterStats.Level;
-        experience = zikky.CharacterStats.Experience;
+        health = _zikky.CharacterStats.HP;
+        gold = _zikky.CharacterStats.Gold;
+        level = _zikky.CharacterStats.Level;
+        experience = _zikky.CharacterStats.Experience;
 
-        maxHp = zikky.CharacterStats.MaxHP;
-        strength = zikky.CharacterStats.Strength;
-        defence = zikky.CharacterStats.Defense;
-        intelligence = zikky.CharacterStats.Intelligence;
+        maxHp = _zikky.CharacterStats.MaxHP;
+        strength = _zikky.CharacterStats.Strength;
+        defence = _zikky.CharacterStats.Defense;
+        intelligence = _zikky.CharacterStats.Intelligence;
         
         if (health >= 100)
-            healthLabel.SelfModulate = new Color("#0bfc03");
+            _healthLabel.SelfModulate = new Color("#0bfc03");
         if (health <= 100)
-            healthLabel.SelfModulate = new Color("#0bfc03");
+            _healthLabel.SelfModulate = new Color("#0bfc03");
         if (health <= 70)
-            healthLabel.SelfModulate = new Color("#dffc03");
+            _healthLabel.SelfModulate = new Color("#dffc03");
         if (health <= 50)
-            healthLabel.SelfModulate = new Color("#fc6b03");
+            _healthLabel.SelfModulate = new Color("#fc6b03");
         if (health <= 25)
-            healthLabel.SelfModulate = new Color("#fc0303");
+            _healthLabel.SelfModulate = new Color("#fc0303");
 
         UpdateUI();
     }
@@ -96,9 +96,9 @@ public partial class PlayerUI : CanvasLayer
     private void UpdateUI()
     {
 
-        levelLabel.Text = $"Level: {level}";
-        goldLabel.Text = $"Gold: {gold}";
-        healthLabel.Text = $"Health: {health}";
+        _levelLabel.Text = $"Level: {level}";
+        _goldLabel.Text = $"Gold: {gold}";
+        _healthLabel.Text = $"Health: {health}";
 
         _experienceLabel.Text = $"Experience: {experience}";
         _strengthLabel.Text = $"Strength: {strength}";

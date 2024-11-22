@@ -8,6 +8,11 @@ public partial class InventoryUi : Control
 
     public override void _Ready()
     {
+        var viewportSize = GetViewportRect().Size;
+
+        SetSize(new Vector2(viewportSize.X * 0.3f, viewportSize.Y * 0.5f));
+        SetPosition(new Vector2(viewportSize.X - viewportSize.Y - 25, 25));
+
         if (GameManager.Instance != null)
         {
             GD.Print("Connecting signal...");
@@ -39,14 +44,17 @@ public partial class InventoryUi : Control
         GD.Print($"Updating {itemName} with quantity {quantity} in UI...");
         bool itemExists = false;
 
-        foreach (Label label in _gridContainer.GetChildren())
+        foreach (VBoxContainer itemContainer in _gridContainer.GetChildren())
         {
-            if (label.Text.StartsWith(itemName))
+            if (itemContainer.Name == itemName)
             {
-                var currentQuantity = int.Parse(label.Text.Split('x')[1].Trim());
+                var quantityLabel = itemContainer.GetNode<Label>("QuantityLabel");
+                var currentQuantity = int.Parse(quantityLabel.Text.Trim().Split('x')[1]);
                 var newQuantity = currentQuantity + quantity;
-                label.Text = $"{itemName} x{newQuantity}";
-                label.TooltipText = $"Quantity: {newQuantity}";
+                quantityLabel.Text = $"x{newQuantity}";
+                quantityLabel.TooltipText = $"Quantity: {newQuantity}";
+
+                GD.Print($"Updated {itemName} to new quantity: {newQuantity}");
                 itemExists = true;
                 break;
             }
@@ -54,31 +62,62 @@ public partial class InventoryUi : Control
 
         if (!itemExists)
         {
-            var newItemLabel = new Label
+            var itemContainer = new VBoxContainer
             {
-                Text = $"{itemName} x{quantity}",
-                TooltipText = $"Quantity: {quantity}",
+                Name = itemName
             };
-            _gridContainer.AddChild(newItemLabel);
+
+            var newItemIcon = new TextureRect
+            {
+                Texture = (Texture2D)GD.Load<Texture>($"res://Assets/Sprites/Loot/{itemName.Replace(" ", "")}.png"),
+                TooltipText = $"Quantity: {quantity}"
+            };
+            itemContainer.AddChild(newItemIcon);
+
+            var quantityLabel = new Label
+            {
+                Name = "QuantityLabel",
+                Text = $"x{quantity}",
+                TooltipText = $"Quantity: {quantity}"
+            };
+            itemContainer.AddChild(quantityLabel);
+
+            _gridContainer.AddChild(itemContainer);
+
+            GD.Print($"Added new item: {itemName} with quantity: {quantity}");
         }
     }
 
-
     public async void UpdateInventoryUI()
     {
+        ClearGridContainer();
 
         var playerInventory = await _inventoryRepository.GetPlayerInventoryAsync();
         if (playerInventory != null)
         {
             foreach (var item in playerInventory.LootItems)
             {
-                var itemLabel = new Label
+                var itemContainer = new VBoxContainer
                 {
-                    Text = $"{item.Name} x{item.Quantity}",
-                    TooltipText = $"Type: {item.Type}\nQuantity: {item.Quantity}",
+                    Name = item.Name
                 };
 
-                _gridContainer.AddChild(itemLabel);
+                var itemIcon = new TextureRect
+                {
+                    Texture = (Texture2D)GD.Load<Texture>($"res://Assets/Sprites/Loot/{item.Name.Replace(" ", "")}.png"),
+                    TooltipText = $"Quantity: {item.Quantity}"
+                };
+                itemContainer.AddChild(itemIcon);
+
+                var quantityLabel = new Label
+                {
+                    Name = "QuantityLabel",
+                    Text = $"x{item.Quantity}",
+                    TooltipText = $"Quantity: {item.Quantity}"
+                };
+                itemContainer.AddChild(quantityLabel);
+
+                _gridContainer.AddChild(itemContainer);
             }
         }
         else
@@ -86,5 +125,12 @@ public partial class InventoryUi : Control
             GD.Print("No items found in the inventory.");
         }
     }
-}
 
+    private void ClearGridContainer()
+    {
+        foreach (Node child in _gridContainer.GetChildren())
+        {
+            child.QueueFree();
+        }
+    }
+}
