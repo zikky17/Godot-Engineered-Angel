@@ -1,16 +1,16 @@
 using Godot;
 using EngineeredAngel.Database.DbServices;
 
-public partial class InventoryUi : PanelContainer
+public partial class InventoryUi : TextureRect
 {
     private GridContainer _gridContainer;
     private PlayerInventoryRepository _inventoryRepository;
 
     public override void _Ready()
     {
-        var viewportSize = GetViewportRect().Size;
-        SetSize(new Vector2(viewportSize.X * 0.3f, viewportSize.Y * 0.5f));
-        SetPosition(new Vector2(viewportSize.X - viewportSize.X * 0.35f, 25));
+        //var viewportSize = GetViewportRect().Size;
+        //SetSize(new Vector2(viewportSize.X * 0.3f, viewportSize.Y * 0.5f));
+        //SetPosition(new Vector2(viewportSize.X - viewportSize.X * 0.35f, 25));
 
         if (GameManager.Instance != null)
         {
@@ -26,7 +26,7 @@ public partial class InventoryUi : PanelContainer
             GD.Print("GameManager instance is null. Cannot connect signal.");
         }
 
-        _gridContainer = GetNode<GridContainer>("GridContainer");
+        _gridContainer = GetNode<GridContainer>("PanelContainer/GridContainer");
         _inventoryRepository = new PlayerInventoryRepository();
 
         UpdateInventoryUI();
@@ -41,33 +41,33 @@ public partial class InventoryUi : PanelContainer
     private void UpdateItemQuantityInUI(string itemName, int quantity)
     {
         GD.Print($"Updating {itemName} with quantity {quantity} in UI...");
-        foreach (InventorySlot slot in _gridContainer.GetChildren())
+
+        foreach (VBoxContainer slot in _gridContainer.GetChildren())
         {
+            var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
+            var itemCount = slot.GetNode<Label>("ItemCount");
+
             if (slot.Name == itemName)
             {
-                var currentQuantity = int.Parse(slot.GetNode<Label>("ItemCount").Text.Replace("x", ""));
+                var currentQuantity = int.Parse(itemCount.Text.Replace("x", ""));
                 var newQuantity = currentQuantity + quantity;
-                slot.UpdateSlot(slot.GetNode<TextureRect>("ItemPicture").Texture, newQuantity);
+                itemPicture.Texture = itemPicture.Texture;
+                itemCount.Text = $"x{newQuantity}";
                 GD.Print($"Updated {itemName} to new quantity: {newQuantity}");
                 return;
             }
-        }
 
-        foreach (InventorySlot slot in _gridContainer.GetChildren())
-        {
-            if (slot.GetNode<Label>("ItemCount").Text == "x0")
+            if (itemCount.Text == "x0") 
             {
                 var texture = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/{itemName.Replace(" ", "")}.png");
                 if (texture == null)
                 {
-                    GD.Print($"Failed to load texture for {itemName}");
-                }
-                else
-                {
-                    GD.Print($"Successfully loaded texture: {texture.ResourcePath}");
+                    GD.PrintErr($"Failed to load texture for {itemName}");
+                    return;
                 }
                 slot.Name = itemName;
-                slot.UpdateSlot(texture, quantity);
+                itemPicture.Texture = texture;
+                itemCount.Text = $"x{quantity}";
                 GD.Print($"Added new item: {itemName} with quantity: {quantity}");
                 return;
             }
@@ -83,13 +83,23 @@ public partial class InventoryUi : PanelContainer
         {
             foreach (var item in playerInventory.LootItems)
             {
-                foreach (InventorySlot slot in _gridContainer.GetChildren())
+                foreach (VBoxContainer slot in _gridContainer.GetChildren())
                 {
-                    if (slot.GetNode<Label>("ItemCount").Text == "x0")
+                    var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
+                    var itemCount = slot.GetNode<Label>("ItemCount");
+
+                    if (itemCount.Text == "x0")
                     {
-                        var texture = GD.Load<Texture2D>("res://Assets/Sprites/Loot/IronSword.png");
+                        var texture = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/{item.Name.Replace(" ", "")}.png");
+                        if (texture == null)
+                        {
+                            GD.PrintErr($"Failed to load texture for {item.Name}");
+                            return;
+                        }
                         slot.Name = item.Name;
-                        slot.UpdateSlot(texture, item.Quantity);
+                        itemPicture.Texture = texture;
+                        itemCount.Text = $"x{item.Quantity}";
+                        GD.Print($"Successfully loaded texture: {texture.ResourceName}");
                         break;
                     }
                 }

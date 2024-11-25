@@ -3,13 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://bacmykj5b1j87" path="res://Assets/Images/UI-Images/PlayerUI_backpack.webp" id="1_lxo6l"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI/InventoryUi.cs" id="1_swsjh"]
 [ext_resource type="Theme" uid="uid://c58ei1xryb5cv" path="res://Style Themes/inventoryTheme.tres" id="3_kdy1d"]
-[ext_resource type="PackedScene" uid="uid://d2t0kn14wmc4u" path="res://Inventory/item_slot_template.tscn" id="4_prqqv"]
+[ext_resource type="Texture2D" uid="uid://ckcclgbd8ysry" path="res://Assets/Sprites/Loot/IronSword.png" id="4_p4u8s"]
 
 [node name="InventoryUI" type="TextureRect"]
-offset_right = 119.0
-offset_bottom = 130.0
+offset_right = 132.0
+offset_bottom = 207.0
 texture = ExtResource("1_lxo6l")
 expand_mode = 1
+script = ExtResource("1_swsjh")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -17,19 +18,30 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = 28.0
-offset_right = 86.0
-offset_bottom = -57.0
+offset_left = 18.0
+offset_top = 38.0
+offset_right = -79.0
+offset_bottom = -104.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-script = ExtResource("1_swsjh")
+scale = Vector2(0.4, 0.4)
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer"]
 layout_mode = 2
 theme = ExtResource("3_kdy1d")
 columns = 9
 
-[node name="ItemSlotTemplate" parent="PanelContainer/GridContainer" instance=ExtResource("4_prqqv")]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
 layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+texture = ExtResource("4_p4u8s")
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1

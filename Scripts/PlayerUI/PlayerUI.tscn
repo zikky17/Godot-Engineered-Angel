@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgq30apu6lmfe"]
+[gd_scene load_steps=5 format=3 uid="uid://bgq30apu6lmfe"]
 
 [ext_resource type="Texture2D" uid="uid://jr55ge8osw05" path="res://Assets/Images/UI-Images/PlayerUI_bgimage.webp" id="1_j05bl"]
+[ext_resource type="Script" path="res://Scripts/PlayerUI.cs" id="2_1wtat"]
 [ext_resource type="Theme" uid="uid://b10284thxbs0q" path="res://Style Themes/StatsTheme.tres" id="2_e06vt"]
 
 [sub_resource type="Theme" id="Theme_thmt5"]
@@ -8,10 +9,11 @@
 [node name="Main_Stats" type="TextureRect"]
 offset_left = 5.0
 offset_top = 4.0
-offset_right = 146.0
-offset_bottom = 171.0
+offset_right = 137.0
+offset_bottom = 211.0
 texture = ExtResource("1_j05bl")
 expand_mode = 1
+script = ExtResource("2_1wtat")
 
 [node name="Main_Stats" type="GridContainer" parent="."]
 layout_mode = 1
@@ -48,9 +50,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 22.0
-offset_top = -98.0
+offset_top = -112.0
 offset_right = 131.0
-offset_bottom = 39.0
+offset_bottom = 28.0
 grow_vertical = 0
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_e06vt")
@@ -58,7 +60,7 @@ theme_override_constants/v_separation = 10
 
 [node name="Strength" type="Label" parent="Attributes"]
 layout_mode = 2
-text = "Strength"
+text = "Strength:"
 
 [node name="Defence" type="Label" parent="Attributes"]
 layout_mode = 2

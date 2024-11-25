@@ -4,5 +4,5 @@
 
 [resource]
 default_font = ExtResource("1_ewaxd")
-default_font_size = 10
+default_font_size = 14
 Label/colors/font_color = Color(0, 0, 0, 1)
