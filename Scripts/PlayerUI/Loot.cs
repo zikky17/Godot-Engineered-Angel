@@ -3,7 +3,7 @@ using Godot;
 
 public partial class Loot : Node2D
 {
-    [Export] public string Name { get; set; }
+    [Export] public new string Name { get; set; }
     [Export] public string Type { get; set; }
     [Export] public int Quantity { get; set; }
 

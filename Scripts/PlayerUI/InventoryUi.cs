@@ -1,7 +1,7 @@
 using Godot;
 using EngineeredAngel.Database.DbServices;
 
-public partial class InventoryUi : Control
+public partial class InventoryUi : PanelContainer
 {
     private GridContainer _gridContainer;
     private PlayerInventoryRepository _inventoryRepository;
@@ -9,9 +9,8 @@ public partial class InventoryUi : Control
     public override void _Ready()
     {
         var viewportSize = GetViewportRect().Size;
-
         SetSize(new Vector2(viewportSize.X * 0.3f, viewportSize.Y * 0.5f));
-        SetPosition(new Vector2(viewportSize.X - viewportSize.Y - 25, 25));
+        SetPosition(new Vector2(viewportSize.X - viewportSize.X * 0.35f, 25));
 
         if (GameManager.Instance != null)
         {
@@ -27,7 +26,7 @@ public partial class InventoryUi : Control
             GD.Print("GameManager instance is null. Cannot connect signal.");
         }
 
-        _gridContainer = GetNode<GridContainer>("PanelContainer/ScrollContainer/GridContainer");
+        _gridContainer = GetNode<GridContainer>("GridContainer");
         _inventoryRepository = new PlayerInventoryRepository();
 
         UpdateInventoryUI();
@@ -42,95 +41,63 @@ public partial class InventoryUi : Control
     private void UpdateItemQuantityInUI(string itemName, int quantity)
     {
         GD.Print($"Updating {itemName} with quantity {quantity} in UI...");
-        bool itemExists = false;
-
-        foreach (VBoxContainer itemContainer in _gridContainer.GetChildren())
+        foreach (InventorySlot slot in _gridContainer.GetChildren())
         {
-            if (itemContainer.Name == itemName)
+            if (slot.Name == itemName)
             {
-                var quantityLabel = itemContainer.GetNode<Label>("QuantityLabel");
-                var currentQuantity = int.Parse(quantityLabel.Text.Trim().Split('x')[1]);
+                var currentQuantity = int.Parse(slot.GetNode<Label>("ItemCount").Text.Replace("x", ""));
                 var newQuantity = currentQuantity + quantity;
-                quantityLabel.Text = $"x{newQuantity}";
-                quantityLabel.TooltipText = $"Quantity: {newQuantity}";
-
+                slot.UpdateSlot(slot.GetNode<TextureRect>("ItemPicture").Texture, newQuantity);
                 GD.Print($"Updated {itemName} to new quantity: {newQuantity}");
-                itemExists = true;
-                break;
+                return;
             }
         }
 
-        if (!itemExists)
+        foreach (InventorySlot slot in _gridContainer.GetChildren())
         {
-            var itemContainer = new VBoxContainer
+            if (slot.GetNode<Label>("ItemCount").Text == "x0")
             {
-                Name = itemName
-            };
-
-            var newItemIcon = new TextureRect
-            {
-                Texture = (Texture2D)GD.Load<Texture>($"res://Assets/Sprites/Loot/{itemName.Replace(" ", "")}.png"),
-                TooltipText = $"Quantity: {quantity}"
-            };
-            itemContainer.AddChild(newItemIcon);
-
-            var quantityLabel = new Label
-            {
-                Name = "QuantityLabel",
-                Text = $"x{quantity}",
-                TooltipText = $"Quantity: {quantity}"
-            };
-            itemContainer.AddChild(quantityLabel);
-
-            _gridContainer.AddChild(itemContainer);
-
-            GD.Print($"Added new item: {itemName} with quantity: {quantity}");
+                var texture = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/{itemName.Replace(" ", "")}.png");
+                if (texture == null)
+                {
+                    GD.Print($"Failed to load texture for {itemName}");
+                }
+                else
+                {
+                    GD.Print($"Successfully loaded texture: {texture.ResourcePath}");
+                }
+                slot.Name = itemName;
+                slot.UpdateSlot(texture, quantity);
+                GD.Print($"Added new item: {itemName} with quantity: {quantity}");
+                return;
+            }
         }
+
+        GD.Print($"No empty slots available for {itemName}");
     }
 
     public async void UpdateInventoryUI()
     {
-        ClearGridContainer();
-
         var playerInventory = await _inventoryRepository.GetPlayerInventoryAsync();
         if (playerInventory != null)
         {
             foreach (var item in playerInventory.LootItems)
             {
-                var itemContainer = new VBoxContainer
+                foreach (InventorySlot slot in _gridContainer.GetChildren())
                 {
-                    Name = item.Name
-                };
-
-                var itemIcon = new TextureRect
-                {
-                    Texture = (Texture2D)GD.Load<Texture>($"res://Assets/Sprites/Loot/{item.Name.Replace(" ", "")}.png"),
-                    TooltipText = $"Quantity: {item.Quantity}"
-                };
-                itemContainer.AddChild(itemIcon);
-
-                var quantityLabel = new Label
-                {
-                    Name = "QuantityLabel",
-                    Text = $"x{item.Quantity}",
-                    TooltipText = $"Quantity: {item.Quantity}"
-                };
-                itemContainer.AddChild(quantityLabel);
-
-                _gridContainer.AddChild(itemContainer);
+                    if (slot.GetNode<Label>("ItemCount").Text == "x0")
+                    {
+                        var texture = GD.Load<Texture2D>("res://Assets/Sprites/Loot/IronSword.png");
+                        slot.Name = item.Name;
+                        slot.UpdateSlot(texture, item.Quantity);
+                        break;
+                    }
+                }
             }
         }
         else
         {
             GD.Print("No items found in the inventory.");
-        }
-    }
-
-    private void ClearGridContainer()
-    {
-        foreach (Node child in _gridContainer.GetChildren())
-        {
-            child.QueueFree();
         }
     }
 }

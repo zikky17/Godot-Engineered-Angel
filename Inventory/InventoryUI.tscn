@@ -1,30 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://b514wl0iwsih"]
+[gd_scene load_steps=5 format=3 uid="uid://b514wl0iwsih"]
 
+[ext_resource type="Texture2D" uid="uid://bacmykj5b1j87" path="res://Assets/Images/UI-Images/PlayerUI_backpack.webp" id="1_lxo6l"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI/InventoryUi.cs" id="1_swsjh"]
+[ext_resource type="Theme" uid="uid://c58ei1xryb5cv" path="res://Style Themes/inventoryTheme.tres" id="3_kdy1d"]
+[ext_resource type="PackedScene" uid="uid://d2t0kn14wmc4u" path="res://Inventory/item_slot_template.tscn" id="4_prqqv"]
 
-[node name="InventoryUI" type="Control"]
-layout_mode = 3
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-grow_horizontal = 0
-script = ExtResource("1_swsjh")
+[node name="InventoryUI" type="TextureRect"]
+offset_right = 119.0
+offset_bottom = 130.0
+texture = ExtResource("1_lxo6l")
+expand_mode = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-offset_right = 150.0
-offset_bottom = 300.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 13.0
+offset_top = 28.0
+offset_right = 86.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_swsjh")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer"]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
 layout_mode = 2
+theme = ExtResource("3_kdy1d")
+columns = 9
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/ScrollContainer"]
-layout_mode = 2
-columns = 2
-
-[node name="TextureRect" type="TextureRect" parent="PanelContainer/ScrollContainer/GridContainer"]
+[node name="ItemSlotTemplate" parent="PanelContainer/GridContainer" instance=ExtResource("4_prqqv")]
 layout_mode = 2

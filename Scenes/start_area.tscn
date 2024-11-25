@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bse7a8r0vowa7"]
+[gd_scene load_steps=15 format=4 uid="uid://bse7a8r0vowa7"]
 
 [ext_resource type="PackedScene" uid="uid://bqhyu0lqpq54d" path="res://GameManager/GameManager.tscn" id="1_7qia8"]
 [ext_resource type="Texture2D" uid="uid://gruns34wg3rh" path="res://Assets/Tilemap/MainTextures.png" id="1_f6afb"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://do84heumt7qdf" path="res://Scenes/Consumables/health_potion.tscn" id="6_21k5l"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="6_g85r6"]
 [ext_resource type="PackedScene" uid="uid://bgq30apu6lmfe" path="res://Scripts/PlayerUI/PlayerUI.tscn" id="7_lfu50"]
+[ext_resource type="PackedScene" uid="uid://b514wl0iwsih" path="res://Inventory/InventoryUI.tscn" id="7_swmm1"]
+[ext_resource type="Script" path="res://Scripts/PlayerUI.cs" id="9_dvt6j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l7v6"]
 texture = ExtResource("1_f6afb")
@@ -8541,12 +8543,6 @@ position = Vector2(169, 42)
 [node name="Gorgon" parent="." instance=ExtResource("6_g85r6")]
 position = Vector2(402, 67)
 
-[node name="PlayerUI" parent="." instance=ExtResource("7_lfu50")]
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 163.0
-offset_bottom = 114.0
-
 [node name="Zikky" parent="." instance=ExtResource("2_xt1uq")]
 position = Vector2(80, 77)
 
@@ -8564,3 +8560,18 @@ position = Vector2(248, 83)
 
 [node name="CharacterBody2D5" parent="." instance=ExtResource("6_g85r6")]
 position = Vector2(155, 206)
+
+[node name="CharacterMenus" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CharacterMenus" instance=ExtResource("7_lfu50")]
+z_index = 2
+offset_left = 4.0
+offset_right = 136.0
+offset_bottom = 211.0
+script = ExtResource("9_dvt6j")
+
+[node name="InventoryUI" parent="CharacterMenus" instance=ExtResource("7_swmm1")]
+offset_left = 281.0
+offset_top = 37.0
+offset_right = 370.0
+offset_bottom = 179.0

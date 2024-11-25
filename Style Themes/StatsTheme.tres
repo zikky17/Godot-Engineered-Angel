@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b10284thxbs0q"]
+
+[ext_resource type="FontFile" uid="uid://biik44enoycjk" path="res://Assets/Fonts/Poppins-Regular.ttf" id="1_ewaxd"]
+
+[resource]
+default_font = ExtResource("1_ewaxd")
+default_font_size = 10
+Label/colors/font_color = Color(0, 0, 0, 1)

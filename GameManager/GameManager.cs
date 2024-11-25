@@ -7,12 +7,15 @@ public partial class GameManager : Node
 
     public static GameManager Instance;
     private Control _inventoryUi;
+    private Control _statsUi;
 
     public override void _Ready()
     {
         Instance = this;
-        _inventoryUi = GetNode<Control>("/root/start_area/PlayerUI/PlayerUI/InventoryUI"); 
+        _inventoryUi = GetNode<Control>("/root/start_area/CharacterMenus/InventoryUI");
+        _statsUi = GetNode<Control>("/root/start_area/CharacterMenus/PlayerUI"); 
         _inventoryUi.Visible = false;
+        _statsUi.Visible = false;
         GD.Print("GameManager Instance set.");
 
         if (!HasSignal(nameof(ItemPickedUpEventHandler)))
@@ -33,11 +36,21 @@ public partial class GameManager : Node
         _inventoryUi.Visible = !_inventoryUi.Visible;
     }
 
+    public void ToggleStats()
+    {
+        _statsUi.Visible = !_statsUi.Visible;
+    }
+
     public override void _Process(double delta)
     {
         if (Input.IsActionJustPressed("toggle_inventory"))
         {
             ToggleInventory();
+        } 
+        
+        if (Input.IsActionJustPressed("toggle_stats"))
+        {
+            ToggleStats();
         }
     }
 }
