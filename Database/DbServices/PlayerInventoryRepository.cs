@@ -57,6 +57,7 @@ namespace EngineeredAngel.Database.DbServices
                     {
                         Name = item.Name,
                         Type = item.Type,
+                        Rarity = item.Rarity,
                         Attack = item.Attack,
                         Defense = item.Defense,
                         SpecialEffect = item.SpecialEffect,
@@ -64,7 +65,7 @@ namespace EngineeredAngel.Database.DbServices
                         InventoryId = inventoryId
                     };
                     await _gameDbContext.LootItems.AddAsync(newLoot);
-                    GD.Print($"Added new loot: {item.Name} with Quantity = {item.Quantity}");
+                    GD.Print($"Added new loot: {item.Name} with Rarity = {item.Rarity}");
                 }
 
             
@@ -75,6 +76,7 @@ namespace EngineeredAngel.Database.DbServices
                 {
                     Name = item.Name,
                     Type = item.Type,
+                    Rarity = item.Rarity,
                     Quantity = 1,
                     Attack = item.Attack,
                     Defense = item.Defense,
@@ -86,6 +88,7 @@ namespace EngineeredAngel.Database.DbServices
                 GD.Print($"Added new loot: {item.Name} with these Stats:");
                 GD.Print($"Attack: {item.Attack}");
                 GD.Print($"Defense: {item.Defense}");
+                GD.Print($"Rarity: {item.Rarity}");
             }
 
             await _gameDbContext.SaveChangesAsync();

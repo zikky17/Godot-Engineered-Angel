@@ -2,7 +2,6 @@ using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Loot;
 using EngineeredAngel.Services;
 using Godot;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 
 public partial class Loot : Node2D
 {
@@ -10,7 +9,7 @@ public partial class Loot : Node2D
     [Export] public string Type { get; set; }
     [Export] public int Quantity { get; set; }
 
-    private LootItem LootItem { get; set; }
+    public LootItem LootItem { get; set; }
 
     private Area2D _area2D;
     private readonly PlayerInventoryRepository _playerInventoryRepository = new();
@@ -27,12 +26,23 @@ public partial class Loot : Node2D
     {
         if (body is Zikky player)
         {
-            player.AddToInventory(Name, Type, Quantity);
-            GD.Print($"Player picked up {Quantity} x {Name}");
             LootItem = _itemStatsGenerator.ApplyStatsForWeapon(Name, Type, Quantity);
+            player.AddToInventory(LootItem);
+            GD.Print($"Player picked up {Quantity} x {Name}");
             AddLootToDatabase();
             GD.Print($"Emitting signal: {nameof(GameManager.ItemPickedUpEventHandler)} with Name={Name}, Type={Type}, Quantity={Quantity}");
-            GameManager.Instance.EmitSignal(nameof(GameManager.ItemPickedUpEventHandler), Name, Type, Quantity);
+            GameManager.Instance.EmitSignal(
+                nameof(GameManager.ItemPickedUpEventHandler),
+                LootItem.Name,
+                LootItem.Type,
+                LootItem.Quantity,
+                LootItem.Rarity,
+                LootItem.Attack,
+                LootItem.Defense,
+                LootItem.Tier,
+                LootItem.SpecialEffect,
+                LootItem.AmplifiedDamage
+            );
             GD.Print("Signal emitted.");
             QueueFree();
         }

@@ -7,6 +7,7 @@ namespace EngineeredAngel.Loot
         public int Tier { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
+        public string Rarity { get; set; }
         public int Quantity { get; set; }
         public float DropChance { get; set; }
         public int Attack { get; set; }

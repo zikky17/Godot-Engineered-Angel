@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b514wl0iwsih"]
+[gd_scene load_steps=4 format=3 uid="uid://b514wl0iwsih"]
 
 [ext_resource type="Texture2D" uid="uid://bacmykj5b1j87" path="res://Assets/Images/UI-Images/PlayerUI_backpack.webp" id="1_lxo6l"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI/InventoryUi.cs" id="1_swsjh"]
 [ext_resource type="Theme" uid="uid://c58ei1xryb5cv" path="res://Style Themes/inventoryTheme.tres" id="3_kdy1d"]
-[ext_resource type="Texture2D" uid="uid://ckcclgbd8ysry" path="res://Assets/Sprites/Loot/IronSword.png" id="4_p4u8s"]
 
 [node name="InventoryUI" type="TextureRect"]
 offset_right = 132.0
@@ -19,9 +18,9 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 18.0
-offset_top = 38.0
-offset_right = -79.0
-offset_bottom = -104.0
+offset_top = 40.0
+offset_right = 136.0
+offset_bottom = 172.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
@@ -29,18 +28,185 @@ scale = Vector2(0.4, 0.4)
 [node name="GridContainer" type="GridContainer" parent="PanelContainer"]
 layout_mode = 2
 theme = ExtResource("3_kdy1d")
-columns = 9
+theme_override_constants/h_separation = 35
+theme_override_constants/v_separation = 77
+columns = 4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot1" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/VBoxContainer"]
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot1"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
-texture = ExtResource("4_p4u8s")
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/VBoxContainer"]
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot1"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot2" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot2"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot2"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot3" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot3"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot3"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot4" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot4"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot4"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot5" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot5"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot5"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot6" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot6"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot6"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot7" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot7"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot7"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot8" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot8"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot8"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot9" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot9"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot9"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot10" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot10"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot10"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot11" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot11"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot11"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "x0"
+horizontal_alignment = 1
+
+[node name="ItemSlot12" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot12"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+
+[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot12"]
+visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "x0"

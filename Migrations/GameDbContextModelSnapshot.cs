@@ -89,8 +89,14 @@ namespace EngineeredAngel.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<string>("Rarity")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SpecialEffect")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Tier")
+                        .HasColumnType("int");
 
                     b.Property<string>("Type")
                         .IsRequired()

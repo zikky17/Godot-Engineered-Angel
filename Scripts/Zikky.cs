@@ -3,6 +3,7 @@ using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Database.Models;
 using EngineeredAngel.Interfaces;
 using EngineeredAngel.Inventory;
+using EngineeredAngel.Loot;
 using EngineeredAngel.PlayerStates;
 using EngineeredAngel.Services;
 using EngineeredAngel.Stats;
@@ -294,17 +295,17 @@ public partial class Zikky : CharacterBody2D
 
     // INVENTORY SECTION //
 
-    public void AddToInventory(string itemName, string itemType, int quantity)
+    public void AddToInventory(LootItem loot)
     {
-        if (inventory.ContainsKey(itemName))
+        if (inventory.ContainsKey(loot.Name))
         {
-            inventory[itemName].Quantity += quantity;
+            inventory[loot.Name].Quantity += loot.Quantity;
         }
         else
         {
-            inventory[itemName] = new InventoryItem(itemName, itemType, quantity);
+            inventory[loot.Name] = new InventoryItem(loot.Name, loot.Type, loot.Quantity);
         }
-        GD.Print($"Added {quantity} x {itemName} to inventory.");
+        GD.Print($"Added {loot.Quantity} x {loot.Name} to inventory.");
     }
 
     public void RemoveFromInventory(string itemName, int quantity)

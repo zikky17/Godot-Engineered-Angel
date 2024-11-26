@@ -1,9 +1,21 @@
+using EngineeredAngel.Loot;
 using Godot;
+using Godot.Collections;
 
 public partial class GameManager : Node
 {
     [Signal]
-    public delegate void ItemPickedUpEventHandler(string itemName, string itemType, int quantity);
+    public delegate void ItemPickedUpEventHandler(
+     string name,
+     string type,
+     int quantity,
+     string rarity,
+     int attack,
+     int defense,
+     int tier,
+     string specialEffect,
+     int amplifiedDamage
+ );
 
     public static GameManager Instance;
     private Control _inventoryUi;
