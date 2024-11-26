@@ -30,7 +30,7 @@ public partial class PlayerUI : TextureRect
 	public override void _Ready()
 	{
 
-		_zikky = GetNode<Zikky>("../../Zikky");
+		_zikky = GetNode<Zikky>("../../../Zikky");
 		_levelLabel = GetNode<Label>("Main_Stats/Level");
 		_healthLabel = GetNode<Label>("Main_Stats/Health");
 		_goldLabel = GetNode<Label>("Main_Stats/Gold");

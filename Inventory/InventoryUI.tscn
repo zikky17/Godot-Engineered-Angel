@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b514wl0iwsih"]
+[gd_scene load_steps=4 format=3 uid="uid://deet2p688bb24"]
 
 [ext_resource type="Texture2D" uid="uid://bacmykj5b1j87" path="res://Assets/Images/UI-Images/PlayerUI_backpack.webp" id="1_lxo6l"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI/InventoryUi.cs" id="1_swsjh"]
 [ext_resource type="Theme" uid="uid://c58ei1xryb5cv" path="res://Style Themes/inventoryTheme.tres" id="3_kdy1d"]
 
 [node name="InventoryUI" type="TextureRect"]
+offset_top = 1.0
 offset_right = 132.0
-offset_bottom = 207.0
+offset_bottom = 208.0
 texture = ExtResource("1_lxo6l")
 expand_mode = 1
 script = ExtResource("1_swsjh")

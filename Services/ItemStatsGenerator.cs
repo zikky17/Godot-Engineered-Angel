@@ -58,6 +58,14 @@ namespace EngineeredAngel.Services
                 newWeapon.Defense += 2;
             }
 
+            if (rarity == Epic)
+            {
+                newWeapon.Attack += 3;
+                newWeapon.Defense += 3;
+                newWeapon.SpecialEffect = "Frosted Strike";
+                newWeapon.AmplifiedDamage += 2;
+            }
+
 
             return newWeapon;
         }
@@ -70,6 +78,10 @@ namespace EngineeredAngel.Services
             if (chance <= 10)
             {
                 return Rare;
+            }
+            if(chance == 100)
+            {
+                return Epic;
             }
             else
             {

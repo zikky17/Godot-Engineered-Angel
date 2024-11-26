@@ -4,6 +4,7 @@ namespace EngineeredAngel.Loot
 {
     public class LootItem : IWeapon
     {
+        public int Id { get; set; }
         public int Tier { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }

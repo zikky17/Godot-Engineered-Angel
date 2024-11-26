@@ -7,8 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cc7w8xtv34oms" path="res://Assets/Music/Sirens_Song.mp3" id="4_8cuyq"]
 [ext_resource type="PackedScene" uid="uid://do84heumt7qdf" path="res://Scenes/Consumables/health_potion.tscn" id="6_21k5l"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="6_g85r6"]
-[ext_resource type="PackedScene" uid="uid://bgq30apu6lmfe" path="res://Scripts/PlayerUI/PlayerUI.tscn" id="7_lfu50"]
-[ext_resource type="PackedScene" uid="uid://b514wl0iwsih" path="res://Inventory/InventoryUI.tscn" id="7_swmm1"]
+[ext_resource type="Script" path="res://Scripts/Doors/DoorEntrance.cs" id="8_lmkyt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l7v6"]
 texture = ExtResource("1_f6afb")
@@ -8516,6 +8515,9 @@ texture = ExtResource("2_ue58b")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_uvli8")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmvdr"]
+size = Vector2(89, 24)
+
 [node name="start_area" type="Node2D"]
 
 [node name="GameManager" parent="." instance=ExtResource("1_7qia8")]
@@ -8540,7 +8542,7 @@ position = Vector2(145, 42)
 position = Vector2(169, 42)
 
 [node name="Gorgon" parent="." instance=ExtResource("6_g85r6")]
-position = Vector2(402, 67)
+position = Vector2(395, 127)
 
 [node name="Zikky" parent="." instance=ExtResource("2_xt1uq")]
 position = Vector2(80, 77)
@@ -8560,15 +8562,11 @@ position = Vector2(248, 83)
 [node name="CharacterBody2D5" parent="." instance=ExtResource("6_g85r6")]
 position = Vector2(155, 206)
 
-[node name="CharacterMenus" type="CanvasLayer" parent="."]
+[node name="DoorEntrance" type="Area2D" parent="."]
+script = ExtResource("8_lmkyt")
 
-[node name="PlayerUI" parent="CharacterMenus" instance=ExtResource("7_lfu50")]
-z_index = 2
-offset_left = 4.0
-offset_right = 136.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorEntrance"]
+position = Vector2(423.5, 25)
+shape = SubResource("RectangleShape2D_kmvdr")
 
-[node name="InventoryUI" parent="CharacterMenus" instance=ExtResource("7_swmm1")]
-offset_left = 241.0
-offset_top = 4.0
-offset_right = 373.0
-offset_bottom = 211.0
+[connection signal="body_entered" from="DoorEntrance" to="GameManager" method="_on_door_entrance_body_entered"]

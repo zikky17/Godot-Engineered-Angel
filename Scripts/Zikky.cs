@@ -2,18 +2,14 @@ using DialogueManagerRuntime;
 using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Database.Models;
 using EngineeredAngel.Interfaces;
-using EngineeredAngel.Inventory;
-using EngineeredAngel.Loot;
 using EngineeredAngel.PlayerStates;
 using EngineeredAngel.Services;
 using EngineeredAngel.Stats;
 using Godot;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public partial class Zikky : CharacterBody2D
 {
-    private Dictionary<string, InventoryItem> inventory = new Dictionary<string, InventoryItem>();
 
     public PlayerStats CharacterStats { get; set; }
     public RewardService RewardService { get; set; }
@@ -39,6 +35,8 @@ public partial class Zikky : CharacterBody2D
     private float lastDamageTime = -2f;
     private const float damageCooldown = 2f;
 
+    public bool InventoryFull = false;
+
     private Label _healingLabel;
 
     private readonly PlayerDataRepository _playerDataRepository = new PlayerDataRepository();
@@ -50,12 +48,13 @@ public partial class Zikky : CharacterBody2D
         var levelUpService = new LevelUpService();
         RewardService = new RewardService(this, levelUpService);
 
-        if (hasPlayedIntro == false) {
+        if (hasPlayedIntro == false)
+        {
             var dialogueResource = (Resource)GD.Load("res://dialogue/intro_dialogue.dialogue");
             CallDeferred(nameof(ShowIntroDialogue), dialogueResource);
             hasPlayedIntro = true;
         }
-      
+
         AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         HealingAnimation = GetNode<AnimatedSprite2D>("HealingAnimation");
         _hitbox = GetNode<Area2D>("HitBox");
@@ -240,12 +239,12 @@ public partial class Zikky : CharacterBody2D
 
     private void AttackedByEnemy()
     {
-        float currentTime = Time.GetTicksMsec() / 1000f; 
+        float currentTime = Time.GetTicksMsec() / 1000f;
 
         if (EnemyInRange && !HasTakenDamage && currentTime - lastDamageTime >= damageCooldown)
         {
             HasTakenDamage = true;
-            lastDamageTime = currentTime; 
+            lastDamageTime = currentTime;
             int damageTaken = CharacterStats.CalculateDamage(20);
             CharacterStats.HP -= damageTaken;
             Health.Value = CharacterStats.HP;
@@ -262,7 +261,7 @@ public partial class Zikky : CharacterBody2D
 
     private void ShowCombatText(int? damage, int? healing)
     {
-        if(damage.HasValue)
+        if (damage.HasValue)
         {
             _damageLabel.Text = "-" + damage.ToString();
             _damageLabel.Visible = true;
@@ -274,7 +273,7 @@ public partial class Zikky : CharacterBody2D
             _healingLabel.Visible = true;
             _combatTextTimer.Start();
         }
-     
+
     }
 
     private void HideLabel()
@@ -293,36 +292,15 @@ public partial class Zikky : CharacterBody2D
         AnimatedSprite.Play("idle_left");
     }
 
-    // INVENTORY SECTION //
-
-    public void AddToInventory(LootItem loot)
+    public void HasInventorySpace(bool status)
     {
-        if (inventory.ContainsKey(loot.Name))
+        if (status == false)
         {
-            inventory[loot.Name].Quantity += loot.Quantity;
+            InventoryFull = true;
         }
         else
         {
-            inventory[loot.Name] = new InventoryItem(loot.Name, loot.Type, loot.Quantity);
-        }
-        GD.Print($"Added {loot.Quantity} x {loot.Name} to inventory.");
-    }
-
-    public void RemoveFromInventory(string itemName, int quantity)
-    {
-        if (inventory.ContainsKey(itemName))
-        {
-            inventory[itemName].Quantity -= quantity;
-            if (inventory[itemName].Quantity <= 0)
-                inventory.Remove(itemName);
+            InventoryFull = false;
         }
     }
-
-    public Dictionary<string, InventoryItem> GetInventory()
-    {
-        return inventory;
-    }
-
-
-
 }

@@ -22,5 +22,23 @@ namespace EngineeredAngel.Factories
 
             return loot;
         }
+
+        public static LootItemEntity CreateLootItemEntity(LootItem loot)
+        {
+            var entity = new LootItemEntity
+            {
+                Tier = loot.Tier,
+                Name = loot.Name,
+                Type = loot.Type,
+                Rarity = loot.Rarity,
+                Quantity = loot.Quantity,
+                Attack = loot.Attack,
+                Defense = loot.Defense,
+                SpecialEffect = loot.SpecialEffect,
+                AmplifiedDamage = loot.AmplifiedDamage,
+            };
+
+            return entity;
+        }
     }
 }

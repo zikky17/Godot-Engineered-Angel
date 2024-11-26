@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=3 uid="uid://cjav4mvnua3c3"]
+[gd_scene load_steps=154 format=3 uid="uid://cjav4mvnua3c3"]
 
 [ext_resource type="Script" path="res://Scripts/Zikky.cs" id="1_pxhj4"]
 [ext_resource type="Texture2D" uid="uid://cntm00d872uyh" path="res://Assets/Sprites/Zikky/zikky_swingatk.png" id="2_lupdg"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://b6lo1y83532mr" path="res://Assets/Sprites/Effects/Effect_ElectricShield_1_265x265.png" id="5_byj3i"]
 [ext_resource type="FontFile" uid="uid://c8gbsgn7250va" path="res://Assets/Fonts/Poppins-Bold.ttf" id="5_t70ao"]
 [ext_resource type="Texture2D" uid="uid://c058f15y2nith" path="res://Assets/Sprites/Effects/Effect_TheVortex_1_429x429.png" id="7_bwtfp"]
+[ext_resource type="PackedScene" uid="uid://bgq30apu6lmfe" path="res://Scripts/PlayerUI/PlayerUI.tscn" id="8_sf5ly"]
+[ext_resource type="PackedScene" uid="uid://deet2p688bb24" path="res://Inventory/InventoryUI.tscn" id="9_ufbba"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smdei"]
 radius = 4.0
@@ -1099,6 +1101,21 @@ position = Vector2(-4, 3)
 scale = Vector2(0.131702, 0.12704)
 sprite_frames = SubResource("SpriteFrames_0vh4u")
 animation = &"level_up"
+
+[node name="CharacterMenus" type="CanvasLayer" parent="."]
+
+[node name="PlayerUI" parent="CharacterMenus" instance=ExtResource("8_sf5ly")]
+visible = false
+z_index = 2
+offset_left = 4.0
+offset_right = 136.0
+
+[node name="InventoryUI" parent="CharacterMenus" instance=ExtResource("9_ufbba")]
+visible = false
+offset_left = 241.0
+offset_top = 4.0
+offset_right = 373.0
+offset_bottom = 211.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

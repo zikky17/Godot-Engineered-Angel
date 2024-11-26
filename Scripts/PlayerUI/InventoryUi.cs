@@ -7,11 +7,11 @@ public partial class InventoryUi : TextureRect
 {
     private GridContainer _gridContainer;
     private PlayerInventoryRepository _inventoryRepository;
+    private Zikky _zikky;
+
 
     public override void _Ready()
     {
-
-
         if (GameManager.Instance != null)
         {
             GD.Print("Connecting signal...");
@@ -27,6 +27,7 @@ public partial class InventoryUi : TextureRect
         }
 
         _gridContainer = GetNode<GridContainer>("PanelContainer/GridContainer");
+        _zikky = GetNode<Zikky>("../../../Zikky");
         _inventoryRepository = new PlayerInventoryRepository();
 
         UpdateInventoryUI();
@@ -69,34 +70,29 @@ public partial class InventoryUi : TextureRect
         foreach (VBoxContainer slot in _gridContainer.GetChildren())
         {
             var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
+
             var itemCount = slot.GetNode<Label>("ItemCount");
 
             if (itemCount.Text == "x0")
             {
-                var texture = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/{loot.Name.Replace(" ", "")}.png");
-                if (texture == null)
-                {
-                    GD.PrintErr($"Failed to load texture for {loot.Name}");
-                    return;
-                }
 
-                if (loot.Rarity == "Rare")
+                switch (loot.Rarity)
                 {
-                    var background = new ColorRect
-                    {
-                        Color = new Color(0.2f, 0.4f, 1.0f, 1.0f),
-                        AnchorLeft = 0,
-                        AnchorTop = 0,
-                        AnchorRight = 1,
-                        AnchorBottom = 1
-                    };
-
-                    slot.AddChild(background);
-                    background.MoveChild(itemPicture, 1);
+                    case "Common":
+                        var texture = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/{loot.Name.Replace(" ", "")}.png");
+                        itemPicture.Texture = texture;
+                        break;
+                    case "Rare":
+                        var textureRare = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/RareItems/{loot.Name.Replace(" ", "")}_Rare.png");
+                        itemPicture.Texture = textureRare;
+                        break;
+                    case "Epic":
+                        var textureEpic = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/EpicItems/{loot.Name.Replace(" ", "")}_Epic.png");
+                        itemPicture.Texture = textureEpic;
+                        break;
                 }
 
                 slot.Name = loot.Name;
-                itemPicture.Texture = texture;
                 itemCount.Visible = true;
 
                 itemPicture.TooltipText = $"Name: {loot.Name}\nType: {loot.Type}\nTier: {loot.Tier}\n" +
@@ -113,7 +109,7 @@ public partial class InventoryUi : TextureRect
                     itemPicture.MouseFilter = Control.MouseFilterEnum.Pass;
                     itemPicture.Connect("mouse_entered", Callable.From(() =>
                     {
-                        GD.Print($"Mouse entered on {loot.Name}");
+
                     }));
                 }
 
@@ -121,7 +117,7 @@ public partial class InventoryUi : TextureRect
             }
         }
 
-        GD.Print($"No empty slots available for {loot.Name}");
+        _zikky.HasInventorySpace(false);
     }
 
     public async void UpdateInventoryUI()
@@ -140,5 +136,32 @@ public partial class InventoryUi : TextureRect
             GD.Print("No items found in the inventory.");
         }
     }
+
+    public void VoidTouch(LootItem loot, VBoxContainer slot)
+    {
+        int scrapsGained = loot.Quantity * loot.Tier; 
+        _zikky.CharacterStats.VoidScraps += scrapsGained;
+
+        GD.Print($"Recycled {loot.Name}, gained {scrapsGained} Iron Scraps. Total: {_zikky.CharacterStats.VoidScraps}");
+
+        var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
+        var itemCount = slot.GetNode<Label>("ItemCount");
+
+        itemPicture.Texture = null;
+        itemCount.Text = "x0";
+        slot.Name = "Empty";
+
+        RemoveFromInventoryDatabase(loot);
+
+    }
+
+    private void RemoveFromInventoryDatabase(LootItem loot)
+    {
+        _inventoryRepository.RemoveLootFromDatabase(loot);
+        GD.Print($"Removed {loot.Name} from database.");
+    }
+
+
+
 
 }

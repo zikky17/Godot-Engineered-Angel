@@ -26,8 +26,13 @@ public partial class Loot : Node2D
     {
         if (body is Zikky player)
         {
+            if(player.InventoryFull == true)
+            {
+                GD.Print($"No empty slots available for {Name}");
+                return;
+            }
+
             LootItem = _itemStatsGenerator.ApplyStatsForWeapon(Name, Type, Quantity);
-            player.AddToInventory(LootItem);
             GD.Print($"Player picked up {Quantity} x {Name}");
             AddLootToDatabase();
             GD.Print($"Emitting signal: {nameof(GameManager.ItemPickedUpEventHandler)} with Name={Name}, Type={Type}, Quantity={Quantity}");
@@ -53,4 +58,9 @@ public partial class Loot : Node2D
         await _playerInventoryRepository.GetOrCreateInventoryAsync();
         await _playerInventoryRepository.AddLootToDatabase(LootItem, 1);
     }
+
+    
+
+
+
 }

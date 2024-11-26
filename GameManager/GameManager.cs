@@ -24,8 +24,8 @@ public partial class GameManager : Node
     public override void _Ready()
     {
         Instance = this;
-        _inventoryUi = GetNode<Control>("/root/start_area/CharacterMenus/InventoryUI");
-        _statsUi = GetNode<Control>("/root/start_area/CharacterMenus/PlayerUI"); 
+        _inventoryUi = GetNode<Control>("/root/start_area/Zikky/CharacterMenus/InventoryUI");
+        _statsUi = GetNode<Control>("/root/start_area/Zikky/CharacterMenus/PlayerUI"); 
         _inventoryUi.Visible = false;
         _statsUi.Visible = false;
         GD.Print("GameManager Instance set.");
@@ -52,6 +52,8 @@ public partial class GameManager : Node
     {
         _statsUi.Visible = !_statsUi.Visible;
     }
+
+
 
     public override void _Process(double delta)
     {

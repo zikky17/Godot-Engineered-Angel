@@ -12,6 +12,7 @@ namespace EngineeredAngel.Stats
         public int Strength { get; set; }
         public int Defense { get; set; }
         public int Gold { get; set; }
+        public int VoidScraps { get; set; }
         public int Experience { get; set; }
         public int Intelligence { get; set; }
 

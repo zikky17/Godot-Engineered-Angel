@@ -100,5 +100,15 @@ namespace EngineeredAngel.Database.DbServices
         {
             return await _gameDbContext.Inventory.Include(i => i.LootItems).FirstOrDefaultAsync();
         }
+
+        internal void RemoveLootFromDatabase(LootItem loot)
+        {
+
+            var existingLoot = _gameDbContext.LootItems.Where(x => x.LootItemId == loot.Id);
+            if (existingLoot.Any())
+            {
+                _gameDbContext.LootItems.Remove((LootItemEntity)existingLoot);
+            }
+        }
     }
 }
