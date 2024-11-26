@@ -269,8 +269,8 @@ public partial class Gorgon : CharacterBody2D
             lootNode.Type = item.Type;
             lootNode.Quantity = item.Quantity;
             lootNode.Position = GlobalPosition;
-
             GetParent().AddChild(lootNode);
+
         }
 
         if (item.Name == "Healing Potion")

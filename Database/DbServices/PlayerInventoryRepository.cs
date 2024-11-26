@@ -1,5 +1,6 @@
 ﻿using EngineeredAngel.Database.Context;
 using EngineeredAngel.Database.Models;
+using EngineeredAngel.Loot;
 using Godot;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -38,31 +39,58 @@ namespace EngineeredAngel.Database.DbServices
 
 
 
-        public async Task AddLootToDatabase(string name, string type, int quantity, int inventoryId)
+        public async Task AddLootToDatabase(LootItem item, int inventoryId)
         {
-            var existingLoot = _gameDbContext.LootItems
-                .FirstOrDefault(loot => loot.Name == name && loot.Type == type && loot.InventoryId == inventoryId);
-
-            if (existingLoot != null)
+            if(item.Type != "Weapon" && item.Type != "Armor")
             {
-                existingLoot.Quantity += quantity;
-                GD.Print($"Updated existing loot: {name} to Quantity = {existingLoot.Quantity}");
+                var existingLoot = _gameDbContext.LootItems
+              .FirstOrDefault(loot => loot.Name == item.Name && loot.Type == item.Type && loot.InventoryId == inventoryId);
+
+                if (existingLoot != null)
+                {
+                    existingLoot.Quantity += item.Quantity;
+                    GD.Print($"Updated existing loot: {item.Name} to Quantity = {existingLoot.Quantity}");
+                }
+                else
+                {
+                    var newLoot = new LootItemEntity
+                    {
+                        Name = item.Name,
+                        Type = item.Type,
+                        Attack = item.Attack,
+                        Defense = item.Defense,
+                        SpecialEffect = item.SpecialEffect,
+                        AmplifiedDamage = item.AmplifiedDamage,
+                        InventoryId = inventoryId
+                    };
+                    await _gameDbContext.LootItems.AddAsync(newLoot);
+                    GD.Print($"Added new loot: {item.Name} with Quantity = {item.Quantity}");
+                }
+
+            
             }
             else
             {
                 var newLoot = new LootItemEntity
                 {
-                    Name = name,
-                    Type = type,
-                    Quantity = quantity,
+                    Name = item.Name,
+                    Type = item.Type,
+                    Quantity = 1,
+                    Attack = item.Attack,
+                    Defense = item.Defense,
+                    SpecialEffect = item.SpecialEffect,
+                    AmplifiedDamage = item.AmplifiedDamage,
                     InventoryId = inventoryId
                 };
                 await _gameDbContext.LootItems.AddAsync(newLoot);
-                GD.Print($"Added new loot: {name} with Quantity = {quantity}");
+                GD.Print($"Added new loot: {item.Name} with these Stats:");
+                GD.Print($"Attack: {item.Attack}");
+                GD.Print($"Defense: {item.Defense}");
             }
 
-           await _gameDbContext.SaveChangesAsync();
+            await _gameDbContext.SaveChangesAsync();
         }
+          
 
 
         public async Task<PlayerInventoryEntity> GetPlayerInventoryAsync()

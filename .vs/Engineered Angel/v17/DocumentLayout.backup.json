@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\database\\dbservices\\playerinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:database\\dbservices\\playerinventoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\scripts\\playerui\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\playerui\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\database\\dbservices\\playerdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:database\\dbservices\\playerdatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\onedrive\\dokument\\engineered-angel\\services\\itemstatsgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:services\\itemstatsgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 197,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,15 +50,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "InventoryUi.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\InventoryUi.cs",
               "RelativeDocumentMoniker": "Scripts\\PlayerUI\\InventoryUi.cs",
               "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Scripts\\PlayerUI\\InventoryUi.cs",
               "RelativeToolTip": "Scripts\\PlayerUI\\InventoryUi.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAAAkwD0AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-25T20:53:11.504Z",
+              "WhenOpened": "2024-11-26T08:49:16.406Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerInventoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerInventoryRepository.cs",
+              "RelativeDocumentMoniker": "Database\\DbServices\\PlayerInventoryRepository.cs",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerInventoryRepository.cs",
+              "RelativeToolTip": "Database\\DbServices\\PlayerInventoryRepository.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAgwFMAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T08:48:41.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayerDataRepository.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerDataRepository.cs",
+              "RelativeDocumentMoniker": "Database\\DbServices\\PlayerDataRepository.cs",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Database\\DbServices\\PlayerDataRepository.cs",
+              "RelativeToolTip": "Database\\DbServices\\PlayerDataRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T08:48:41.154Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ItemStatsGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Services\\ItemStatsGenerator.cs",
+              "RelativeDocumentMoniker": "Services\\ItemStatsGenerator.cs",
+              "ToolTip": "C:\\Users\\gusta\\OneDrive\\Dokument\\engineered-angel\\Services\\ItemStatsGenerator.cs",
+              "RelativeToolTip": "Services\\ItemStatsGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T08:48:33.737Z",
               "EditorCaption": ""
             }
           ]

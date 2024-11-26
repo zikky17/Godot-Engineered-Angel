@@ -9,6 +9,7 @@ namespace EngineeredAngel.Database.Models
         [Key]
         public int InventoryId { get; set; }
 
+        public int MaxSlots { get; set; }
         public ICollection<LootItemEntity> LootItems { get; set; } = new List<LootItemEntity>();
     }
 }

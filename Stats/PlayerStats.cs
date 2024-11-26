@@ -15,8 +15,6 @@ namespace EngineeredAngel.Stats
         public int Experience { get; set; }
         public int Intelligence { get; set; }
 
-        private readonly PlayerDataRepository _playerDataRepository = new();
-
         public PlayerStats()
         {
 

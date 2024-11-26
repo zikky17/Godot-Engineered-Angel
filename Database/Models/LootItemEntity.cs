@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace EngineeredAngel.Database.Models
 {
@@ -13,8 +14,16 @@ namespace EngineeredAngel.Database.Models
 
         [Required]
         public string Type { get; set; }
-
+        [AllowNull]
         public int Quantity { get; set; }
+
+        public int Attack { get; set; }
+
+        public int Defense { get; set; }
+        [AllowNull]
+        public string SpecialEffect { get; set; }
+        [AllowNull]
+        public int AmplifiedDamage { get; set; }
 
         [ForeignKey("PlayerInventoryEntity")]
         public int InventoryId { get; set; }

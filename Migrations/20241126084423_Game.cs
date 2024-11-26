@@ -13,7 +13,8 @@ namespace EngineeredAngel.Migrations
                 columns: table => new
                 {
                     InventoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MaxSlots = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,6 +50,10 @@ namespace EngineeredAngel.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
+                    Attack = table.Column<int>(type: "int", nullable: false),
+                    Defense = table.Column<int>(type: "int", nullable: false),
+                    SpecialEffect = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AmplifiedDamage = table.Column<int>(type: "int", nullable: false),
                     InventoryId = table.Column<int>(type: "int", nullable: false),
                     InventoryId1 = table.Column<int>(type: "int", nullable: true)
                 },

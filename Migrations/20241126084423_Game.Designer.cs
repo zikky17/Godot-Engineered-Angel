@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EngineeredAngel.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20241125203956_Game")]
+    [Migration("20241126084423_Game")]
     partial class Game
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,6 +69,15 @@ namespace EngineeredAngel.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LootItemId"), 1L, 1);
 
+                    b.Property<int>("AmplifiedDamage")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Attack")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Defense")
+                        .HasColumnType("int");
+
                     b.Property<int>("InventoryId")
                         .HasColumnType("int");
 
@@ -81,6 +90,9 @@ namespace EngineeredAngel.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
+
+                    b.Property<string>("SpecialEffect")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
                         .IsRequired()
@@ -102,6 +114,9 @@ namespace EngineeredAngel.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("InventoryId"), 1L, 1);
+
+                    b.Property<int>("MaxSlots")
+                        .HasColumnType("int");
 
                     b.HasKey("InventoryId");
 

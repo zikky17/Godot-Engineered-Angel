@@ -8,9 +8,6 @@ public partial class InventoryUi : TextureRect
 
     public override void _Ready()
     {
-        //var viewportSize = GetViewportRect().Size;
-        //SetSize(new Vector2(viewportSize.X * 0.3f, viewportSize.Y * 0.5f));
-        //SetPosition(new Vector2(viewportSize.X - viewportSize.X * 0.35f, 25));
 
         if (GameManager.Instance != null)
         {
@@ -52,12 +49,23 @@ public partial class InventoryUi : TextureRect
                 var currentQuantity = int.Parse(itemCount.Text.Replace("x", ""));
                 var newQuantity = currentQuantity + quantity;
                 itemPicture.Texture = itemPicture.Texture;
+                itemPicture.TooltipText = itemName;
                 itemCount.Text = $"x{newQuantity}";
                 GD.Print($"Updated {itemName} to new quantity: {newQuantity}");
+
+                if (!itemPicture.IsConnected("mouse_entered", Callable.From(() => { })))
+                {
+                    itemPicture.MouseFilter = Control.MouseFilterEnum.Pass;
+                    itemPicture.Connect("mouse_entered", Callable.From(() =>
+                    {
+                        GD.Print($"Mouse entered on {itemName}");
+                    }));
+                }
+
                 return;
             }
 
-            if (itemCount.Text == "x0") 
+            if (itemCount.Text == "x0")
             {
                 var texture = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/{itemName.Replace(" ", "")}.png");
                 if (texture == null)
@@ -69,12 +77,23 @@ public partial class InventoryUi : TextureRect
                 itemPicture.Texture = texture;
                 itemCount.Text = $"x{quantity}";
                 GD.Print($"Added new item: {itemName} with quantity: {quantity}");
+
+                if (!itemPicture.IsConnected("mouse_entered", Callable.From(() => { })))
+                {
+                    itemPicture.MouseFilter = Control.MouseFilterEnum.Pass;
+                    itemPicture.Connect("mouse_entered", Callable.From(() =>
+                    {
+                        GD.Print($"Mouse entered on {itemName}");
+                    }));
+                }
+
                 return;
             }
         }
 
         GD.Print($"No empty slots available for {itemName}");
     }
+
 
     public async void UpdateInventoryUI()
     {
