@@ -14,7 +14,7 @@ public partial class Zikky : CharacterBody2D
     public PlayerStats CharacterStats { get; set; }
     public RewardService RewardService { get; set; }
 
-    [Export] public int Speed = 100;
+    [Export] public int Speed = 200;
     public Vector2 LastDirection { get; set; } = Vector2.Zero;
     public AnimatedSprite2D AnimatedSprite { get; private set; }
     public AnimatedSprite2D HealingAnimation { get; private set; }
@@ -289,7 +289,7 @@ public partial class Zikky : CharacterBody2D
         CharacterStats.HP = 100;
         Health.Value = CharacterStats.HP;
         Position = new Vector2(100, 100);
-        AnimatedSprite.Play("idle_left");
+        AnimatedSprite.Play("idle_right");
     }
 
     public void HasInventorySpace(bool status)

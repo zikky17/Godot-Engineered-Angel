@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using EngineeredAngel.Enums;
+using EngineeredAngel.Loot;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EngineeredAngel.Interfaces
 {
     public interface IWeapon
     {
+        public string Name { get; set; }
         public int Tier { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
+        public string Type { get; set; }
+        public string Rarity { get; set; }
         [AllowNull]
         public string SpecialEffect { get; set; }
         [AllowNull]

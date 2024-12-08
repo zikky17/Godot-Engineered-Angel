@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://bl6j0q3k72dnf"]
 
-[ext_resource type="Script" path="res://Scripts/Gorgon.cs" id="1_5w6dx"]
 [ext_resource type="Texture2D" uid="uid://bx2sabtn7r872" path="res://Assets/Sprites/Enemies/Gorgon/Gorgon_Green/Idle.png" id="1_8vy8o"]
+[ext_resource type="Script" path="res://Scripts/MonsterScript.cs" id="1_hu0ba"]
 [ext_resource type="Texture2D" uid="uid://j6rvcyq5psgk" path="res://Assets/Sprites/Enemies/Gorgon/Gorgon_Green/Attack_3.png" id="2_3vw26"]
 [ext_resource type="Texture2D" uid="uid://djyj4u1rxhyrr" path="res://Assets/Sprites/Enemies/Gorgon/Gorgon_Green/Dead.png" id="2_fpk0x"]
 [ext_resource type="Texture2D" uid="uid://cu4er0e1gmqm" path="res://Assets/Sprites/Enemies/Gorgon/Gorgon_Green/Walk.png" id="3_s4fd4"]
@@ -271,8 +271,8 @@ size = Vector2(42, 68)
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5882"]
 radius = 78.0577
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_5w6dx")
+[node name="Gorgon" type="CharacterBody2D"]
+script = ExtResource("1_hu0ba")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, 14)
@@ -282,10 +282,10 @@ shape = SubResource("CapsuleShape2D_qcbw1")
 position = Vector2(-1, 4)
 scale = Vector2(0.375, 0.359375)
 sprite_frames = SubResource("SpriteFrames_fh0y2")
-animation = &"die"
+animation = &"move_right"
 autoplay = "move_right"
 
-[node name="healthbar" type="ProgressBar" parent="."]
+[node name="Healthbar" type="ProgressBar" parent="."]
 offset_left = -30.0
 offset_top = -42.0
 offset_right = 235.0
@@ -293,9 +293,9 @@ scale = Vector2(0.2, 0.2)
 fill_mode = 1
 show_percentage = false
 
-[node name="Gorgon_Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gorgon_Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-4, 13)
 shape = SubResource("RectangleShape2D_mlban")
 
@@ -306,7 +306,7 @@ position = Vector2(-3.5, 14.5)
 position = Vector2(-0.5, -3.5)
 shape = SubResource("CircleShape2D_u5882")
 
-[node name="GorgonSounds" type="AudioStreamPlayer" parent="."]
+[node name="BattleCry" type="AudioStreamPlayer" parent="."]
 volume_db = -7.518
 
 [node name="DamageLabel" type="Label" parent="."]
@@ -319,7 +319,7 @@ scale = Vector2(0.5, 0.5)
 theme_override_fonts/font = ExtResource("6_yrgxu")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="body_entered" from="Gorgon_Hitbox" to="." method="_on_gorgon_hitbox_body_entered"]
-[connection signal="body_exited" from="Gorgon_Hitbox" to="." method="_on_gorgon_hitbox_body_exited"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_gorgon_hitbox_body_entered"]
+[connection signal="body_exited" from="Hitbox" to="." method="_on_gorgon_hitbox_body_exited"]
 [connection signal="body_entered" from="Territory" to="." method="_on_territory_body_entered"]
 [connection signal="body_exited" from="Territory" to="." method="_on_territory_body_exited"]

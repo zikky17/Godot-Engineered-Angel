@@ -1,4 +1,5 @@
-﻿using EngineeredAngel.Interfaces;
+﻿using EngineeredAngel.Enums;
+using EngineeredAngel.Interfaces;
 
 namespace EngineeredAngel.Loot
 {

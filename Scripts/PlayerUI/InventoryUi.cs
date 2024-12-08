@@ -2,12 +2,14 @@ using Godot;
 using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Loot;
 using EngineeredAngel.Factories;
+using EngineeredAngel.Enums;
 
 public partial class InventoryUi : TextureRect
 {
     private GridContainer _gridContainer;
     private PlayerInventoryRepository _inventoryRepository;
     private Zikky _zikky;
+    private PopupMenu _optionsMenu;
 
 
     public override void _Ready()
@@ -26,6 +28,7 @@ public partial class InventoryUi : TextureRect
             GD.Print("GameManager instance is null. Cannot connect signal.");
         }
 
+        _optionsMenu = GetNode<PopupMenu>("OptionsMenu");
         _gridContainer = GetNode<GridContainer>("PanelContainer/GridContainer");
         _zikky = GetNode<Zikky>("../../../Zikky");
         _inventoryRepository = new PlayerInventoryRepository();
@@ -67,15 +70,31 @@ public partial class InventoryUi : TextureRect
     {
         GD.Print($"Adding new item: {loot.Name} to inventory...");
 
+        if (loot.Type == "Potion" || loot.Type == "OtherStackableType")
+        {
+            foreach (VBoxContainer slot in _gridContainer.GetChildren())
+            {
+                var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
+                var itemCount = slot.GetNode<Label>("ItemCount");
+
+                if (slot.Name == loot.Name)
+                {
+                    int currentQuantity = int.Parse(itemCount.Text.Substring(1));
+                    currentQuantity += loot.Quantity;
+                    itemCount.Text = $"x{currentQuantity}";
+                    GD.Print($"Updated quantity for {loot.Name} to {currentQuantity}.");
+                    return; 
+                }
+            }
+        }
+
         foreach (VBoxContainer slot in _gridContainer.GetChildren())
         {
             var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
-
             var itemCount = slot.GetNode<Label>("ItemCount");
 
             if (itemCount.Text == "x0")
             {
-
                 switch (loot.Rarity)
                 {
                     case "Common":
@@ -93,32 +112,21 @@ public partial class InventoryUi : TextureRect
                 }
 
                 slot.Name = loot.Name;
-                itemCount.Visible = true;
+                itemCount.Text = $"{loot.Quantity}";
 
                 itemPicture.TooltipText = $"Name: {loot.Name}\nType: {loot.Type}\nTier: {loot.Tier}\n" +
                                           $"Rarity: {loot.Rarity}\n" +
                                           $"Attack: {loot.Attack}\nDefense: {loot.Defense}\n" +
                                           $"Special Effect: {loot.SpecialEffect}\nAmplified Damage: {loot.AmplifiedDamage}";
 
-                itemCount.Text = $"x{loot.Quantity}";
-
                 GD.Print($"Added new item: {loot.Name} to inventory.");
-
-                if (!itemPicture.IsConnected("mouse_entered", Callable.From(() => { })))
-                {
-                    itemPicture.MouseFilter = Control.MouseFilterEnum.Pass;
-                    itemPicture.Connect("mouse_entered", Callable.From(() =>
-                    {
-
-                    }));
-                }
-
                 return;
             }
         }
 
         _zikky.HasInventorySpace(false);
     }
+
 
     public async void UpdateInventoryUI()
     {
@@ -136,6 +144,7 @@ public partial class InventoryUi : TextureRect
             GD.Print("No items found in the inventory.");
         }
     }
+
 
     public void VoidTouch(LootItem loot, VBoxContainer slot)
     {
@@ -160,8 +169,4 @@ public partial class InventoryUi : TextureRect
         _inventoryRepository.RemoveLootFromDatabase(loot);
         GD.Print($"Removed {loot.Name} from database.");
     }
-
-
-
-
 }

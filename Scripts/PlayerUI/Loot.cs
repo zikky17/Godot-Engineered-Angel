@@ -41,7 +41,7 @@ public partial class Loot : Node2D
                 LootItem.Name,
                 LootItem.Type,
                 LootItem.Quantity,
-                LootItem.Rarity,
+                LootItem.Rarity.ToString(),
                 LootItem.Attack,
                 LootItem.Defense,
                 LootItem.Tier,

@@ -212,3 +212,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "x0"
 horizontal_alignment = 1
+
+[node name="OptionsMenu" type="PopupMenu" parent="."]
+
+[connection signal="id_pressed" from="OptionsMenu" to="." method="_on_options_menu_id_pressed"]

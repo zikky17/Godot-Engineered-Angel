@@ -57,7 +57,8 @@ namespace EngineeredAngel.Database.DbServices
                     {
                         Name = item.Name,
                         Type = item.Type,
-                        Rarity = item.Rarity,
+                        Rarity = item.Rarity.ToString(),
+                        Quantity = item.Quantity,
                         Attack = item.Attack,
                         Defense = item.Defense,
                         SpecialEffect = item.SpecialEffect,
@@ -76,8 +77,7 @@ namespace EngineeredAngel.Database.DbServices
                 {
                     Name = item.Name,
                     Type = item.Type,
-                    Rarity = item.Rarity,
-                    Quantity = 1,
+                    Rarity = item.Rarity.ToString(),
                     Attack = item.Attack,
                     Defense = item.Defense,
                     SpecialEffect = item.SpecialEffect,

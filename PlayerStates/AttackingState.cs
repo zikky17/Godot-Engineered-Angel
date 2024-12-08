@@ -24,19 +24,19 @@ namespace EngineeredAngel.PlayerStates
 
             if (player.LastDirection.X != 0)
             {
-                player.AnimatedSprite.Play("attack_left");
+                player.AnimatedSprite.Play("attack_right");
                 player._audioPlayer.Stream = player.attackSound;
                 //player._audioPlayer.Play();
             }
             else
             {
-                player.AnimatedSprite.Play("attack_left");
+                player.AnimatedSprite.Play("attack_right");
                 player.AnimatedSprite.FlipH = player.LastDirection.X < 0;
                 player._audioPlayer.Stream = player.attackSound;
                 //player._audioPlayer.Play();
             }
 
-            await Task.Delay(500); 
+            await Task.Delay(1500); 
 
             player.IsAttacking = false;
         }

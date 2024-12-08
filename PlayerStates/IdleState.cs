@@ -17,14 +17,15 @@ namespace EngineeredAngel.PlayerStates
             }
             else
             {
-                player.AnimatedSprite.Play("idle_left");
+                player.AnimatedSprite.Play("idle_right");
 
-                player.AnimatedSprite.FlipH = player.LastDirection.X > 0;
+                player.AnimatedSprite.FlipH = player.LastDirection.X < 0;
             }
         }
 
         public void Update(Zikky player)
         {
+
         }
     }
 }
