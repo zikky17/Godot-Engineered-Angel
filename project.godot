@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Engineered Angel"
-run/main_scene="res://Scenes/start_area.tscn"
+run/main_scene="res://start_town.tscn"
 config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -56,7 +56,7 @@ toggle_stats={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/intro_dialogue.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/intro_dialogue.dialogue", "res://dialogue/Iziba/iziba_1.dialogue")
 
 [rendering]
 

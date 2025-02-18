@@ -31,6 +31,7 @@ public partial class Zikky : CharacterBody2D
     private bool hasPlayedIntro = false;
 
     private Label _damageLabel;
+    private Label _newQuestLabel;
     private Timer _combatTextTimer;
     private float lastDamageTime = -2f;
     private const float damageCooldown = 2f;
@@ -75,6 +76,8 @@ public partial class Zikky : CharacterBody2D
         _combatTextTimer.OneShot = true;
         AddChild(_combatTextTimer);
 
+        _newQuestLabel = GetNode<Label>("NewQuestLabel");
+        _newQuestLabel.Visible = false;
 
         _healingLabel = GetNode<Label>("HealingLabel");
         _healingLabel.Visible = false;

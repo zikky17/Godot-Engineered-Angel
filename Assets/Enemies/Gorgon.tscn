@@ -9,7 +9,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qcbw1"]
 radius = 20.0
-height = 44.0
+height = 52.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dvw0m"]
 atlas = ExtResource("2_fpk0x")
@@ -266,10 +266,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mlban"]
-size = Vector2(42, 68)
+size = Vector2(55, 72)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u5882"]
-radius = 78.0577
+radius = 83.006
 
 [node name="Gorgon" type="CharacterBody2D"]
 script = ExtResource("1_hu0ba")
@@ -279,8 +279,8 @@ position = Vector2(-4, 14)
 shape = SubResource("CapsuleShape2D_qcbw1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, 4)
-scale = Vector2(0.375, 0.359375)
+position = Vector2(0, 4.54747e-13)
+scale = Vector2(0.515625, 0.460938)
 sprite_frames = SubResource("SpriteFrames_fh0y2")
 animation = &"move_right"
 autoplay = "move_right"
@@ -296,14 +296,14 @@ show_percentage = false
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-4, 13)
+position = Vector2(-1.5, 9)
 shape = SubResource("RectangleShape2D_mlban")
 
 [node name="Territory" type="Area2D" parent="."]
-position = Vector2(-3.5, 14.5)
+position = Vector2(1, 25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Territory"]
-position = Vector2(-0.5, -3.5)
+position = Vector2(-2, -20)
 shape = SubResource("CircleShape2D_u5882")
 
 [node name="BattleCry" type="AudioStreamPlayer" parent="."]

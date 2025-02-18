@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://ctaeordcno8eh"
+path="res://.godot/imported/iziba_1.dialogue-a27af94ba8abb5ca9a87313ddab83292.tres"
+
+[deps]
+
+source_file="res://dialogue/Iziba/iziba_1.dialogue"
+dest_files=["res://.godot/imported/iziba_1.dialogue-a27af94ba8abb5ca9a87313ddab83292.tres"]
+
+[params]
+
+defaults=true
