@@ -8,12 +8,13 @@ namespace EngineeredAngel.Services
     {
         public IMonster RetrieveMonsterProfile(string monsterName)
         {
-           switch(monsterName)
+            if (monsterName.Contains("Gorgon"))
             {
-                case "HorrorWasp":
-                        return new HorrorWasp();
-                case "Gorgon":
-                    return new Gorgon();
+                return new Gorgon();
+            }
+            else if (monsterName.Contains("HorrorWasp"))
+            {
+                return new HorrorWasp();
             }
 
             return null;

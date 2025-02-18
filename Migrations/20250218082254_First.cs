@@ -4,17 +4,19 @@
 
 namespace EngineeredAngel.Migrations
 {
-    public partial class Game : Migration
+    /// <inheritdoc />
+    public partial class First : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "Inventory",
                 columns: table => new
                 {
-                    InventoryId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MaxSlots = table.Column<int>(type: "int", nullable: false)
+                    InventoryId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    MaxSlots = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,16 +27,16 @@ namespace EngineeredAngel.Migrations
                 name: "Player",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    CurrentHP = table.Column<int>(type: "int", nullable: false),
-                    MaxHealth = table.Column<int>(type: "int", nullable: false),
-                    Strength = table.Column<int>(type: "int", nullable: false),
-                    Defence = table.Column<int>(type: "int", nullable: false),
-                    Intelligence = table.Column<int>(type: "int", nullable: false),
-                    Experience = table.Column<int>(type: "int", nullable: false),
-                    Gold = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Level = table.Column<int>(type: "INTEGER", nullable: false),
+                    CurrentHP = table.Column<int>(type: "INTEGER", nullable: false),
+                    MaxHealth = table.Column<int>(type: "INTEGER", nullable: false),
+                    Strength = table.Column<int>(type: "INTEGER", nullable: false),
+                    Defence = table.Column<int>(type: "INTEGER", nullable: false),
+                    Intelligence = table.Column<int>(type: "INTEGER", nullable: false),
+                    Experience = table.Column<int>(type: "INTEGER", nullable: false),
+                    Gold = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,19 +47,19 @@ namespace EngineeredAngel.Migrations
                 name: "LootItems",
                 columns: table => new
                 {
-                    LootItemId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Tier = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Rarity = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    Attack = table.Column<int>(type: "int", nullable: false),
-                    Defense = table.Column<int>(type: "int", nullable: false),
-                    SpecialEffect = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AmplifiedDamage = table.Column<int>(type: "int", nullable: false),
-                    InventoryId = table.Column<int>(type: "int", nullable: false),
-                    InventoryId1 = table.Column<int>(type: "int", nullable: true)
+                    LootItemId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Tier = table.Column<int>(type: "INTEGER", nullable: false),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    Type = table.Column<string>(type: "TEXT", nullable: false),
+                    Rarity = table.Column<string>(type: "TEXT", nullable: true),
+                    Quantity = table.Column<int>(type: "INTEGER", nullable: false),
+                    Attack = table.Column<int>(type: "INTEGER", nullable: false),
+                    Defense = table.Column<int>(type: "INTEGER", nullable: false),
+                    SpecialEffect = table.Column<string>(type: "TEXT", nullable: true),
+                    AmplifiedDamage = table.Column<int>(type: "INTEGER", nullable: false),
+                    InventoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    InventoryId1 = table.Column<int>(type: "INTEGER", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,6 +88,7 @@ namespace EngineeredAngel.Migrations
                 column: "InventoryId1");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
