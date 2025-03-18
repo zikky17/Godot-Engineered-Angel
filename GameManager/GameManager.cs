@@ -22,8 +22,8 @@ public partial class GameManager : Node
     public override void _Ready()
     {
         Instance = this;
-        _inventoryUi = GetNode<Control>("../Zikky/CharacterMenus/InventoryUI");
-        _statsUi = GetNode<Control>("../Zikky/CharacterMenus/PlayerUI"); 
+        _inventoryUi = GetNode<Control>("../CharacterMenus/InventoryUI");
+        _statsUi = GetNode<Control>("../CharacterMenus/PlayerUI"); 
         _inventoryUi.Visible = false;
         _statsUi.Visible = false;
         GD.Print("GameManager Instance set.");

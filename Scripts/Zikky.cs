@@ -31,7 +31,6 @@ public partial class Zikky : CharacterBody2D
     private bool hasPlayedIntro = false;
 
     private Label _damageLabel;
-    private Label _newQuestLabel;
     private Timer _combatTextTimer;
     private float lastDamageTime = -2f;
     private const float damageCooldown = 2f;
@@ -48,13 +47,6 @@ public partial class Zikky : CharacterBody2D
 
         var levelUpService = new LevelUpService();
         RewardService = new RewardService(this, levelUpService);
-
-        if (hasPlayedIntro == false)
-        {
-            var dialogueResource = (Resource)GD.Load("res://dialogue/intro_dialogue.dialogue");
-            CallDeferred(nameof(ShowIntroDialogue), dialogueResource);
-            hasPlayedIntro = true;
-        }
 
         AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         HealingAnimation = GetNode<AnimatedSprite2D>("HealingAnimation");
@@ -75,9 +67,6 @@ public partial class Zikky : CharacterBody2D
         _combatTextTimer.WaitTime = 0.5f;
         _combatTextTimer.OneShot = true;
         AddChild(_combatTextTimer);
-
-        _newQuestLabel = GetNode<Label>("NewQuestLabel");
-        _newQuestLabel.Visible = false;
 
         _healingLabel = GetNode<Label>("HealingLabel");
         _healingLabel.Visible = false;
@@ -182,10 +171,7 @@ public partial class Zikky : CharacterBody2D
         }
     }
 
-    private void ShowIntroDialogue(Resource dialogueResource)
-    {
-        DialogueManager.ShowExampleDialogueBalloon(dialogueResource, "start");
-    }
+
 
     public void Heal(int healAmount)
     {

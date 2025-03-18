@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public partial class DoorEntrance : Area2D
+public partial class EntranceToCreepyHouse : Area2D
 {
-    [Export] public string TargetScenePath { get; set; } = "res://Scenes/horror_area.tscn";
+    [Export] public string TargetScenePath { get; set; } = "res://Scenes/creepy_house.tscn";
 
     public override void _Ready()
     {
@@ -15,6 +15,9 @@ public partial class DoorEntrance : Area2D
         if (body is Zikky player)
         {
             GD.Print($"Player entered the door. Loading scene: {TargetScenePath}");
+
+            GlobalState globalState = GetNode<GlobalState>("/root/GlobalState");
+            globalState.LastPlayerPosition = player.Position + new Vector2(0, 32);
 
             CallDeferred(nameof(ChangeScene), player);
         }

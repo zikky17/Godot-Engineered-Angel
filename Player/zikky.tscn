@@ -1,7 +1,8 @@
-[gd_scene load_steps=161 format=3 uid="uid://cjav4mvnua3c3"]
+[gd_scene load_steps=162 format=3 uid="uid://cjav4mvnua3c3"]
 
 [ext_resource type="Script" path="res://Scripts/Zikky.cs" id="1_pxhj4"]
 [ext_resource type="Texture2D" uid="uid://d4ekurssb0veh" path="res://Assets/Sprites/Zikky/Attack_1.png" id="2_3ti3b"]
+[ext_resource type="PackedScene" uid="uid://bqhyu0lqpq54d" path="res://GameManager/GameManager.tscn" id="2_q0vo8"]
 [ext_resource type="Texture2D" uid="uid://botd3iyxjk4gv" path="res://Assets/Sprites/Zikky/Attack_2.png" id="3_u32tu"]
 [ext_resource type="Texture2D" uid="uid://60tky7h3apin" path="res://Assets/Sprites/Zikky/Attack_3.png" id="4_w1wg7"]
 [ext_resource type="Texture2D" uid="uid://b6lo1y83532mr" path="res://Assets/Sprites/Effects/Effect_ElectricShield_1_265x265.png" id="5_byj3i"]
@@ -1055,6 +1056,8 @@ animations = [{
 [node name="Zikky" type="CharacterBody2D"]
 script = ExtResource("1_pxhj4")
 
+[node name="GameManager" parent="." instance=ExtResource("2_q0vo8")]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 3
 visibility_layer = 3
@@ -1137,6 +1140,7 @@ frame = 49
 frame_progress = 1.0
 
 [node name="NewQuestLabel" type="Label" parent="."]
+visible = false
 modulate = Color(0.354667, 0.76, 0, 1)
 offset_left = -43.0
 offset_top = -24.0

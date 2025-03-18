@@ -1,0 +1,11 @@
+﻿    if (hasPlayedIntro == false)
+        {
+            var dialogueResource = (Resource)GD.Load("res://dialogue/intro_dialogue.dialogue");
+            CallDeferred(nameof(ShowIntroDialogue), dialogueResource);
+            hasPlayedIntro = true;
+        }
+   
+   private void ShowIntroDialogue(Resource dialogueResource)
+    {
+        DialogueManager.ShowExampleDialogueBalloon(dialogueResource, "start");
+    }

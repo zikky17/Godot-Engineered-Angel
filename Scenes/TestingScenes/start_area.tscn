@@ -8561,6 +8561,7 @@ position = Vector2(155, 206)
 
 [node name="DoorEntrance" type="Area2D" parent="."]
 script = ExtResource("7_ip8v2")
+TargetScenePath = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorEntrance"]
 position = Vector2(423.5, 25)
