@@ -11,14 +11,16 @@ namespace EngineeredAngel.Services
         private ConfigFile configFile = new ConfigFile();
         private string filePath = "user://quests.cfg";
 
-        public void SaveQuest(string questName, string questText, int? killCount, string monster)
+        public void SaveQuest(string questName, string questText, int? killCount, string monster, string npc, bool isCompleted)
         {
             var questData = new QuestData
             {
                 Name = questName,
                 Description = questText,
                 KillCount = killCount,
-                Monster = monster
+                Monster = monster,
+                NPC = npc,
+                IsCompleted = isCompleted
             };
 
             string json = JsonSerializer.Serialize(questData);

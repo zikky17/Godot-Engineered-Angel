@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://drki13hl4m32c"
+path="res://.godot/imported/iziba_completed_quest.dialogue-c07ed4f6381937f82c5d38cbccd3cc14.tres"
+
+[deps]
+
+source_file="res://addons/dialogue_manager/assets/iziba_completed_quest.dialogue"
+dest_files=["res://.godot/imported/iziba_completed_quest.dialogue-c07ed4f6381937f82c5d38cbccd3cc14.tres"]
+
+[params]
+
+defaults=true

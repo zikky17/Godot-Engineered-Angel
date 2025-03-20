@@ -202,7 +202,19 @@ public partial class MonsterScript : CharacterBody2D
                 if (monster != null)
                 {
                     questData.KillCount--;
-                    _questService.SaveQuest(questData.Name, questData.Description, questData.KillCount, monster);
+                    if (questData.KillCount <= 0)
+                    {
+                        questData.Description = $"Quest Completed! Return to {questData.NPC}";
+                        questData.IsCompleted = true;
+                        questData.KillCount = null;
+                    }
+                    _questService.SaveQuest
+                        (questData.Name,
+                        questData.Description,
+                        questData.KillCount,
+                        monster,
+                        questData.NPC,
+                        questData.IsCompleted);
                     _questMenu.UpdateQuestsUI();
                     GD.Print("Quest updated");
                 }
@@ -229,7 +241,7 @@ public partial class MonsterScript : CharacterBody2D
         if (IsDead && AnimatedSprite.Animation == "die")
         {
             DropLoot();
-            
+
             QueueFree();
         }
     }
@@ -282,7 +294,7 @@ public partial class MonsterScript : CharacterBody2D
 
     private void SpawnLoot(LootItem item)
     {
-        if(item.Name == "Iron Sword")
+        if (item.Name == "Iron Sword")
         {
             var lootNode = GD.Load<PackedScene>("res://Loot/IronSword.tscn").Instantiate<Loot>();
             lootNode.Name = item.Name;

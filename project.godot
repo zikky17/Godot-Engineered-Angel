@@ -62,7 +62,7 @@ toggle_quests={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/intro_dialogue.dialogue", "res://dialogue/Iziba/iziba_1.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/intro_dialogue.dialogue", "res://dialogue/Iziba/iziba_1.dialogue", "res://addons/dialogue_manager/assets/iziba_completed_quest.dialogue", "res://dialogue/Iziba/iziba_completed_quest.dialogue")
 
 [rendering]
 

@@ -23,7 +23,7 @@ public partial class QuestMenu : TextureRect
                 QuestData questData = quest.Value;
 
                 _questNameLabel.Text = questData.Name;
-                _questDescriptionLabel.Text = $"{questData.Description} ({questData.KillCount})";
+                _questDescriptionLabel.Text = $"{questData.Description} {questData.KillCount}";
                 GD.Print($"{questData.Monster}");
             }
         }
@@ -41,9 +41,10 @@ public partial class QuestMenu : TextureRect
         }
     }
 
-    private void OnQuestAccepted(string questName, string questText, int monstersToKill, string monster)
+    private void OnQuestAccepted(string questName, string questText, int monstersToKill, string monster, string npc, bool isCompleted)
     {
-        _questService.SaveQuest(questName, questText, monstersToKill, monster);
+        _questService.SaveQuest(questName, questText, monstersToKill, monster, npc, isCompleted);
+        UpdateQuestsUI();
     }
 
     public void UpdateQuestsUI()
@@ -65,7 +66,7 @@ public partial class QuestMenu : TextureRect
                 QuestData questData = quest.Value;
 
                 _questNameLabel.Text = questData.Name;
-                _questDescriptionLabel.Text = $"{questData.Description} ({questData.KillCount})";
+                _questDescriptionLabel.Text = $"{questData.Description} {questData.KillCount}";
                 GD.Print($"{questData.Monster}");
             }
         }

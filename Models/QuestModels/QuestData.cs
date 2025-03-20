@@ -12,5 +12,7 @@ namespace EngineeredAngel.Models.QuestModels
         public string Description { get; set; }
         public int? KillCount { get; set; }
         public string Monster {  get; set; }
+        public string NPC { get; set; }
+        public bool IsCompleted { get; set; }
     }
 }
