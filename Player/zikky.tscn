@@ -1157,16 +1157,16 @@ label_settings = SubResource("LabelSettings_xyuh4")
 [node name="CharacterMenus" type="CanvasLayer" parent="."]
 
 [node name="PlayerUI" parent="CharacterMenus" instance=ExtResource("8_sf5ly")]
+visible = false
 z_index = 2
 offset_left = 4.0
 offset_right = 157.0
 
 [node name="InventoryUI" parent="CharacterMenus" instance=ExtResource("9_ufbba")]
-visible = false
-offset_left = 241.0
-offset_top = 4.0
-offset_right = 373.0
-offset_bottom = 211.0
+offset_left = 244.0
+offset_top = 6.0
+offset_right = 376.0
+offset_bottom = 213.0
 
 [node name="QuestMenu" parent="CharacterMenus" instance=ExtResource("18_l5kr2")]
 visible = false

@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\quests\\questname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\quests\\questname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\quests\\questpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\quests\\questpanel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\quests\\questmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\quests\\questmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\models\\questmodels\\questreward.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:models\\questmodels\\questreward.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\models\\questmodels\\questdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:models\\questmodels\\questdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\services\\questservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:services\\questservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\monsterscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,8 +27,8 @@
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\npc\\npc_iziba.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\services\\questservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:services\\questservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\models\\questmodels\\questreward.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:models\\questmodels\\questreward.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\gamemanager\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -75,14 +75,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "QuestName.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestName.cs",
-              "RelativeDocumentMoniker": "Scripts\\Quests\\QuestName.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestName.cs",
-              "RelativeToolTip": "Scripts\\Quests\\QuestName.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAeAAAAAAAAAA==",
+              "Title": "QuestPanel.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestPanel.cs",
+              "RelativeDocumentMoniker": "Scripts\\Quests\\QuestPanel.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestPanel.cs",
+              "RelativeToolTip": "Scripts\\Quests\\QuestPanel.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T12:45:40.137Z",
+              "WhenOpened": "2025-03-20T12:58:45.567Z",
               "EditorCaption": ""
             },
             {
@@ -91,13 +91,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "QuestReward.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\QuestModels\\QuestReward.cs",
               "RelativeDocumentMoniker": "Models\\QuestModels\\QuestReward.cs",
               "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\QuestModels\\QuestReward.cs",
               "RelativeToolTip": "Models\\QuestModels\\QuestReward.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T12:08:42.132Z",
               "EditorCaption": ""
@@ -110,7 +110,7 @@
               "RelativeDocumentMoniker": "Scripts\\MonsterScript.cs",
               "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\MonsterScript.cs",
               "RelativeToolTip": "Scripts\\MonsterScript.cs",
-              "ViewState": "AgIAAMQAAAAAAAAAAAAawNkAAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAALgAAAAAAAAAAIAzwNkAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T08:05:12.131Z",
               "EditorCaption": ""
@@ -130,13 +130,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "QuestData.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\QuestModels\\QuestData.cs",
               "RelativeDocumentMoniker": "Models\\QuestModels\\QuestData.cs",
               "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\QuestModels\\QuestData.cs",
               "RelativeToolTip": "Models\\QuestModels\\QuestData.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAwwBAAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T07:37:25.049Z",
               "EditorCaption": ""
@@ -149,20 +149,20 @@
               "RelativeDocumentMoniker": "Scripts\\Quests\\QuestMenu.cs",
               "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestMenu.cs",
               "RelativeToolTip": "Scripts\\Quests\\QuestMenu.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwB0AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAowEkAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-19T10:08:08.022Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "QuestService.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Services\\QuestService.cs",
               "RelativeDocumentMoniker": "Services\\QuestService.cs",
               "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Services\\QuestService.cs",
               "RelativeToolTip": "Services\\QuestService.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABYAAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-19T10:23:03.821Z",
               "EditorCaption": ""

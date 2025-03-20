@@ -31,8 +31,5 @@ public partial class QuestPanel : Panel
                 labelNode.Visible = show;
             }
         }
-
-        var label = GetNode<Label>("QuestName");
-        label.Text = show ? "▼ " + label.Text.TrimStart('▶', '▼', ' ') : "▶ " + label.Text.TrimStart('▶', '▼', ' ');
     }
 }

@@ -8957,8 +8957,8 @@ script = ExtResource("11_xgruo")
 position = Vector2(445.875, 96.25)
 shape = SubResource("RectangleShape2D_ybvga")
 
-[node name="Zikky" parent="." instance=ExtResource("10_3i2mc")]
-position = Vector2(-31, 20)
-
 [node name="Gorgon" parent="." instance=ExtResource("11_kt5eo")]
 position = Vector2(268, -6)
+
+[node name="Zikky" parent="." instance=ExtResource("10_3i2mc")]
+position = Vector2(-31, 20)

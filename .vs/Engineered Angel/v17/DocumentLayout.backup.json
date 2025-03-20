@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\quests\\questname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\quests\\questname.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\quests\\questmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\quests\\questmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -46,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 269,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -69,12 +73,25 @@
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
             },
             {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "QuestName.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestName.cs",
+              "RelativeDocumentMoniker": "Scripts\\Quests\\QuestName.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestName.cs",
+              "RelativeToolTip": "Scripts\\Quests\\QuestName.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-20T12:45:40.137Z",
+              "EditorCaption": ""
+            },
+            {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "QuestReward.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\QuestModels\\QuestReward.cs",
               "RelativeDocumentMoniker": "Models\\QuestModels\\QuestReward.cs",
@@ -87,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MonsterScript.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\MonsterScript.cs",
               "RelativeDocumentMoniker": "Scripts\\MonsterScript.cs",
@@ -100,7 +117,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "NPC_Iziba.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\NPC\\NPC_Iziba.cs",
               "RelativeDocumentMoniker": "Scripts\\NPC\\NPC_Iziba.cs",
@@ -113,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "QuestData.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\QuestModels\\QuestData.cs",
               "RelativeDocumentMoniker": "Models\\QuestModels\\QuestData.cs",
@@ -126,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "QuestMenu.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Quests\\QuestMenu.cs",
               "RelativeDocumentMoniker": "Scripts\\Quests\\QuestMenu.cs",
@@ -139,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "QuestService.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Services\\QuestService.cs",
               "RelativeDocumentMoniker": "Services\\QuestService.cs",
@@ -152,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\GameManager\\GameManager.cs",
               "RelativeDocumentMoniker": "GameManager\\GameManager.cs",
@@ -165,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "PlayerUI.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\PlayerUI.cs",
               "RelativeDocumentMoniker": "Scripts\\PlayerUI.cs",
@@ -178,7 +195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Zikky.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Zikky.cs",
               "RelativeDocumentMoniker": "Scripts\\Zikky.cs",

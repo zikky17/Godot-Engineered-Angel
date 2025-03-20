@@ -5,23 +5,25 @@
 [ext_resource type="Theme" uid="uid://c58ei1xryb5cv" path="res://Style Themes/inventoryTheme.tres" id="3_kdy1d"]
 
 [node name="InventoryUI" type="TextureRect"]
-offset_top = 1.0
-offset_right = 132.0
-offset_bottom = 208.0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 137.0
+offset_bottom = 210.0
 texture = ExtResource("1_lxo6l")
 expand_mode = 1
 script = ExtResource("1_swsjh")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(70, 100)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = 40.0
-offset_right = 136.0
-offset_bottom = 172.0
+offset_left = 18.495
+offset_top = 38.75
+offset_right = 31.495
+offset_bottom = 57.75
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.4, 0.4)
@@ -30,7 +32,7 @@ scale = Vector2(0.4, 0.4)
 layout_mode = 2
 theme = ExtResource("3_kdy1d")
 theme_override_constants/h_separation = 35
-theme_override_constants/v_separation = 77
+theme_override_constants/v_separation = 98
 columns = 4
 
 [node name="ItemSlot1" type="VBoxContainer" parent="PanelContainer/GridContainer"]
@@ -40,10 +42,12 @@ layout_mode = 2
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot1"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot1"]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "x0"
 horizontal_alignment = 1

@@ -6,10 +6,10 @@
 [ext_resource type="Script" path="res://Scripts/Quests/QuestPanel.cs" id="4_670px"]
 
 [node name="QuestMenu" type="TextureRect"]
-offset_left = 6.0
-offset_top = 2.0
-offset_right = 155.0
-offset_bottom = 209.0
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 154.0
+offset_bottom = 208.0
 texture = ExtResource("1_7p3bf")
 expand_mode = 1
 script = ExtResource("2_vpco3")
@@ -19,10 +19,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = -32.5
-offset_right = 132.0
-offset_bottom = 62.5
+offset_left = 29.0
+offset_top = -47.5
+offset_right = 295.0
+offset_bottom = 221.5
 grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("3_uir0e")
@@ -37,46 +37,51 @@ script = ExtResource("4_670px")
 
 [node name="QuestName" type="Label" parent="Quests/QuestPanel"]
 layout_mode = 2
-offset_top = 10.0
-offset_right = 49.0
-offset_bottom = 30.0
+offset_left = 11.4286
+offset_top = 47.1429
+offset_right = 60.4286
+offset_bottom = 67.1429
 mouse_filter = 0
 theme_override_colors/font_color = Color(0.47, 0.699667, 1, 1)
 text = "TESTAR"
 
 [node name="QuestText" type="Label" parent="Quests/QuestPanel"]
 layout_mode = 0
-offset_left = 11.4286
-offset_top = 32.8571
-offset_right = 143.429
-offset_bottom = 52.8571
+offset_left = 8.57143
+offset_top = 67.1428
+offset_right = 140.572
+offset_bottom = 87.1428
 theme_override_colors/font_color = Color(0.726167, 1, 0.47, 1)
 text = "QUEST"
 
 [node name="RewardText" type="Label" parent="Quests/QuestPanel"]
-offset_left = 11.4286
-offset_top = 55.7143
-offset_right = 143.429
-offset_bottom = 75.7143
+layout_mode = 0
+offset_left = 14.2857
+offset_top = 131.429
+offset_right = 146.286
+offset_bottom = 151.429
 theme_override_colors/font_color = Color(0.304085, 0.2989, 0.61, 1)
 
 [node name="RewardTextGold" type="Label" parent="Quests/QuestPanel"]
+layout_mode = 0
 offset_left = 14.2857
-offset_top = 78.5714
-offset_right = 146.286
-offset_bottom = 98.5714
+offset_top = 157.143
+offset_right = 99.2857
+offset_bottom = 177.143
 theme_override_colors/font_color = Color(0.968766, 0.932362, 7.70092e-07, 1)
 
 [node name="RewardTextExperience" type="Label" parent="Quests/QuestPanel"]
+layout_mode = 0
 offset_left = 14.2857
-offset_top = 95.7143
+offset_top = 174.286
 offset_right = 146.286
-offset_bottom = 115.714
+offset_bottom = 194.286
 theme_override_colors/font_color = Color(0.47, 0.514167, 1, 1)
 
 [node name="RewardTextItem" type="Label" parent="Quests/QuestPanel"]
+layout_mode = 0
 offset_left = 14.2857
-offset_top = 112.857
-offset_right = 146.286
-offset_bottom = 132.857
+offset_top = 188.572
+offset_right = 114.286
+offset_bottom = 208.572
 theme_override_colors/font_color = Color(0.726167, 1, 0.47, 1)
