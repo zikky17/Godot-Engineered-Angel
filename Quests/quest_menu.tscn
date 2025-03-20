@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2yds2oxaroej"]
+
+[ext_resource type="Texture2D" uid="uid://dmpi6mq6y3qv8" path="res://Assets/Images/UI-Images/PlayerUI_QuestMenu.png" id="1_7p3bf"]
+[ext_resource type="Script" path="res://Scripts/Quests/QuestMenu.cs" id="2_vpco3"]
+[ext_resource type="Theme" uid="uid://b10284thxbs0q" path="res://Style Themes/StatsTheme.tres" id="3_uir0e"]
+
+[node name="QuestMenu" type="TextureRect"]
+offset_left = 7.0
+offset_top = 6.0
+offset_right = 156.0
+offset_bottom = 213.0
+texture = ExtResource("1_7p3bf")
+expand_mode = 1
+script = ExtResource("2_vpco3")
+
+[node name="Quests" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 34.0
+offset_top = -31.5
+offset_right = 128.0
+offset_bottom = 60.5
+grow_vertical = 2
+scale = Vector2(0.35, 0.35)
+theme = ExtResource("3_uir0e")
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 10
+
+[node name="QuestName" type="Label" parent="Quests"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.47, 0.699667, 1, 1)
+
+[node name="QuestText" type="Label" parent="Quests/QuestName"]
+layout_mode = 0
+offset_left = 11.4286
+offset_top = 22.8571
+offset_right = 143.429
+offset_bottom = 42.8571
+theme_override_colors/font_color = Color(0.726167, 1, 0.47, 1)

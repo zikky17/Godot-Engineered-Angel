@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bm3gkxsg5jnbk"]
+[gd_scene load_steps=28 format=4 uid="uid://bm3gkxsg5jnbk"]
 
 [ext_resource type="Texture2D" uid="uid://gruns34wg3rh" path="res://Assets/Tilemap/MainTextures.png" id="2_ik3lq"]
 [ext_resource type="Texture2D" uid="uid://ikf4sut2ws11" path="res://Assets/Tilemap/Tiled_files/water_detilazation.png" id="3_6xwa7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://v17h817hfskb" path="res://Assets/Tilemap/Tiled_files/Objects.png" id="8_i5tp0"]
 [ext_resource type="Texture2D" uid="uid://knnitd42wo3v" path="res://Assets/Tilemap/Tiled_files/details.png" id="9_tl30d"]
 [ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/zikky.tscn" id="10_3i2mc"]
+[ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="11_kt5eo"]
 [ext_resource type="Script" path="res://Scripts/Doors/EntranceToCreepyHouse.cs" id="11_xgruo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mghih"]
@@ -8957,4 +8958,7 @@ position = Vector2(445.875, 96.25)
 shape = SubResource("RectangleShape2D_ybvga")
 
 [node name="Zikky" parent="." instance=ExtResource("10_3i2mc")]
-position = Vector2(-29, 19)
+position = Vector2(-31, 20)
+
+[node name="Gorgon" parent="." instance=ExtResource("11_kt5eo")]
+position = Vector2(268, -6)

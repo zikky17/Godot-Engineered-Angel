@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://cjav4mvnua3c3"]
+[gd_scene load_steps=163 format=3 uid="uid://cjav4mvnua3c3"]
 
 [ext_resource type="Script" path="res://Scripts/Zikky.cs" id="1_pxhj4"]
 [ext_resource type="Texture2D" uid="uid://d4ekurssb0veh" path="res://Assets/Sprites/Zikky/Attack_1.png" id="2_3ti3b"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://deet2p688bb24" path="res://Inventory/InventoryUI.tscn" id="9_ufbba"]
 [ext_resource type="Texture2D" uid="uid://mqubgjfxxh8m" path="res://Assets/Sprites/Zikky/Run.png" id="10_jqdw1"]
 [ext_resource type="Texture2D" uid="uid://b2ckodwgx8duj" path="res://Assets/Sprites/Zikky/Walk.png" id="11_jcb2j"]
+[ext_resource type="PackedScene" uid="uid://d2yds2oxaroej" path="res://Quests/quest_menu.tscn" id="18_l5kr2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smdei"]
 radius = 3.0
@@ -1167,6 +1168,9 @@ offset_left = 241.0
 offset_top = 4.0
 offset_right = 373.0
 offset_bottom = 211.0
+
+[node name="QuestMenu" parent="CharacterMenus" instance=ExtResource("18_l5kr2")]
+visible = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

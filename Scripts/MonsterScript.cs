@@ -1,4 +1,5 @@
 using EngineeredAngel.Loot;
+using EngineeredAngel.Models.QuestModels;
 using EngineeredAngel.Services;
 using Godot;
 using System;
@@ -23,6 +24,8 @@ public partial class MonsterScript : CharacterBody2D
     private Timer _damageLabelTimer;
     private Random _random = new Random();
     private RewardService _rewardService;
+    private QuestService _questService = new();
+    private QuestMenu _questMenu;
 
     public List<LootItem> LootTable { get; private set; }
 
@@ -49,6 +52,8 @@ public partial class MonsterScript : CharacterBody2D
         AddChild(_directionChangeTimer);
         _directionChangeTimer.Connect("timeout", new Callable(this, nameof(OnDirectionChangeTimeout)));
         _directionChangeTimer.Start();
+
+        _questMenu = GetNodeOrNull<QuestMenu>("../Zikky/CharacterMenus/QuestMenu");
 
         _damageLabel = GetNode<Label>("DamageLabel");
         _damageLabel.Visible = false;
@@ -185,6 +190,24 @@ public partial class MonsterScript : CharacterBody2D
         PlayerInRange = false;
         AnimatedSprite.Play("die");
         _audioPlayer.Stream = _deathSound;
+
+        Dictionary<string, QuestData> quests = _questService.LoadAllQuests();
+        if (quests != null && quests.Count > 0)
+        {
+            foreach (var quest in quests)
+            {
+                QuestData questData = quest.Value;
+
+                var monster = questData.Monster;
+                if (monster != null)
+                {
+                    questData.KillCount--;
+                    _questService.SaveQuest(questData.Name, questData.Description, questData.KillCount, monster);
+                    _questMenu.UpdateQuestsUI();
+                    GD.Print("Quest updated");
+                }
+            }
+        }
         //_audioPlayer.Play();
     }
 

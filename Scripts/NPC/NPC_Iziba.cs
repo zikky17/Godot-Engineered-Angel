@@ -43,13 +43,16 @@ public partial class NPC_Iziba : CharacterBody2D
 
             _newQuestLabelTimer.Start();
         };
-
-       
     }
 
     private void OnNewQuestLabelTimerTimeout()
     {
         var questLabel = _zikky.GetNode<Label>("NewQuestLabel");
         questLabel.Visible = false;
+        GameManager.Instance.EmitSignal(
+              nameof(GameManager.QuestAcceptedEventHandler),
+              "Gorgon Slayer",
+              "Gorgons left to kill:",
+              10, "Gorgon");
     }
 }
