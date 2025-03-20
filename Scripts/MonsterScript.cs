@@ -214,7 +214,10 @@ public partial class MonsterScript : CharacterBody2D
                         questData.KillCount,
                         monster,
                         questData.NPC,
-                        questData.IsCompleted);
+                        questData.IsCompleted,
+                        questData.QuestReward.Gold,
+                        questData.QuestReward.Experience,
+                        questData.QuestReward.ItemReward);
                     _questMenu.UpdateQuestsUI();
                     GD.Print("Quest updated");
                 }

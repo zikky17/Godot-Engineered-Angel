@@ -14,5 +14,6 @@ namespace EngineeredAngel.Models.QuestModels
         public string Monster {  get; set; }
         public string NPC { get; set; }
         public bool IsCompleted { get; set; }
+        public QuestReward QuestReward { get; set; }
     }
 }

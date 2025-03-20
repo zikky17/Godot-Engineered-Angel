@@ -13,6 +13,7 @@ public partial class NPC_Iziba : CharacterBody2D
     private Timer _newQuestLabelTimer;
     private QuestService _questService = new();
     private QuestMenu _questMenu;
+    public readonly LevelUpService _levelUpService;
 
     public override void _Ready()
     {
@@ -40,7 +41,7 @@ public partial class NPC_Iziba : CharacterBody2D
                     QuestCompleted = true;
                     var dialogueResource = (Resource)GD.Load("res://dialogue/Iziba/iziba_completed_quest.dialogue");
                     CallDeferred(nameof(ShowQuestCompletedDialogue), dialogueResource);
-                    _questService.SaveQuest("Gorgon Slayer (Completed)", "Reward: Steel Sword", null, "", "", true);
+                    _questService.SaveQuest("Gorgon Slayer (Completed)", null, null, "", "", true, 0, 0, null);
                     _questMenu.UpdateQuestsUI();
                 }
             }
@@ -81,11 +82,17 @@ public partial class NPC_Iziba : CharacterBody2D
     private void OnNewQuestLabelTimerTimeout()
     {
         var questLabel = _zikky.GetNode<Label>("NewQuestLabel");
+        var questRewards = new QuestReward
+        {
+            Gold = 250,
+            Experience = 100,
+            ItemReward = "Steel Armor"
+        };
         questLabel.Visible = false;
         GameManager.Instance.EmitSignal(
               nameof(GameManager.QuestAcceptedEventHandler),
               "Gorgon Slayer",
               "Gorgons left to kill:",
-              10, "Gorgon", "Iziba", false);
+              10, "Gorgon", "Iziba", false, questRewards.Gold, questRewards.Experience, questRewards.ItemReward);
     }
 }

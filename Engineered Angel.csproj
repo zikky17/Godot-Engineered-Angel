@@ -23,5 +23,6 @@
   <ItemGroup>
     <Folder Include="Assets\Sprites\NPC\Iziba\" />
     <Folder Include="Scripts\Quests\" />
+    <Folder Include="Scripts\Utilities\" />
   </ItemGroup>
 </Project>

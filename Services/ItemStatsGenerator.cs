@@ -13,7 +13,7 @@ namespace EngineeredAngel.Services
             {
                 case "Iron Sword":
                     var item = new IronSword();
-                    var sword =  item.ReturnWeaponData();
+                    var sword = item.ReturnWeaponData();
                     return sword;
                 default:
                     throw new ArgumentException($"Weapon {name} is not recognized.");
