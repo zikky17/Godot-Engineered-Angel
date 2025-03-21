@@ -1,5 +1,6 @@
 ﻿using EngineeredAngel.Database.Context;
 using EngineeredAngel.Database.Models;
+using EngineeredAngel.Factories;
 using EngineeredAngel.Loot;
 using Godot;
 using Microsoft.EntityFrameworkCore;
@@ -110,6 +111,30 @@ namespace EngineeredAngel.Database.DbServices
                 _gameDbContext.LootItems.Remove(existingLoot);
                 _gameDbContext.SaveChangesAsync();
             }
+        }
+
+        public void AddEquippedWeapon(LootItem loot)
+        {
+            var newLoot = new LootItemEntity
+            {
+                Name = loot.Name,
+                Type = loot.Type,
+                Rarity = loot.Rarity.ToString(),
+                Quantity = loot.Quantity,
+                Attack = loot.Attack,
+                Defense = loot.Defense,
+                SpecialEffect = loot.SpecialEffect,
+                AmplifiedDamage = loot.AmplifiedDamage
+            };
+
+            _gameDbContext.EquippedWeapon.Add(newLoot);
+        }
+
+        public LootItem LoadEquippedWeapon()
+        {
+            var itemEquipped = _gameDbContext.EquippedWeapon.FirstOrDefault();
+            var weaponModel = LootFactory.CreateLootItem(itemEquipped);
+            return weaponModel;
         }
     }
 }

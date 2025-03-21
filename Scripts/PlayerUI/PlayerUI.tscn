@@ -1,16 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgq30apu6lmfe"]
+[gd_scene load_steps=6 format=3 uid="uid://bgq30apu6lmfe"]
 
 [ext_resource type="Texture2D" uid="uid://jr55ge8osw05" path="res://Assets/Images/UI-Images/PlayerUI_bgimage.webp" id="1_j05bl"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI.cs" id="2_1wtat"]
 [ext_resource type="Theme" uid="uid://b10284thxbs0q" path="res://Style Themes/StatsTheme.tres" id="2_e06vt"]
+[ext_resource type="Texture2D" uid="uid://chf4mwqomud50" path="res://Assets/Images/UI-Images/Weapon_PlaceHolder.webp" id="4_7aalv"]
 
 [sub_resource type="Theme" id="Theme_thmt5"]
 
 [node name="Main_Stats" type="TextureRect"]
-offset_left = 5.0
-offset_top = 4.0
-offset_right = 137.0
-offset_bottom = 211.0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 136.0
+offset_bottom = 212.0
 texture = ExtResource("1_j05bl")
 expand_mode = 1
 script = ExtResource("2_1wtat")
@@ -33,15 +34,18 @@ theme_override_constants/v_separation = 10
 [node name="Level" type="Label" parent="Main_Stats"]
 layout_mode = 2
 theme = SubResource("Theme_thmt5")
+theme_override_colors/font_color = Color(0.762667, 1, 0.11, 1)
 text = "Level: "
 
 [node name="Health" type="Label" parent="Main_Stats"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 1, 0.109804, 1)
 text = "Health: "
 
 [node name="Gold" type="Label" parent="Main_Stats"]
 layout_mode = 2
 theme = ExtResource("2_e06vt")
+theme_override_colors/font_color = Color(0.760784, 1, 0.109804, 1)
 text = "Gold: "
 
 [node name="Attributes" type="GridContainer" parent="."]
@@ -60,20 +64,45 @@ theme_override_constants/v_separation = 10
 
 [node name="Strength" type="Label" parent="Attributes"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.88, 0.88, 1)
 text = "Strength:"
 
 [node name="Defence" type="Label" parent="Attributes"]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.37, 0.3805, 1)
 text = "Defence:"
 
 [node name="Intelligence" type="Label" parent="Attributes"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.24, 0.772, 1, 1)
 text = "Intelligence:"
 
 [node name="Max_HP" type="Label" parent="Attributes"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.760784, 1, 0.109804, 1)
 text = "Max HP:"
 
 [node name="Experience" type="Label" parent="Attributes"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.6699, 0.0297, 0.99, 1)
 text = "Experience:"
+
+[node name="WeaponContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 79.95
+offset_top = 60.345
+offset_right = 182.95
+offset_bottom = 187.345
+scale = Vector2(0.3, 0.3)
+
+[node name="WeaponText" type="Label" parent="WeaponContainer"]
+layout_mode = 2
+text = "Weapon"
+horizontal_alignment = 1
+
+[node name="WeaponEquipped" type="TextureRect" parent="WeaponContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_7aalv")
+expand_mode = 1

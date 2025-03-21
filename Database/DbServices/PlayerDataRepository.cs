@@ -1,5 +1,7 @@
 ﻿using EngineeredAngel.Database.Context;
 using EngineeredAngel.Database.Models;
+using EngineeredAngel.Factories;
+using EngineeredAngel.Loot;
 using EngineeredAngel.Stats;
 using Godot;
 using Microsoft.EntityFrameworkCore;
@@ -118,8 +120,11 @@ namespace EngineeredAngel.Database.DbServices
             }
         }
 
-
-
-
+        public LootItem LoadEquippedWeapon()
+        {
+            var itemEquipped = _gameDbContext.EquippedWeapon.FirstOrDefault();
+            var weaponModel = LootFactory.CreateLootItem(itemEquipped);
+            return weaponModel;
+        }
     }
 }

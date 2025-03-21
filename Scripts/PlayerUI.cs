@@ -42,6 +42,8 @@ public partial class PlayerUI : TextureRect
 		_experienceLabel = GetNode<Label>("Attributes/Experience");
 
 		UpdateUI();
+
+		_playerDataRepository.LoadEquippedWeapon();
 	}
 
 	private void OnLevelUpOccurred(int newLevel, int experience)

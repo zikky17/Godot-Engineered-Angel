@@ -9,6 +9,7 @@ namespace EngineeredAngel.Database.Context
         public DbSet<GamePlayerEntity> Player { get; set; }
         public DbSet<PlayerInventoryEntity> Inventory { get; set; }
         public DbSet<LootItemEntity> LootItems { get; set; }
+        public DbSet<LootItemEntity> EquippedWeapon {  get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

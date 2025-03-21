@@ -13,6 +13,7 @@ public partial class InventoryUi : TextureRect
     private TextureRect _itemPicture;
     private LootItem _selectedLoot;
     private VBoxContainer _selectedSlot;
+    private TextureRect _equippedWeapon;
 
 
     public override void _Ready()
@@ -32,12 +33,14 @@ public partial class InventoryUi : TextureRect
         }
 
         _optionsMenu = GetNode<PopupMenu>("OptionsMenu");
+        _optionsMenu.AddItem("Equip Item", 1);
         _optionsMenu.AddItem("Destroy Item", 0);
         _optionsMenu.IdPressed += OnOptionsMenuItemSelected;
         _gridContainer = GetNode<GridContainer>("PanelContainer/GridContainer");
         _zikky = GetNode<Zikky>("../../../Zikky");
         _inventoryRepository = new PlayerInventoryRepository();
-
+        var equippedWeapon = _inventoryRepository.LoadEquippedWeapon();
+        ShowEquippedWeapon(equippedWeapon);
         UpdateInventoryUI();
     }
 
@@ -67,10 +70,19 @@ public partial class InventoryUi : TextureRect
 
     private void OnOptionsMenuItemSelected(long id)
     {
-        if (id == 0 && _selectedLoot != null && _selectedSlot is ItemSlot itemSlot)
+        if (_selectedLoot != null && _selectedSlot is ItemSlot itemSlot)
         {
-            VoidTouch(_selectedLoot, itemSlot);
+            switch (id)
+            {
+                case 0:
+                    VoidTouch(_selectedLoot, itemSlot);
+                    break;
+                case 1:
+                    EquipItem(_selectedLoot, itemSlot);
+                    break;
+            }
         }
+
     }
 
     private void OnItemPickedUp(
@@ -180,6 +192,62 @@ public partial class InventoryUi : TextureRect
         _optionsMenu.Popup();
     }
 
+    public void EquipItem(LootItem loot, ItemSlot slot)
+    {
+        var weaponEquippedSlot = GetNode<TextureRect>("../PlayerUI/WeaponContainer/WeaponEquipped");
+        var itemTexture = slot.GetNode<TextureRect>("ItemPicture").Texture;
+
+        if (itemTexture != null)
+        {
+            weaponEquippedSlot.Texture = itemTexture;
+
+            weaponEquippedSlot.TooltipText = $"Name: {loot.Name}\n" +
+                                             $"Type: {loot.Type}\n" +
+                                             $"Tier: {loot.Tier}\n" +
+                                             $"Rarity: {loot.Rarity}\n" +
+                                             $"Attack: {loot.Attack}\n" +
+                                             $"Defense: {loot.Defense}\n" +
+                                             $"Special Effect: {loot.SpecialEffect}\n" +
+                                             $"Amplified Damage: {loot.AmplifiedDamage}";
+        }
+
+        slot.ClearSlot();
+        RemoveFromInventoryDatabase(loot);
+        
+        GD.Print($"Equipped weapon: {loot.Name}");
+    }
+
+    private void ShowEquippedWeapon(LootItem loot)
+    {
+        var weaponEquippedSlot = GetNode<TextureRect>("../PlayerUI/WeaponContainer/WeaponEquipped");
+
+        if (loot == null)
+        {
+            weaponEquippedSlot.Texture = GD.Load<Texture2D>("res://Assets/UI/Icons/placeholder_sword.png");
+            weaponEquippedSlot.TooltipText = "No weapon equipped.";
+            return;
+        }
+
+        string path = loot.Rarity switch
+        {
+            "Common" => $"res://Assets/Sprites/Loot/{loot.Name.Replace(" ", "")}.png",
+            "Rare" => $"res://Assets/Sprites/Loot/RareItems/{loot.Name.Replace(" ", "")}_Rare.png",
+            "Epic" => $"res://Assets/Sprites/Loot/EpicItems/{loot.Name.Replace(" ", "")}_Epic.png",
+            _ => null
+        };
+
+        if (!string.IsNullOrEmpty(path))
+            weaponEquippedSlot.Texture = GD.Load<Texture2D>(path);
+
+        weaponEquippedSlot.TooltipText = $"Name: {loot.Name}\n" +
+                                         $"Type: {loot.Type}\n" +
+                                         $"Tier: {loot.Tier}\n" +
+                                         $"Rarity: {loot.Rarity}\n" +
+                                         $"Attack: {loot.Attack}\nDefense: {loot.Defense}\n" +
+                                         $"Special Effect: {loot.SpecialEffect}\n" +
+                                         $"Amplified Damage: {loot.AmplifiedDamage}";
+    }
+
 
 
     public void VoidTouch(LootItem loot, ItemSlot slot)
@@ -196,6 +264,12 @@ public partial class InventoryUi : TextureRect
     private void RemoveFromInventoryDatabase(LootItem loot)
     {
         _inventoryRepository.RemoveLootFromDatabase(loot);
+        GD.Print($"Removed {loot.Name} from database.");
+    }
+
+    private void AddItemToEquippedItems(LootItem loot)
+    {
+        _inventoryRepository.AddEquippedWeapon(loot);
         GD.Print($"Removed {loot.Name} from database.");
     }
 }
