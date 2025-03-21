@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://deet2p688bb24"]
+[gd_scene load_steps=5 format=3 uid="uid://deet2p688bb24"]
 
 [ext_resource type="Texture2D" uid="uid://bacmykj5b1j87" path="res://Assets/Images/UI-Images/PlayerUI_backpack.webp" id="1_lxo6l"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI/InventoryUi.cs" id="1_swsjh"]
 [ext_resource type="Theme" uid="uid://c58ei1xryb5cv" path="res://Style Themes/inventoryTheme.tres" id="3_kdy1d"]
+[ext_resource type="Script" path="res://InventoryComponent/ItemSlot.cs" id="4_ma1kb"]
 
 [node name="InventoryUI" type="TextureRect"]
 offset_left = 5.0
@@ -16,16 +17,11 @@ script = ExtResource("1_swsjh")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(70, 100)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 18.495
-offset_top = 38.75
-offset_right = 31.495
-offset_bottom = 57.75
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_left = 19.095
+offset_top = 39.015
+offset_right = 164.095
+offset_bottom = 265.015
 scale = Vector2(0.4, 0.4)
 
 [node name="GridContainer" type="GridContainer" parent="PanelContainer"]
@@ -38,6 +34,7 @@ columns = 4
 [node name="ItemSlot1" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot1"]
 custom_minimum_size = Vector2(10, 10)
@@ -49,12 +46,12 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot2" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot2"]
 custom_minimum_size = Vector2(10, 10)
@@ -64,12 +61,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot3" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot3"]
 custom_minimum_size = Vector2(10, 10)
@@ -79,12 +76,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot4" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot4"]
 custom_minimum_size = Vector2(10, 10)
@@ -94,12 +91,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot5" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot5"]
 custom_minimum_size = Vector2(10, 10)
@@ -109,12 +106,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot6" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot6"]
 custom_minimum_size = Vector2(10, 10)
@@ -130,6 +127,7 @@ horizontal_alignment = 1
 [node name="ItemSlot7" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot7"]
 custom_minimum_size = Vector2(10, 10)
@@ -139,12 +137,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot8" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot8"]
 custom_minimum_size = Vector2(10, 10)
@@ -160,6 +158,7 @@ horizontal_alignment = 1
 [node name="ItemSlot9" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot9"]
 custom_minimum_size = Vector2(10, 10)
@@ -169,12 +168,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot10" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot10"]
 custom_minimum_size = Vector2(10, 10)
@@ -184,12 +183,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot11" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot11"]
 custom_minimum_size = Vector2(10, 10)
@@ -199,12 +198,12 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="ItemSlot12" type="VBoxContainer" parent="PanelContainer/GridContainer"]
 z_index = 1
 layout_mode = 2
+script = ExtResource("4_ma1kb")
 
 [node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot12"]
 custom_minimum_size = Vector2(10, 10)
@@ -214,7 +213,6 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "x0"
 horizontal_alignment = 1
 
 [node name="OptionsMenu" type="PopupMenu" parent="."]

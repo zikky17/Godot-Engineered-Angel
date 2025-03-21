@@ -8961,4 +8961,4 @@ shape = SubResource("RectangleShape2D_ybvga")
 position = Vector2(268, -6)
 
 [node name="Zikky" parent="." instance=ExtResource("10_3i2mc")]
-position = Vector2(-31, 20)
+position = Vector2(-25, 20)

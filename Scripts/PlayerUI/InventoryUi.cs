@@ -10,6 +10,9 @@ public partial class InventoryUi : TextureRect
     private PlayerInventoryRepository _inventoryRepository;
     private Zikky _zikky;
     private PopupMenu _optionsMenu;
+    private TextureRect _itemPicture;
+    private LootItem _selectedLoot;
+    private VBoxContainer _selectedSlot;
 
 
     public override void _Ready()
@@ -29,11 +32,45 @@ public partial class InventoryUi : TextureRect
         }
 
         _optionsMenu = GetNode<PopupMenu>("OptionsMenu");
+        _optionsMenu.AddItem("Destroy Item", 0);
+        _optionsMenu.IdPressed += OnOptionsMenuItemSelected;
         _gridContainer = GetNode<GridContainer>("PanelContainer/GridContainer");
         _zikky = GetNode<Zikky>("../../../Zikky");
         _inventoryRepository = new PlayerInventoryRepository();
 
         UpdateInventoryUI();
+    }
+
+    private void OnItemRightClick(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouseEvent && mouseEvent.ButtonIndex == MouseButton.Right && mouseEvent.Pressed)
+        {
+            foreach (ItemSlot slot in _gridContainer.GetChildren())
+            {
+                var itemPic = slot.GetNode<TextureRect>("ItemPicture");
+                if (itemPic == GetViewport().GuiGetFocusOwner())
+                {
+                    _selectedSlot = slot;
+                    _selectedLoot = slot.Loot;
+                    break;
+                }
+            }
+
+            if (_selectedLoot != null)
+            {
+                Vector2 mousePos = GetViewport().GetMousePosition();
+                _optionsMenu.Position = new Vector2I((int)mousePos.X, (int)mousePos.Y);
+                _optionsMenu.Popup();
+            }
+        }
+    }
+
+    private void OnOptionsMenuItemSelected(long id)
+    {
+        if (id == 0 && _selectedLoot != null && _selectedSlot is ItemSlot itemSlot)
+        {
+            VoidTouch(_selectedLoot, itemSlot);
+        }
     }
 
     private void OnItemPickedUp(
@@ -88,41 +125,29 @@ public partial class InventoryUi : TextureRect
             }
         }
 
-        foreach (VBoxContainer slot in _gridContainer.GetChildren())
+        foreach (ItemSlot slot in _gridContainer.GetChildren())
         {
-            var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
-            var itemCount = slot.GetNode<Label>("ItemCount");
-
-            if (itemCount.Text == "x0")
+            if (slot.Loot == null)
             {
-                switch (loot.Rarity)
+                var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
+
+                string path = loot.Rarity switch
                 {
-                    case "Common":
-                        var texture = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/{loot.Name.Replace(" ", "")}.png");
-                        itemPicture.Texture = texture;
-                        break;
-                    case "Rare":
-                        var textureRare = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/RareItems/{loot.Name.Replace(" ", "")}_Rare.png");
-                        itemPicture.Texture = textureRare;
-                        break;
-                    case "Epic":
-                        var textureEpic = GD.Load<Texture2D>($"res://Assets/Sprites/Loot/EpicItems/{loot.Name.Replace(" ", "")}_Epic.png");
-                        itemPicture.Texture = textureEpic;
-                        break;
-                }
+                    "Common" => $"res://Assets/Sprites/Loot/{loot.Name.Replace(" ", "")}.png",
+                    "Rare" => $"res://Assets/Sprites/Loot/RareItems/{loot.Name.Replace(" ", "")}_Rare.png",
+                    "Epic" => $"res://Assets/Sprites/Loot/EpicItems/{loot.Name.Replace(" ", "")}_Epic.png",
+                    _ => null
+                };
 
-                slot.Name = loot.Name;
-                itemCount.Text = $"{loot.Quantity}";
-
-                itemPicture.TooltipText = $"Name: {loot.Name}\nType: {loot.Type}\nTier: {loot.Tier}\n" +
-                                          $"Rarity: {loot.Rarity}\n" +
-                                          $"Attack: {loot.Attack}\nDefense: {loot.Defense}\n" +
-                                          $"Special Effect: {loot.SpecialEffect}\nAmplified Damage: {loot.AmplifiedDamage}";
-
+                if (!string.IsNullOrEmpty(path))
+                    itemPicture.Texture = GD.Load<Texture2D>(path);
+                slot.ParentInventory = this;
+                slot.SetLoot(loot);
                 GD.Print($"Added new item: {loot.Name} to inventory.");
                 return;
             }
         }
+
 
         _zikky.HasInventorySpace(false);
     }
@@ -145,23 +170,27 @@ public partial class InventoryUi : TextureRect
         }
     }
 
-
-    public void VoidTouch(LootItem loot, VBoxContainer slot)
+    public void ShowOptionsForItem(ItemSlot slot)
     {
-        int scrapsGained = loot.Quantity * loot.Tier; 
+        _selectedSlot = slot;
+        _selectedLoot = slot.Loot;
+
+        Vector2 mousePos = GetViewport().GetMousePosition();
+        _optionsMenu.Position = new Vector2I((int)mousePos.X, (int)mousePos.Y);
+        _optionsMenu.Popup();
+    }
+
+
+
+    public void VoidTouch(LootItem loot, ItemSlot slot)
+    {
+        int scrapsGained = loot.Quantity * loot.Tier;
         _zikky.CharacterStats.VoidScraps += scrapsGained;
 
         GD.Print($"Recycled {loot.Name}, gained {scrapsGained} Iron Scraps. Total: {_zikky.CharacterStats.VoidScraps}");
 
-        var itemPicture = slot.GetNode<TextureRect>("ItemPicture");
-        var itemCount = slot.GetNode<Label>("ItemCount");
-
-        itemPicture.Texture = null;
-        itemCount.Text = "x0";
-        slot.Name = "Empty";
-
+        slot.ClearSlot();
         RemoveFromInventoryDatabase(loot);
-
     }
 
     private void RemoveFromInventoryDatabase(LootItem loot)

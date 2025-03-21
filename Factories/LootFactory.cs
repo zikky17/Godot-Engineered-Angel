@@ -9,6 +9,7 @@ namespace EngineeredAngel.Factories
         {
             var loot = new LootItem
             {
+                Id = entity.LootItemId,
                 Tier = entity.Tier,
                 Name = entity.Name,
                 Type = entity.Type,

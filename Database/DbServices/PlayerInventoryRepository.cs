@@ -104,10 +104,11 @@ namespace EngineeredAngel.Database.DbServices
         internal void RemoveLootFromDatabase(LootItem loot)
         {
 
-            var existingLoot = _gameDbContext.LootItems.Where(x => x.LootItemId == loot.Id);
-            if (existingLoot.Any())
+            var existingLoot = _gameDbContext.LootItems.Find(loot.Id);
+            if (existingLoot != null)
             {
-                _gameDbContext.LootItems.Remove((LootItemEntity)existingLoot);
+                _gameDbContext.LootItems.Remove(existingLoot);
+                _gameDbContext.SaveChangesAsync();
             }
         }
     }

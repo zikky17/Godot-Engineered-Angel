@@ -11,6 +11,7 @@ public partial class NPC_Iziba : CharacterBody2D
     private bool QuestCompleted = false;
     private Zikky _zikky;
     private Timer _newQuestLabelTimer;
+    private Timer _completedQuestLabelTimer;
     private QuestService _questService = new();
     private QuestMenu _questMenu;
     public readonly LevelUpService _levelUpService;
@@ -27,6 +28,12 @@ public partial class NPC_Iziba : CharacterBody2D
         _newQuestLabelTimer.OneShot = true;
         _newQuestLabelTimer.Timeout += OnNewQuestLabelTimerTimeout;
         AddChild(_newQuestLabelTimer);
+
+        _completedQuestLabelTimer = new Timer();
+        _completedQuestLabelTimer.WaitTime = 7;
+        _completedQuestLabelTimer.OneShot = true;
+        _completedQuestLabelTimer.Timeout += OnCompletedQuestLabelTimerTimeout;
+        AddChild(_completedQuestLabelTimer);
     }
 
     private void OnTalkZoneBodyEntered(Node body)
@@ -77,6 +84,14 @@ public partial class NPC_Iziba : CharacterBody2D
     private void ShowQuestCompletedDialogue(Resource dialogueResource)
     {
         DialogueManager.ShowExampleDialogueBalloon(dialogueResource, "iziba_completed_quest");
+
+        DialogueManager.DialogueEnded += (Resource dialogueResource) =>
+        {
+            var questLabel = _zikky.GetNode<Label>("QuestCompletedLabel");
+            questLabel.Visible = true;
+
+            _completedQuestLabelTimer.Start();
+        };
     }
 
     private void OnNewQuestLabelTimerTimeout()
@@ -94,5 +109,11 @@ public partial class NPC_Iziba : CharacterBody2D
               "Gorgon Slayer",
               "Gorgons left to kill:",
               10, "Gorgon", "Iziba", false, questRewards.Gold, questRewards.Experience, questRewards.ItemReward);
+    }
+
+    private void OnCompletedQuestLabelTimerTimeout()
+    {
+        var questLabel = _zikky.GetNode<Label>("QuestCompletedLabel");
+        questLabel.Visible = false;
     }
 }

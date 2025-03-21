@@ -1070,7 +1070,7 @@ shape = SubResource("CapsuleShape2D_smdei")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
-position = Vector2(1, -4)
+position = Vector2(2, -4)
 scale = Vector2(0.33125, 0.356875)
 sprite_frames = SubResource("SpriteFrames_7iao0")
 animation = &"attack_right"
@@ -1152,6 +1152,20 @@ theme_override_colors/font_color = Color(0.116667, 1, 0, 1)
 theme_override_fonts/font = ExtResource("5_t70ao")
 theme_override_font_sizes/font_size = 24
 text = "New Quest accepted!"
+label_settings = SubResource("LabelSettings_xyuh4")
+
+[node name="QuestCompletedLabel" type="Label" parent="."]
+visible = false
+modulate = Color(0.354667, 0.76, 0, 1)
+offset_left = -38.0
+offset_top = -24.0
+offset_right = 116.0
+offset_bottom = -1.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(0.116667, 1, 0, 1)
+theme_override_fonts/font = ExtResource("5_t70ao")
+theme_override_font_sizes/font_size = 24
+text = "Quest Completed!"
 label_settings = SubResource("LabelSettings_xyuh4")
 
 [node name="CharacterMenus" type="CanvasLayer" parent="."]
