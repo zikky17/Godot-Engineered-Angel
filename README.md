@@ -4,6 +4,7 @@
 
 Ett modulärt och avancerat UI-system byggt i **Godot 4 med C#** för ett 2D-RPG. Fokus ligger på ett dynamiskt inventorysystem, loot-hantering, vapenutrustning och ett intuitivt användargränssnitt med stöd för högerklicksmenyer, signaler och databaslagring.
 
+
 ## 🎮 Funktioner
 
 - 📦 **Inventorysystem**
@@ -36,7 +37,10 @@ Ett modulärt och avancerat UI-system byggt i **Godot 4 med C#** för ett 2D-RPG
   - Visar detaljer som attack, försvar, tier och specialeffekt
   - Tooltip uppdateras automatiskt vid equip
 
-🧩 Teknisk stack
+
+
+## 🧩 Teknisk stack
+
 Godot 4 (C#)
 
 SQLite (via repository-mönster)
@@ -47,7 +51,10 @@ Custom UI-komponenter (ItemSlot)
 
 Tooltip, popupmenyer och GridContainers
 
-📌 Planerade funktioner
+
+
+## 📌 Planerade funktioner
+
  Support för armor / shield-slots
 
  Av-equip med klick på WeaponEquipped
