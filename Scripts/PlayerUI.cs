@@ -43,7 +43,6 @@ public partial class PlayerUI : TextureRect
 
 		UpdateUI();
 
-		_playerDataRepository.LoadEquippedWeapon();
 	}
 
 	private void OnLevelUpOccurred(int newLevel, int experience)

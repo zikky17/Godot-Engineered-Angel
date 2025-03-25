@@ -120,11 +120,6 @@ namespace EngineeredAngel.Database.DbServices
             }
         }
 
-        public LootItem LoadEquippedWeapon()
-        {
-            var itemEquipped = _gameDbContext.EquippedWeapon.FirstOrDefault();
-            var weaponModel = LootFactory.CreateLootItem(itemEquipped);
-            return weaponModel;
-        }
+       
     }
 }

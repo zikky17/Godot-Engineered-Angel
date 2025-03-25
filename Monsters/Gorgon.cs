@@ -30,5 +30,10 @@ namespace EngineeredAngel.Monsters
                 DeathSound = GD.Load<AudioStream>("res://Assets/SoundEffects/ScarySounds/Gorgon_Death.mp3")
             };        
         }
+
+        public int DealDamage()
+        {
+            return 10;
+        }
     }
 }

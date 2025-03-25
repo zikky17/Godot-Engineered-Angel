@@ -137,8 +137,6 @@ public partial class Zikky : CharacterBody2D
             return;
         }
 
-        AttackedByEnemy();
-
         if (CharacterStats.HP <= 0 && !IsDead)
         {
             Die();
@@ -226,29 +224,7 @@ public partial class Zikky : CharacterBody2D
         Respawn();
     }
 
-    private void AttackedByEnemy()
-    {
-        float currentTime = Time.GetTicksMsec() / 1000f;
-
-        if (EnemyInRange && !HasTakenDamage && currentTime - lastDamageTime >= damageCooldown)
-        {
-            HasTakenDamage = true;
-            lastDamageTime = currentTime;
-            int damageTaken = CharacterStats.CalculateDamage(20);
-            CharacterStats.HP -= damageTaken;
-            Health.Value = CharacterStats.HP;
-            GD.Print($"Zikky took {damageTaken} damage, remaining HP: {CharacterStats.HP}");
-            ShowCombatText(damageTaken, null);
-            HasTakenDamage = false;
-
-            if (CharacterStats.HP <= 0 && !IsDead)
-            {
-                Die();
-            }
-        }
-    }
-
-    private void ShowCombatText(int? damage, int? healing)
+    public void ShowCombatText(int? damage, int? healing)
     {
         if (damage.HasValue)
         {

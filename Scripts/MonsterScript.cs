@@ -1,5 +1,6 @@
 using EngineeredAngel.Loot;
 using EngineeredAngel.Models.QuestModels;
+using EngineeredAngel.Monsters;
 using EngineeredAngel.Services;
 using Godot;
 using System;
@@ -9,10 +10,12 @@ public partial class MonsterScript : CharacterBody2D
 {
     [Export] public int Speed = 100;
     [Export] public int ChargeSpeed = 175;
+
     public bool MonsterCharge = false;
     public bool PlayerInRange = false;
     public bool IsAttacking = false;
     public bool IsDead = false;
+
     private Zikky _zikky;
     private ProgressBar _health;
     private Area2D _hitbox;
@@ -20,18 +23,22 @@ public partial class MonsterScript : CharacterBody2D
     private AudioStreamPlayer _audioPlayer;
     private AudioStream _chargeSound;
     private AudioStream _deathSound;
+
     private Label _damageLabel;
     private Timer _damageLabelTimer;
     private Random _random = new Random();
+
     private RewardService _rewardService;
     private QuestService _questService = new();
     private QuestMenu _questMenu;
 
     public List<LootItem> LootTable { get; private set; }
-
     public Vector2 LastDirection { get; set; } = Vector2.Zero;
     public AnimatedSprite2D AnimatedSprite { get; private set; }
     private Timer _directionChangeTimer;
+
+    private float _lastAttackTime = -2f;
+    private const float AttackCooldown = 2f;
 
     public override void _Ready()
     {
@@ -68,11 +75,11 @@ public partial class MonsterScript : CharacterBody2D
         _hitbox = GetNode<Area2D>("Hitbox");
         _territory = GetNode<Area2D>("Territory");
         _audioPlayer = GetNode<AudioStreamPlayer>("BattleCry");
+
         _hitbox.Connect("body_entered", new Callable(this, nameof(OnHitboxBodyEntered)));
         _hitbox.Connect("body_exited", new Callable(this, nameof(OnHitboxBodyExited)));
         _territory.Connect("body_entered", new Callable(this, nameof(OnTerritoryBodyEntered)));
         _territory.Connect("body_exited", new Callable(this, nameof(OnTerritoryBodyExited)));
-
 
         var levelUpService = new LevelUpService();
         _rewardService = new RewardService(_zikky, levelUpService);
@@ -80,18 +87,10 @@ public partial class MonsterScript : CharacterBody2D
         AddToGroup("Enemy");
     }
 
-    private void OnDirectionChangeTimeout()
-    {
-        LastDirection = new Vector2(_random.Next(-1, 2), _random.Next(-1, 2));
-        if (LastDirection == Vector2.Zero)
-        {
-            OnDirectionChangeTimeout();
-        }
-    }
-
     public override void _PhysicsProcess(double delta)
     {
         if (IsDead) return;
+
         if (MonsterCharge && _zikky != null)
         {
             var playerDirection = (_zikky.Position - Position).Normalized();
@@ -104,6 +103,11 @@ public partial class MonsterScript : CharacterBody2D
         }
 
         MoveAndSlide();
+
+        if (PlayerInRange)
+        {
+            TryDamagePlayer();
+        }
 
         if (PlayerInRange && _zikky.IsAttacking)
         {
@@ -128,7 +132,35 @@ public partial class MonsterScript : CharacterBody2D
         if (body.IsInGroup("Player"))
         {
             PlayerInRange = false;
+            IsAttacking = false;
             UpdateAnimation(Position);
+        }
+    }
+
+    private void TryDamagePlayer()
+    {
+        if (_zikky == null || _zikky.IsDead) return;
+
+        float currentTime = Time.GetTicksMsec() / 1000f;
+        if (currentTime - _lastAttackTime >= AttackCooldown)
+        {
+            _lastAttackTime = currentTime;
+
+            var monsterProfile = new Gorgon().ReturnMonsterData();
+            var baseDamage = monsterProfile.DealDamage();
+
+            int finalDamage = _zikky.CharacterStats.CalculateDamage(baseDamage);
+            _zikky.CharacterStats.HP -= finalDamage;
+            _zikky.Health.Value = _zikky.CharacterStats.HP;
+
+            _zikky.ShowCombatText(finalDamage, null);
+
+            GD.Print($"Player took {finalDamage} damage from {Name}. Remaining HP: {_zikky.CharacterStats.HP}");
+
+            if (_zikky.CharacterStats.HP <= 0 && !_zikky.IsDead)
+            {
+                _zikky.Die();
+            }
         }
     }
 
@@ -139,7 +171,6 @@ public partial class MonsterScript : CharacterBody2D
         {
             MonsterCharge = true;
             _audioPlayer.Stream = _chargeSound;
-            //_audioPlayer.Play();
         }
     }
 
@@ -194,36 +225,28 @@ public partial class MonsterScript : CharacterBody2D
         Dictionary<string, QuestData> quests = _questService.LoadAllQuests();
         if (quests != null && quests.Count > 0)
         {
-            foreach (var quest in quests)
+            foreach (var quest in quests.Values)
             {
-                QuestData questData = quest.Value;
-
-                var monster = questData.Monster;
+                var monster = quest.Monster;
                 if (monster != null)
                 {
-                    questData.KillCount--;
-                    if (questData.KillCount <= 0)
+                    quest.KillCount--;
+                    if (quest.KillCount <= 0)
                     {
-                        questData.Description = $"Quest Completed! Return to {questData.NPC}";
-                        questData.IsCompleted = true;
-                        questData.KillCount = null;
+                        quest.Description = $"Quest Completed! Return to {quest.NPC}";
+                        quest.IsCompleted = true;
+                        quest.KillCount = null;
                     }
-                    _questService.SaveQuest
-                        (questData.Name,
-                        questData.Description,
-                        questData.KillCount,
-                        monster,
-                        questData.NPC,
-                        questData.IsCompleted,
-                        questData.QuestReward.Gold,
-                        questData.QuestReward.Experience,
-                        questData.QuestReward.ItemReward);
-                    _questMenu.UpdateQuestsUI();
+
+                    _questService.SaveQuest(quest.Name, quest.Description, quest.KillCount, quest.Monster,
+                        quest.NPC, quest.IsCompleted, quest.QuestReward.Gold,
+                        quest.QuestReward.Experience, quest.QuestReward.ItemReward);
+
+                    _questMenu?.UpdateQuestsUI();
                     GD.Print("Quest updated");
                 }
             }
         }
-        //_audioPlayer.Play();
     }
 
     private void ShowDamage(int damage)
@@ -244,7 +267,6 @@ public partial class MonsterScript : CharacterBody2D
         if (IsDead && AnimatedSprite.Animation == "die")
         {
             DropLoot();
-
             QueueFree();
         }
     }
@@ -280,20 +302,11 @@ public partial class MonsterScript : CharacterBody2D
             }
         }
 
-        if (droppedItems.Count > 0)
+        foreach (var dropped in droppedItems)
         {
-            GD.Print("Dropped items:");
-            foreach (var dropped in droppedItems)
-            {
-                GD.Print(dropped);
-            }
-        }
-        else
-        {
-            GD.Print("No loot dropped this time.");
+            GD.Print("Dropped: " + dropped);
         }
     }
-
 
     private void SpawnLoot(LootItem item)
     {
@@ -305,7 +318,6 @@ public partial class MonsterScript : CharacterBody2D
             lootNode.Quantity = item.Quantity;
             lootNode.Position = GlobalPosition;
             GetParent().AddChild(lootNode);
-
         }
 
         if (item.Name == "Healing Potion")
@@ -313,9 +325,16 @@ public partial class MonsterScript : CharacterBody2D
             var lootNode = GD.Load<PackedScene>("res://Scenes/Consumables/health_potion.tscn").Instantiate<Area2D>();
             lootNode.Name = item.Name;
             lootNode.Position = GlobalPosition;
-
             GetParent().AddChild(lootNode);
         }
+    }
 
+    private void OnDirectionChangeTimeout()
+    {
+        LastDirection = new Vector2(_random.Next(-1, 2), _random.Next(-1, 2));
+        if (LastDirection == Vector2.Zero)
+        {
+            OnDirectionChangeTimeout();
+        }
     }
 }

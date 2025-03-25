@@ -14,6 +14,7 @@ namespace EngineeredAngel.Interfaces
         AudioStream ChargeSound { get; set; }
         AudioStream DeathSound { get; set; }
 
-        public IMonster ReturnMonsterData();            
+        public IMonster ReturnMonsterData();
+        public int DealDamage();
     }
 }
