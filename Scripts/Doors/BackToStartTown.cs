@@ -37,7 +37,7 @@ public partial class BackToStartTown : Area2D
 
         var globalState = GetNode<GlobalState>("/root/GlobalState");
 
-        var newPlayer = GetTree().CurrentScene.GetNode<Player>("Zikky");
+        var newPlayer = GetTree().CurrentScene.GetNode<Player>("Player");
 
         if (newPlayer != null)
         {

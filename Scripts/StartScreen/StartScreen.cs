@@ -55,13 +55,14 @@ public partial class StartScreen : Control
         var newPlayerData = new GamePlayerEntity
         {
             PlayerName = profile.PlayerName,
-            Level = 1,
+            ClassName = profile.PlayerClass.ClassName,
             CurrentHP = profile.CurrentHp,
             MaxHealth = profile.MaxHealth,
             Strength = profile.Strength,
             Defence = profile.Defence,
             Intelligence = profile.Intelligence,
             Agility = profile.Agility,
+            Level = 1,
             Gold = 0,
             Experience = 0
         };

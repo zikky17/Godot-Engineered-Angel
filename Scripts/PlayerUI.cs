@@ -1,4 +1,5 @@
 using EngineeredAngel.Database.DbServices;
+using EngineeredAngel.PlayerClasses;
 using EngineeredAngel.Services;
 using Godot;
 
@@ -16,8 +17,10 @@ public partial class PlayerUI : TextureRect
 	private Label _agilityLabel;
 	private Label _maxHpLabel;
 	private Label _playerNameLabel;
+	private Label _playerClassLabel;
 
 	private string playerName;
+	private string playerClass;
 	private int health;
 	private int gold;
 	private int level;
@@ -36,6 +39,7 @@ public partial class PlayerUI : TextureRect
 
         _player = GetNode<Player>("../../../Player");
 		_levelLabel = GetNode<Label>("Main_Stats/Level");
+		_playerClassLabel = GetNode<Label>("Main_Stats/PlayerClass");
         _playerNameLabel = GetNode<Label>("Main_Stats/PlayerName");
 		_healthLabel = GetNode<Label>("Main_Stats/Health");
 		_goldLabel = GetNode<Label>("Main_Stats/Gold");
@@ -70,6 +74,7 @@ public partial class PlayerUI : TextureRect
 		level = _player.CharacterStats.Level;
 		experience = _player.CharacterStats.Experience;
 		playerName = _player.CharacterStats.PlayerName;
+		playerClass = _player.CharacterStats.ClassName;
 
 		maxHp = _player.CharacterStats.MaxHP;
 		strength = _player.CharacterStats.Strength;
@@ -94,6 +99,7 @@ public partial class PlayerUI : TextureRect
 	private void UpdateUI()
 	{
 		_playerNameLabel.Text = $"Name: {playerName}";
+		_playerClassLabel.Text = $"Class: {playerClass}";
         _levelLabel.Text = $"Level: {level}";
 		_goldLabel.Text = $"Gold: {gold}";
 		_healthLabel.Text = $"Health: {health}";

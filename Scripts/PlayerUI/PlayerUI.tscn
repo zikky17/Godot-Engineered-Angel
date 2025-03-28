@@ -21,10 +21,10 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 18.0
-offset_top = -54.5
-offset_right = 89.0
-offset_bottom = 55.5
+offset_left = 17.0
+offset_top = -59.0
+offset_right = 88.0
+offset_bottom = 81.0
 grow_vertical = 2
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_e06vt")
@@ -35,6 +35,11 @@ theme_override_constants/v_separation = 10
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Name:"
+
+[node name="PlayerClass" type="Label" parent="Main_Stats"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0.95, 1)
+text = "Class:"
 
 [node name="Level" type="Label" parent="Main_Stats"]
 layout_mode = 2
@@ -58,10 +63,10 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 18.0
-offset_top = -113.0
-offset_right = 127.0
-offset_bottom = 61.0
+offset_left = 17.0
+offset_top = -102.5
+offset_right = 126.0
+offset_bottom = 71.5
 grow_vertical = 0
 scale = Vector2(0.35, 0.35)
 theme = ExtResource("2_e06vt")
@@ -99,10 +104,10 @@ text = "Experience:"
 
 [node name="WeaponContainer" type="GridContainer" parent="."]
 layout_mode = 0
-offset_left = 75.95
-offset_top = 67.345
-offset_right = 178.95
-offset_bottom = 194.345
+offset_left = 76.0
+offset_top = 67.0
+offset_right = 179.0
+offset_bottom = 194.0
 scale = Vector2(0.3, 0.3)
 
 [node name="WeaponText" type="Label" parent="WeaponContainer"]

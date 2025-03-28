@@ -9,7 +9,7 @@ public partial class NPC_Iziba : CharacterBody2D
     private Area2D _talkZone;
     private bool GotQuest = false;
     private bool QuestCompleted = false;
-    private Player _zikky;
+    private Player _player;
     private Timer _newQuestLabelTimer;
     private Timer _completedQuestLabelTimer;
     private QuestService _questService = new();
@@ -18,10 +18,10 @@ public partial class NPC_Iziba : CharacterBody2D
 
     public override void _Ready()
     {
-        _zikky = GetNode<Player>("../Zikky");
+        _player = GetNode<Player>("../Player");
         _talkZone = GetNode<Area2D>("TalkZone");
         _talkZone.Connect("body_entered", new Callable(this, nameof(OnTalkZoneBodyEntered)));
-        _questMenu = GetNodeOrNull<QuestMenu>("../Zikky/CharacterMenus/QuestMenu");
+        _questMenu = GetNodeOrNull<QuestMenu>("../Player/CharacterMenus/QuestMenu");
 
         _newQuestLabelTimer = new Timer();
         _newQuestLabelTimer.WaitTime = 5;
@@ -74,7 +74,7 @@ public partial class NPC_Iziba : CharacterBody2D
 
         DialogueManager.DialogueEnded += (Resource dialogueResource) =>
         {
-            var questLabel = _zikky.GetNode<Label>("NewQuestLabel");
+            var questLabel = _player.GetNode<Label>("NewQuestLabel");
             questLabel.Visible = true;
 
             _newQuestLabelTimer.Start();
@@ -87,7 +87,7 @@ public partial class NPC_Iziba : CharacterBody2D
 
         DialogueManager.DialogueEnded += (Resource dialogueResource) =>
         {
-            var questLabel = _zikky.GetNode<Label>("QuestCompletedLabel");
+            var questLabel = _player.GetNode<Label>("QuestCompletedLabel");
             questLabel.Visible = true;
 
             _completedQuestLabelTimer.Start();
@@ -96,7 +96,7 @@ public partial class NPC_Iziba : CharacterBody2D
 
     private void OnNewQuestLabelTimerTimeout()
     {
-        var questLabel = _zikky.GetNode<Label>("NewQuestLabel");
+        var questLabel = _player.GetNode<Label>("NewQuestLabel");
         var questRewards = new QuestReward
         {
             Gold = 250,
@@ -113,7 +113,7 @@ public partial class NPC_Iziba : CharacterBody2D
 
     private void OnCompletedQuestLabelTimerTimeout()
     {
-        var questLabel = _zikky.GetNode<Label>("QuestCompletedLabel");
+        var questLabel = _player.GetNode<Label>("QuestCompletedLabel");
         questLabel.Visible = false;
     }
 }

@@ -9,6 +9,7 @@ namespace EngineeredAngel.PlayerClasses
     public class PlayerClass
     {
         public int Id { get; set; }
+        public virtual string ClassName { get; set; }
         public int MaxHealth { get; set; }
         public int Strength { get; set; }
         public int Defence { get; set; }

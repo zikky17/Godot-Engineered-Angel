@@ -4786,9 +4786,6 @@ tile_map_data = PackedByteArray("AAAFAPH/BAACAA0AAAAFAPL/BAACAA4AAAAFAPP/BAACAA8
 tile_set = SubResource("TileSet_8g4bh")
 y_sort_origin = 1
 
-[node name="Zikky" parent="." instance=ExtResource("2_iso1l")]
-position = Vector2(15, 24)
-
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("3_4g8et")]
 position = Vector2(26, -250)
 
@@ -4798,3 +4795,6 @@ script = ExtResource("4_pdt2c")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorEntrance"]
 position = Vector2(24, 113)
 shape = SubResource("RectangleShape2D_im17s")
+
+[node name="Player" parent="." instance=ExtResource("2_iso1l")]
+position = Vector2(21, 75)

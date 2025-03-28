@@ -3,40 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\startscreen\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\startscreen\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\gusta\\source\\repos\\engineered-angel\\Migrations\\20250328120414_Updated.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20250328120414_Updated.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\playerui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\playerui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\playerui\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\playerui\\inventoryui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\factories\\lootfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:factories\\lootfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\gamemanager\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:gamemanager\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\gamemanager\\gameloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:gamemanager\\gameloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\stats\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:stats\\playerstats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\monsterscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\monsterscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\scripts\\startscreen\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:scripts\\startscreen\\startscreen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\models\\player\\playerprofilemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:models\\player\\playerprofilemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\database\\models\\gameplayerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:database\\models\\gameplayerentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\playerclasses\\wizard\\wizard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:playerclasses\\wizard\\wizard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\playerclasses\\warrior\\warrior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:playerclasses\\warrior\\warrior.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\playerclasses\\rogue\\rogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:playerclasses\\rogue\\rogue.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|c:\\users\\gusta\\source\\repos\\engineered-angel\\playerclasses\\playerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{757527F5-6220-4B73-A468-D83CA7C14733}|Engineered Angel.csproj|solutionrelative:playerclasses\\playerclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 269,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,28 +74,71 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InventoryUi.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\PlayerUI\\InventoryUi.cs",
-              "RelativeDocumentMoniker": "Scripts\\PlayerUI\\InventoryUi.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\PlayerUI\\InventoryUi.cs",
-              "RelativeToolTip": "Scripts\\PlayerUI\\InventoryUi.cs",
-              "ViewState": "AgIAAN4AAAAAAAAAAAAmwPMAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "20250328120414_Updated.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Migrations\\20250328120414_Updated.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250328120414_Updated.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Migrations\\20250328120414_Updated.cs",
+              "RelativeToolTip": "Migrations\\20250328120414_Updated.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T10:08:32.412Z",
+              "WhenOpened": "2025-03-28T12:04:15.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Player.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Player.cs",
+              "RelativeDocumentMoniker": "Scripts\\Player.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Player.cs",
+              "RelativeToolTip": "Scripts\\Player.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAEwIQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T12:02:29.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Wizard.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\Wizard\\Wizard.cs",
+              "RelativeDocumentMoniker": "PlayerClasses\\Wizard\\Wizard.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\Wizard\\Wizard.cs",
+              "RelativeToolTip": "PlayerClasses\\Wizard\\Wizard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T12:00:09.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GamePlayerEntity.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Database\\Models\\GamePlayerEntity.cs",
+              "RelativeDocumentMoniker": "Database\\Models\\GamePlayerEntity.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Database\\Models\\GamePlayerEntity.cs",
+              "RelativeToolTip": "Database\\Models\\GamePlayerEntity.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T11:50:09.909Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "LootFactory.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Factories\\LootFactory.cs",
-              "RelativeDocumentMoniker": "Factories\\LootFactory.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Factories\\LootFactory.cs",
-              "RelativeToolTip": "Factories\\LootFactory.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAeAAAAAAAAAA==",
+              "Title": "PlayerStats.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Stats\\PlayerStats.cs",
+              "RelativeDocumentMoniker": "Stats\\PlayerStats.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Stats\\PlayerStats.cs",
+              "RelativeToolTip": "Stats\\PlayerStats.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwCgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T10:06:59.692Z",
+              "WhenOpened": "2025-03-28T11:45:13.227Z",
               "EditorCaption": ""
             },
             {
@@ -102,91 +149,61 @@
               "RelativeDocumentMoniker": "Scripts\\PlayerUI.cs",
               "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\PlayerUI.cs",
               "RelativeToolTip": "Scripts\\PlayerUI.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAQwFwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAEwEoAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T09:37:32.311Z",
+              "WhenOpened": "2025-03-28T11:40:02.133Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "MonsterScript.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\MonsterScript.cs",
-              "RelativeDocumentMoniker": "Scripts\\MonsterScript.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\MonsterScript.cs",
-              "RelativeToolTip": "Scripts\\MonsterScript.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowDUAAAAvAAAAAAAAAA==",
+              "Title": "Warrior.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\Warrior\\Warrior.cs",
+              "RelativeDocumentMoniker": "PlayerClasses\\Warrior\\Warrior.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\Warrior\\Warrior.cs",
+              "RelativeToolTip": "PlayerClasses\\Warrior\\Warrior.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T09:23:07.747Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\GameManager\\GameManager.cs",
-              "RelativeDocumentMoniker": "GameManager\\GameManager.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\GameManager\\GameManager.cs",
-              "RelativeToolTip": "GameManager\\GameManager.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T09:22:56.336Z",
+              "WhenOpened": "2025-03-28T12:00:01.117Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "PlayerProfileModel.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\Player\\PlayerProfileModel.cs",
-              "RelativeDocumentMoniker": "Models\\Player\\PlayerProfileModel.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Models\\Player\\PlayerProfileModel.cs",
-              "RelativeToolTip": "Models\\Player\\PlayerProfileModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Rogue.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\Rogue\\Rogue.cs",
+              "RelativeDocumentMoniker": "PlayerClasses\\Rogue\\Rogue.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\Rogue\\Rogue.cs",
+              "RelativeToolTip": "PlayerClasses\\Rogue\\Rogue.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T08:51:59.475Z",
+              "WhenOpened": "2025-03-28T11:58:50.839Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
+              "Title": "PlayerClass.cs",
+              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\PlayerClass.cs",
+              "RelativeDocumentMoniker": "PlayerClasses\\PlayerClass.cs",
+              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\PlayerClasses\\PlayerClass.cs",
+              "RelativeToolTip": "PlayerClasses\\PlayerClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T11:47:20.774Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "StartScreen.cs",
               "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\StartScreen\\StartScreen.cs",
               "RelativeDocumentMoniker": "Scripts\\StartScreen\\StartScreen.cs",
               "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\StartScreen\\StartScreen.cs",
               "RelativeToolTip": "Scripts\\StartScreen\\StartScreen.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAUwDwAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T08:51:17.91Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "GameLoader.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\GameManager\\GameLoader.cs",
-              "RelativeDocumentMoniker": "GameManager\\GameLoader.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\GameManager\\GameLoader.cs",
-              "RelativeToolTip": "GameManager\\GameLoader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T08:47:11.885Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Player.cs",
-              "RelativeDocumentMoniker": "Scripts\\Player.cs",
-              "ToolTip": "C:\\Users\\gusta\\source\\repos\\engineered-angel\\Scripts\\Player.cs",
-              "RelativeToolTip": "Scripts\\Player.cs",
-              "ViewState": "AgIAAMMAAAAAAAAAAAAiwOgAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-28T08:08:11.705Z",
+              "WhenOpened": "2025-03-28T10:25:34.245Z",
               "EditorCaption": ""
             }
           ]

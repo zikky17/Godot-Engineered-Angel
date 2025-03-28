@@ -88,7 +88,7 @@ public partial class Player : CharacterBody2D
         {
             Level = 1,
             PlayerName = playerProfile.PlayerName,
-            PlayerClass = playerProfile.PlayerClass,
+            ClassName = playerProfile.PlayerClass.ClassName,
             CurrentHP = playerProfile.CurrentHp,
             MaxHealth = playerProfile.MaxHealth,
             Strength = playerProfile.Strength,
@@ -104,7 +104,7 @@ public partial class Player : CharacterBody2D
         CharacterStats = new PlayerStats(
             newPlayerData.Level,
             newPlayerData.PlayerName,
-            newPlayerData.PlayerClass,
+            newPlayerData.ClassName,
             newPlayerData.MaxHealth,
             newPlayerData.MaxHealth,
             newPlayerData.Strength,
@@ -131,7 +131,7 @@ public partial class Player : CharacterBody2D
         return new PlayerStats(
             playerData.Level,
             playerData.PlayerName,
-            playerData.PlayerClass,
+            playerData.ClassName,
             playerData.MaxHealth,
             playerData.MaxHealth,
             playerData.Strength,

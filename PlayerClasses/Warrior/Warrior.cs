@@ -8,6 +8,8 @@ namespace EngineeredAngel.PlayerClasses.Warrior
 {
     public class Warrior : PlayerClass
     {
+
+        public override string ClassName => "Warrior";
         public override void AlloccateStatPoints()
         {
             MaxHealth = 100;

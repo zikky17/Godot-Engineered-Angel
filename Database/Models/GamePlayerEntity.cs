@@ -12,7 +12,7 @@ namespace EngineeredAngel.Database.Models
     {
         [Key]
         public int Id { get; set; }
-        public PlayerClass PlayerClass { get; set; }
+        public string ClassName { get; set; }
         public string PlayerName { get; set; }
         public int Level { get; set; }
         public int CurrentHP { get; set; }

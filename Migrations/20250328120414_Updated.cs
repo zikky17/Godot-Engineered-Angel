@@ -24,20 +24,26 @@ namespace EngineeredAngel.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PlayerClass",
+                name: "Player",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    ClassName = table.Column<string>(type: "TEXT", nullable: true),
+                    PlayerName = table.Column<string>(type: "TEXT", nullable: true),
+                    Level = table.Column<int>(type: "INTEGER", nullable: false),
+                    CurrentHP = table.Column<int>(type: "INTEGER", nullable: false),
                     MaxHealth = table.Column<int>(type: "INTEGER", nullable: false),
                     Strength = table.Column<int>(type: "INTEGER", nullable: false),
                     Defence = table.Column<int>(type: "INTEGER", nullable: false),
                     Agility = table.Column<int>(type: "INTEGER", nullable: false),
-                    Intelligence = table.Column<int>(type: "INTEGER", nullable: false)
+                    Intelligence = table.Column<int>(type: "INTEGER", nullable: false),
+                    Experience = table.Column<int>(type: "INTEGER", nullable: false),
+                    Gold = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlayerClass", x => x.Id);
+                    table.PrimaryKey("PK_Player", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -74,34 +80,6 @@ namespace EngineeredAngel.Migrations
                         principalColumn: "InventoryId");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Player",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    PlayerClassId = table.Column<int>(type: "INTEGER", nullable: true),
-                    PlayerName = table.Column<string>(type: "TEXT", nullable: true),
-                    Level = table.Column<int>(type: "INTEGER", nullable: false),
-                    CurrentHP = table.Column<int>(type: "INTEGER", nullable: false),
-                    MaxHealth = table.Column<int>(type: "INTEGER", nullable: false),
-                    Strength = table.Column<int>(type: "INTEGER", nullable: false),
-                    Defence = table.Column<int>(type: "INTEGER", nullable: false),
-                    Agility = table.Column<int>(type: "INTEGER", nullable: false),
-                    Intelligence = table.Column<int>(type: "INTEGER", nullable: false),
-                    Experience = table.Column<int>(type: "INTEGER", nullable: false),
-                    Gold = table.Column<int>(type: "INTEGER", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Player", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Player_PlayerClass_PlayerClassId",
-                        column: x => x.PlayerClassId,
-                        principalTable: "PlayerClass",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_LootItemEntity_InventoryId",
                 table: "LootItemEntity",
@@ -111,11 +89,6 @@ namespace EngineeredAngel.Migrations
                 name: "IX_LootItemEntity_InventoryId1",
                 table: "LootItemEntity",
                 column: "InventoryId1");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Player_PlayerClassId",
-                table: "Player",
-                column: "PlayerClassId");
         }
 
         /// <inheritdoc />
@@ -129,9 +102,6 @@ namespace EngineeredAngel.Migrations
 
             migrationBuilder.DropTable(
                 name: "Inventory");
-
-            migrationBuilder.DropTable(
-                name: "PlayerClass");
         }
     }
 }

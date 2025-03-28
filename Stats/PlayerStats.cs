@@ -9,7 +9,7 @@ namespace EngineeredAngel.Stats
     {
         public int Level { get; set; }
         public string PlayerName { get; set; }
-        public PlayerClass PlayerClass { get; set; }
+        public string ClassName { get; set; }
         public int HP { get; set; }
         public int MaxHP { get; set; }
         public int Strength { get; set; }
@@ -28,7 +28,7 @@ namespace EngineeredAngel.Stats
         public PlayerStats(
             int level, 
             string playerName,
-            PlayerClass playerClass,
+            string className,
             int hp,
             int maxHp, 
             int strength, 
@@ -40,7 +40,7 @@ namespace EngineeredAngel.Stats
         {
             Level = level;
             PlayerName = playerName;
-            PlayerClass = playerClass;
+            ClassName = className;
             HP = hp;
             MaxHP = maxHp;
             Strength = strength;
