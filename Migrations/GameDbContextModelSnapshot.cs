@@ -23,6 +23,9 @@ namespace EngineeredAngel.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("Agility")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("CurrentHP")
                         .HasColumnType("INTEGER");
 
@@ -44,10 +47,18 @@ namespace EngineeredAngel.Migrations
                     b.Property<int>("MaxHealth")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("PlayerClassId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PlayerName")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Strength")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PlayerClassId");
 
                     b.ToTable("Player");
                 });
@@ -114,6 +125,41 @@ namespace EngineeredAngel.Migrations
                     b.HasKey("InventoryId");
 
                     b.ToTable("Inventory");
+                });
+
+            modelBuilder.Entity("EngineeredAngel.PlayerClasses.PlayerClass", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Agility")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Defence")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Intelligence")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MaxHealth")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Strength")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlayerClass");
+                });
+
+            modelBuilder.Entity("EngineeredAngel.Database.Models.GamePlayerEntity", b =>
+                {
+                    b.HasOne("EngineeredAngel.PlayerClasses.PlayerClass", "PlayerClass")
+                        .WithMany()
+                        .HasForeignKey("PlayerClassId");
+
+                    b.Navigation("PlayerClass");
                 });
 
             modelBuilder.Entity("EngineeredAngel.Database.Models.LootItemEntity", b =>

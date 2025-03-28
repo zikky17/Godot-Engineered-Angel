@@ -2,13 +2,14 @@ using DialogueManagerRuntime;
 using EngineeredAngel.Database.DbServices;
 using EngineeredAngel.Database.Models;
 using EngineeredAngel.Interfaces;
+using EngineeredAngel.Models.Player;
 using EngineeredAngel.PlayerStates;
 using EngineeredAngel.Services;
 using EngineeredAngel.Stats;
 using Godot;
 using System.Threading.Tasks;
 
-public partial class Zikky : CharacterBody2D
+public partial class Player : CharacterBody2D
 {
 
     public PlayerStats CharacterStats { get; set; }
@@ -81,50 +82,65 @@ public partial class Zikky : CharacterBody2D
         SetState(new IdleState());
     }
 
+    public async Task LoadPlayerProfileOnCharacterCreation(PlayerProfileModel playerProfile)
+    {
+        var newPlayerData = new GamePlayerEntity
+        {
+            Level = 1,
+            PlayerName = playerProfile.PlayerName,
+            PlayerClass = playerProfile.PlayerClass,
+            CurrentHP = playerProfile.CurrentHp,
+            MaxHealth = playerProfile.MaxHealth,
+            Strength = playerProfile.Strength,
+            Defence = playerProfile.Defence,
+            Gold = 0,
+            Experience = 0,
+            Intelligence = playerProfile.Intelligence,
+            Agility = playerProfile.Agility
+        };
+
+        await _playerDataRepository.SavePlayerDataAsync(newPlayerData);
+
+        CharacterStats = new PlayerStats(
+            newPlayerData.Level,
+            newPlayerData.PlayerName,
+            newPlayerData.PlayerClass,
+            newPlayerData.MaxHealth,
+            newPlayerData.MaxHealth,
+            newPlayerData.Strength,
+            newPlayerData.Defence,
+            newPlayerData.Gold,
+            newPlayerData.Experience,
+            newPlayerData.Intelligence,
+            newPlayerData.Agility
+            );
+
+        Health.Value = CharacterStats.HP;
+
+    }
+
     private async Task<PlayerStats> LoadPlayerStats()
     {
         var playerData = await _playerDataRepository.GetPlayerDataAsync(1);
 
-        if (playerData != null)
+        if (playerData == null)
         {
-            return new PlayerStats(
-                playerData.Level,
-                playerData.MaxHealth,
-                playerData.MaxHealth,
-                playerData.Strength,
-                playerData.Defence,
-                playerData.Gold,
-                playerData.Experience,
-                playerData.Intelligence
-            );
+            throw new System.Exception("Player data missing");
         }
-        else
-        {
-            var newPlayerData = new GamePlayerEntity
-            {
-                Level = 1,
-                CurrentHP = 100,
-                MaxHealth = 100,
-                Strength = 5,
-                Defence = 5,
-                Gold = 0,
-                Experience = 0,
-                Intelligence = 0
-            };
 
-            await _playerDataRepository.SavePlayerDataAsync(newPlayerData);
-
-            return new PlayerStats(
-                newPlayerData.Level,
-                newPlayerData.MaxHealth,
-                newPlayerData.MaxHealth,
-                newPlayerData.Strength,
-                newPlayerData.Defence,
-                newPlayerData.Gold,
-                newPlayerData.Experience,
-                newPlayerData.Intelligence
+        return new PlayerStats(
+            playerData.Level,
+            playerData.PlayerName,
+            playerData.PlayerClass,
+            playerData.MaxHealth,
+            playerData.MaxHealth,
+            playerData.Strength,
+            playerData.Defence,
+            playerData.Gold,
+            playerData.Experience,
+            playerData.Intelligence,
+            playerData.Agility
             );
-        }
     }
 
 

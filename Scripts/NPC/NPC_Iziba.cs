@@ -9,7 +9,7 @@ public partial class NPC_Iziba : CharacterBody2D
     private Area2D _talkZone;
     private bool GotQuest = false;
     private bool QuestCompleted = false;
-    private Zikky _zikky;
+    private Player _zikky;
     private Timer _newQuestLabelTimer;
     private Timer _completedQuestLabelTimer;
     private QuestService _questService = new();
@@ -18,7 +18,7 @@ public partial class NPC_Iziba : CharacterBody2D
 
     public override void _Ready()
     {
-        _zikky = GetNode<Zikky>("../Zikky");
+        _zikky = GetNode<Player>("../Zikky");
         _talkZone = GetNode<Area2D>("TalkZone");
         _talkZone.Connect("body_entered", new Callable(this, nameof(OnTalkZoneBodyEntered)));
         _questMenu = GetNodeOrNull<QuestMenu>("../Zikky/CharacterMenus/QuestMenu");

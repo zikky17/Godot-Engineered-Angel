@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://kyhinwqrvsml" path="res://Assets/Tilemap/Tiled_files/spots.png" id="5_yjf8k"]
 [ext_resource type="Texture2D" uid="uid://v17h817hfskb" path="res://Assets/Tilemap/Tiled_files/Objects.png" id="6_8xesv"]
 [ext_resource type="Texture2D" uid="uid://knnitd42wo3v" path="res://Assets/Tilemap/Tiled_files/details.png" id="7_1sw11"]
-[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/zikky.tscn" id="8_x83e4"]
+[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/Player.tscn" id="8_x83e4"]
 [ext_resource type="PackedScene" uid="uid://sfwvoucm1dxf" path="res://Assets/Enemies/HorrorWasp.tscn" id="10_jgoy5"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="11_3ie3e"]
 

@@ -8,13 +8,13 @@ public partial class InventoryUi : TextureRect
 {
     private GridContainer _gridContainer;
     private PlayerInventoryRepository _inventoryRepository;
-    private Zikky _zikky;
+    private Player _player;
     private PopupMenu _optionsMenu;
     private TextureRect _itemPicture;
     private LootItem _selectedLoot;
     private VBoxContainer _selectedSlot;
     private TextureRect _equippedWeapon;
-
+    private LootItem _equippedLootItem;
 
     public override void _Ready()
     {
@@ -36,8 +36,8 @@ public partial class InventoryUi : TextureRect
         _optionsMenu.AddItem("Equip Item", 1);
         _optionsMenu.AddItem("Destroy Item", 0);
         _optionsMenu.IdPressed += OnOptionsMenuItemSelected;
-        _gridContainer = GetNode<GridContainer>("PanelContainer/GridContainer");
-        _zikky = GetNode<Zikky>("../../../Zikky");
+        _gridContainer = GetNode<GridContainer>("GridContainer");
+        _player = GetNode<Player>("../../../../Player");
         _inventoryRepository = new PlayerInventoryRepository();
         var equippedWeapon = _inventoryRepository.LoadEquippedWeapon();
         ShowEquippedWeapon(equippedWeapon);
@@ -161,7 +161,7 @@ public partial class InventoryUi : TextureRect
         }
 
 
-        _zikky.HasInventorySpace(false);
+        _player.HasInventorySpace(false);
     }
 
 
@@ -192,38 +192,52 @@ public partial class InventoryUi : TextureRect
         _optionsMenu.Popup();
     }
 
-    public void EquipItem(LootItem loot, ItemSlot slot)
+    public void EquipItem(LootItem lootToEquip, ItemSlot newSlot)
     {
-        var weaponEquippedSlot = GetNode<TextureRect>("../PlayerUI/WeaponContainer/WeaponEquipped");
-        var itemTexture = slot.GetNode<TextureRect>("ItemPicture").Texture;
+        var weaponEquippedSlot = GetNode<TextureRect>("../../PlayerUI/WeaponContainer/WeaponEquipped");
 
-        if (itemTexture != null)
+        if (_equippedLootItem != null)
         {
-            weaponEquippedSlot.Texture = itemTexture;
-
-            weaponEquippedSlot.TooltipText = $"Name: {loot.Name}\n" +
-                                             $"Type: {loot.Type}\n" +
-                                             $"Tier: {loot.Tier}\n" +
-                                             $"Rarity: {loot.Rarity}\n" +
-                                             $"Attack: {loot.Attack}\n" +
-                                             $"Defense: {loot.Defense}\n" +
-                                             $"Special Effect: {loot.SpecialEffect}\n" +
-                                             $"Amplified Damage: {loot.AmplifiedDamage}";
+            foreach (ItemSlot slot in _gridContainer.GetChildren())
+            {
+                if (slot.Loot == null)
+                {
+                    slot.SetLoot(_equippedLootItem);
+                    break;
+                }
+            }
         }
 
-        slot.ClearSlot();
-        RemoveFromInventoryDatabase(loot);
-        
-        GD.Print($"Equipped weapon: {loot.Name}");
+        var itemTexture = newSlot.GetNode<TextureRect>("ItemPicture").Texture;
+        weaponEquippedSlot.Texture = itemTexture;
+
+        weaponEquippedSlot.TooltipText = $"Name: {lootToEquip.Name}\n" +
+                                         $"Type: {lootToEquip.Type}\n" +
+                                         $"Tier: {lootToEquip.Tier}\n" +
+                                         $"Rarity: {lootToEquip.Rarity}\n" +
+                                         $"Attack: {lootToEquip.Attack}\n" +
+                                         $"Defense: {lootToEquip.Defense}\n" +
+                                         $"Special Effect: {lootToEquip.SpecialEffect}\n" +
+                                         $"Amplified Damage: {lootToEquip.AmplifiedDamage}";
+
+        _equippedLootItem = lootToEquip;
+
+        newSlot.ClearSlot();
+
+        RemoveFromInventoryDatabase(lootToEquip);
+        AddItemToEquippedItems(lootToEquip);
+
+        GD.Print($"Equipped {lootToEquip.Name}");
     }
+
 
     private void ShowEquippedWeapon(LootItem loot)
     {
-        var weaponEquippedSlot = GetNode<TextureRect>("../PlayerUI/WeaponContainer/WeaponEquipped");
+        var weaponEquippedSlot = GetNode<TextureRect>("../../PlayerUI/WeaponContainer/WeaponEquipped");
 
         if (loot == null)
         {
-            weaponEquippedSlot.Texture = GD.Load<Texture2D>("res://Assets/UI/Icons/placeholder_sword.png");
+            weaponEquippedSlot.Texture = GD.Load<Texture2D>("res://Assets/Images/UI-Images/Weapon_PlaceHolder.webp");
             weaponEquippedSlot.TooltipText = "No weapon equipped.";
             return;
         }
@@ -253,9 +267,9 @@ public partial class InventoryUi : TextureRect
     public void VoidTouch(LootItem loot, ItemSlot slot)
     {
         int scrapsGained = loot.Quantity * loot.Tier;
-        _zikky.CharacterStats.VoidScraps += scrapsGained;
+        _player.CharacterStats.VoidScraps += scrapsGained;
 
-        GD.Print($"Recycled {loot.Name}, gained {scrapsGained} Iron Scraps. Total: {_zikky.CharacterStats.VoidScraps}");
+        GD.Print($"Recycled {loot.Name}, gained {scrapsGained} Iron Scraps. Total: {_player.CharacterStats.VoidScraps}");
 
         slot.ClearSlot();
         RemoveFromInventoryDatabase(loot);

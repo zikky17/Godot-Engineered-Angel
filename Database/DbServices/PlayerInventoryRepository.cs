@@ -42,7 +42,7 @@ namespace EngineeredAngel.Database.DbServices
 
         public async Task AddLootToDatabase(LootItem item, int inventoryId)
         {
-            if(item.Type != "Weapon" && item.Type != "Armor")
+            if (item.Type != "Weapon" && item.Type != "Armor")
             {
                 var existingLoot = _gameDbContext.LootItems
               .FirstOrDefault(loot => loot.Name == item.Name && loot.Type == item.Type && loot.InventoryId == inventoryId);
@@ -70,7 +70,7 @@ namespace EngineeredAngel.Database.DbServices
                     GD.Print($"Added new loot: {item.Name} with Rarity = {item.Rarity}");
                 }
 
-            
+
             }
             else
             {
@@ -94,7 +94,7 @@ namespace EngineeredAngel.Database.DbServices
 
             await _gameDbContext.SaveChangesAsync();
         }
-          
+
 
 
         public async Task<PlayerInventoryEntity> GetPlayerInventoryAsync()
@@ -134,7 +134,12 @@ namespace EngineeredAngel.Database.DbServices
         {
             var itemEquipped = _gameDbContext.EquippedWeapon.FirstOrDefault();
             var weaponModel = LootFactory.CreateLootItem(itemEquipped);
-            return weaponModel;
+            if (weaponModel != null)
+            {
+                return weaponModel;
+            }
+           
+            return null;
         }
     }
 }

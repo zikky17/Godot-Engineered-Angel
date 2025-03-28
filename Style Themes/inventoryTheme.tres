@@ -3,6 +3,6 @@
 [ext_resource type="FontFile" uid="uid://biik44enoycjk" path="res://Assets/Fonts/Poppins-Regular.ttf" id="1_5h31b"]
 
 [resource]
-default_base_scale = 0.37
+default_base_scale = 1.0
 default_font = ExtResource("1_5h31b")
 default_font_size = 15

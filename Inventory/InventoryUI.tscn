@@ -1,220 +1,241 @@
-[gd_scene load_steps=5 format=3 uid="uid://deet2p688bb24"]
+[gd_scene load_steps=6 format=3 uid="uid://deet2p688bb24"]
 
 [ext_resource type="Texture2D" uid="uid://bacmykj5b1j87" path="res://Assets/Images/UI-Images/PlayerUI_backpack.webp" id="1_lxo6l"]
 [ext_resource type="Script" path="res://Scripts/PlayerUI/InventoryUi.cs" id="1_swsjh"]
+[ext_resource type="FontFile" uid="uid://biik44enoycjk" path="res://Assets/Fonts/Poppins-Regular.ttf" id="3_0ncpp"]
 [ext_resource type="Theme" uid="uid://c58ei1xryb5cv" path="res://Style Themes/inventoryTheme.tres" id="3_kdy1d"]
 [ext_resource type="Script" path="res://InventoryComponent/ItemSlot.cs" id="4_ma1kb"]
 
-[node name="InventoryUI" type="TextureRect"]
-offset_left = 5.0
-offset_top = 3.0
-offset_right = 137.0
-offset_bottom = 210.0
+[node name="PanelContainer" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(70, 90)
+offset_right = 71.0
+offset_bottom = 90.0
+scale = Vector2(1.1, 1.1)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InventoryUI" type="TextureRect" parent="."]
+layout_mode = 2
 texture = ExtResource("1_lxo6l")
 expand_mode = 1
 script = ExtResource("1_swsjh")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-self_modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(70, 100)
-layout_mode = 0
-offset_left = 19.095
-offset_top = 39.015
-offset_right = 164.095
-offset_bottom = 265.015
-scale = Vector2(0.4, 0.4)
+[node name="OptionsMenu" type="PopupMenu" parent="InventoryUI"]
+size = Vector2i(25, 25)
+theme_override_fonts/font = ExtResource("3_0ncpp")
+theme_override_font_sizes/font_size = 15
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer"]
-layout_mode = 2
+[node name="GridContainer" type="GridContainer" parent="InventoryUI"]
+z_as_relative = false
+custom_minimum_size = Vector2(35, 50)
+layout_mode = 1
+offset_left = 13.0
+offset_top = 30.0
+offset_right = 68.0
+offset_bottom = 122.0
+scale = Vector2(0.5, 0.5)
 theme = ExtResource("3_kdy1d")
-theme_override_constants/h_separation = 35
-theme_override_constants/v_separation = 98
+theme_override_constants/h_separation = 13
+theme_override_constants/v_separation = 46
 columns = 4
 
-[node name="ItemSlot1" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot1" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot1"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot1"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_kdy1d")
+stretch_mode = 5
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot1"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot1"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot2" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot2" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot2"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot2"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot2"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot2"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot3" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot3" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot3"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot3"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot3"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot3"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot4" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot4" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot4"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot4"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot4"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot4"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot5" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot5" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot5"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot5"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot5"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot5"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot6" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot6" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot6"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot6"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot6"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot6"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "x0"
 horizontal_alignment = 1
 
-[node name="ItemSlot7" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot7" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot7"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot7"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot7"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot7"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot8" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot8" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot8"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot8"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot8"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot8"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "x0"
 horizontal_alignment = 1
 
-[node name="ItemSlot9" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot9" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot9"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot9"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot9"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot9"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot10" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot10" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot10"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot10"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot10"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot10"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot11" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot11" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot11"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot11"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot11"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot11"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="ItemSlot12" type="VBoxContainer" parent="PanelContainer/GridContainer"]
+[node name="ItemSlot12" type="VBoxContainer" parent="InventoryUI/GridContainer"]
 z_index = 1
+custom_minimum_size = Vector2(10, 16)
 layout_mode = 2
 script = ExtResource("4_ma1kb")
 
-[node name="ItemPicture" type="TextureRect" parent="PanelContainer/GridContainer/ItemSlot12"]
+[node name="ItemPicture" type="TextureRect" parent="InventoryUI/GridContainer/ItemSlot12"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 
-[node name="ItemCount" type="Label" parent="PanelContainer/GridContainer/ItemSlot12"]
+[node name="ItemCount" type="Label" parent="InventoryUI/GridContainer/ItemSlot12"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 horizontal_alignment = 1
 
-[node name="OptionsMenu" type="PopupMenu" parent="."]
-
-[connection signal="id_pressed" from="OptionsMenu" to="." method="_on_options_menu_id_pressed"]
+[connection signal="id_pressed" from="InventoryUI/OptionsMenu" to="InventoryUI" method="_on_options_menu_id_pressed"]

@@ -6,11 +6,11 @@ namespace EngineeredAngel.Services
 {
     public class RewardService
     {
-        private readonly Zikky _zikky;
+        private readonly Player _zikky;
         public readonly LevelUpService _levelUpService;
         private readonly PlayerDataRepository _playerDataRepository = new();
 
-        public RewardService(Zikky zikky, LevelUpService levelUpService)
+        public RewardService(Player zikky, LevelUpService levelUpService)
         {
             _zikky = zikky;
             _levelUpService = levelUpService;
@@ -28,7 +28,7 @@ namespace EngineeredAngel.Services
                 _zikky.CharacterStats.Experience += experience.Value;
             }
 
-            await _playerDataRepository.UpdatePlayerStatsAndLevelAsync(gold, experience, null, null, null, null, null);
+            await _playerDataRepository.UpdatePlayerStatsAsync(_zikky.CharacterStats);
 
             if (experience.HasValue)
             {

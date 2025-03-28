@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://8abtp2v801oy" path="res://Assets/Tilemap/HorrorTiles.png" id="1_fendx"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="2_rbn2x"]
-[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/zikky.tscn" id="3_x1mpt"]
+[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/Player.tscn" id="3_x1mpt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uxpat"]
 texture = ExtResource("1_fendx")

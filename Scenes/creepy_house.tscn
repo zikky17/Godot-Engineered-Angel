@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://8abtp2v801oy" path="res://Assets/Tilemap/HorrorTiles.png" id="1_stbxx"]
 [ext_resource type="Texture2D" uid="uid://v17h817hfskb" path="res://Assets/Tilemap/Tiled_files/Objects.png" id="2_fyx1y"]
-[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/zikky.tscn" id="2_iso1l"]
+[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/Player.tscn" id="2_iso1l"]
 [ext_resource type="PackedScene" uid="uid://dlw0ke0uy2qdj" path="res://Assets/Sprites/NPC/Iziba/Iziba.tscn" id="3_4g8et"]
 [ext_resource type="Texture2D" uid="uid://knnitd42wo3v" path="res://Assets/Tilemap/Tiled_files/details.png" id="3_7a2v7"]
 [ext_resource type="Texture2D" uid="uid://gruns34wg3rh" path="res://Assets/Tilemap/MainTextures.png" id="4_end15"]

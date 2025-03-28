@@ -1,0 +1,80 @@
+[gd_scene load_steps=4 format=3 uid="uid://biq6jf2bnim4d"]
+
+[ext_resource type="Script" path="res://Scripts/StartScreen/StartScreen.cs" id="1_6vpeo"]
+[ext_resource type="Texture2D" uid="uid://sw46lyn4512g" path="res://Assets/Images/UI-Images/CharacterCreationImage.jpg" id="2_jlwd5"]
+[ext_resource type="FontFile" uid="uid://biik44enoycjk" path="res://Assets/Fonts/Poppins-Regular.ttf" id="3_5mwie"]
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6vpeo")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -1
+z_as_relative = false
+layout_mode = 0
+offset_right = 385.0
+offset_bottom = 217.0
+texture = ExtResource("2_jlwd5")
+expand_mode = 1
+
+[node name="NameInput" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 178.0
+offset_right = 248.0
+offset_bottom = 209.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 146.0
+offset_top = 161.0
+offset_right = 273.0
+offset_bottom = 184.0
+theme_override_fonts/font = ExtResource("3_5mwie")
+theme_override_font_sizes/font_size = 10
+text = "Character Name"
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 178.0
+offset_right = 328.0
+offset_bottom = 209.0
+theme_override_fonts/font = ExtResource("3_5mwie")
+text = "Start"
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 107.0
+offset_top = 130.0
+offset_right = 268.0
+offset_bottom = 170.0
+theme_override_constants/h_separation = 17
+columns = 3
+
+[node name="RogueButton" type="Button" parent="GridContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5mwie")
+theme_override_font_sizes/font_size = 10
+text = "Rogue"
+
+[node name="WarriorButton" type="Button" parent="GridContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5mwie")
+theme_override_font_sizes/font_size = 10
+text = "Warrior"
+
+[node name="WizardButton" type="Button" parent="GridContainer"]
+z_index = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_5mwie")
+theme_override_font_sizes/font_size = 10
+text = "Wizard"
+
+[connection signal="pressed" from="StartButton" to="." method="_OnStartPressed"]
+[connection signal="pressed" from="GridContainer/RogueButton" to="." method="_OnRoguePressed"]
+[connection signal="pressed" from="GridContainer/WarriorButton" to="." method="_OnWarriorPressed"]
+[connection signal="pressed" from="GridContainer/WizardButton" to="." method="_OnWizardPressed"]

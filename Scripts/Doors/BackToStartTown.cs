@@ -12,14 +12,14 @@ public partial class BackToStartTown : Area2D
 
     private void OnBodyEntered(Node body)
     {
-        if (body is Zikky player)
+        if (body is Player player)
         {
             GD.Print($"Player entered the door. Loading scene: {TargetScenePath}");
             CallDeferred(nameof(ChangeScene), player);
         }
     }
 
-    private void ChangeScene(Zikky player)
+    private void ChangeScene(Player player)
     {
         var nextScene = (PackedScene)GD.Load(TargetScenePath);
         if (nextScene == null)
@@ -37,7 +37,7 @@ public partial class BackToStartTown : Area2D
 
         var globalState = GetNode<GlobalState>("/root/GlobalState");
 
-        var newPlayer = GetTree().CurrentScene.GetNode<Zikky>("Zikky");
+        var newPlayer = GetTree().CurrentScene.GetNode<Player>("Zikky");
 
         if (newPlayer != null)
         {

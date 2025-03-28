@@ -1,5 +1,6 @@
 ﻿using EngineeredAngel.Database.Models;
 using EngineeredAngel.Loot;
+using Godot;
 
 namespace EngineeredAngel.Factories
 {
@@ -7,6 +8,12 @@ namespace EngineeredAngel.Factories
     {
         public static LootItem CreateLootItem(LootItemEntity entity)
         {
+            if(entity == null)
+            {
+                GD.Print("No weapon equipped");
+                return null;
+            }
+
             var loot = new LootItem
             {
                 Id = entity.LootItemId,
@@ -18,8 +25,10 @@ namespace EngineeredAngel.Factories
                 Attack = entity.Attack,
                 Defense = entity.Defense,
                 SpecialEffect = entity.SpecialEffect,
-                AmplifiedDamage = entity.AmplifiedDamage,
+                AmplifiedDamage = entity.AmplifiedDamage
             };
+
+            
 
             return loot;
         }

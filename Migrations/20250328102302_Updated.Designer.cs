@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EngineeredAngel.Migrations
 {
     [DbContext(typeof(GameDbContext))]
-    [Migration("20250218082254_First")]
-    partial class First
+    [Migration("20250328102302_Updated")]
+    partial class Updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,9 @@ namespace EngineeredAngel.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Agility")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("CurrentHP")
@@ -47,10 +50,18 @@ namespace EngineeredAngel.Migrations
                     b.Property<int>("MaxHealth")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int?>("PlayerClassId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("PlayerName")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Strength")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PlayerClassId");
 
                     b.ToTable("Player");
                 });
@@ -102,7 +113,7 @@ namespace EngineeredAngel.Migrations
 
                     b.HasIndex("InventoryId1");
 
-                    b.ToTable("LootItems");
+                    b.ToTable("LootItemEntity");
                 });
 
             modelBuilder.Entity("EngineeredAngel.Database.Models.PlayerInventoryEntity", b =>
@@ -117,6 +128,41 @@ namespace EngineeredAngel.Migrations
                     b.HasKey("InventoryId");
 
                     b.ToTable("Inventory");
+                });
+
+            modelBuilder.Entity("EngineeredAngel.PlayerClasses.PlayerClass", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Agility")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Defence")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Intelligence")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("MaxHealth")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Strength")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PlayerClass");
+                });
+
+            modelBuilder.Entity("EngineeredAngel.Database.Models.GamePlayerEntity", b =>
+                {
+                    b.HasOne("EngineeredAngel.PlayerClasses.PlayerClass", "PlayerClass")
+                        .WithMany()
+                        .HasForeignKey("PlayerClassId");
+
+                    b.Navigation("PlayerClass");
                 });
 
             modelBuilder.Entity("EngineeredAngel.Database.Models.LootItemEntity", b =>

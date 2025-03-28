@@ -16,7 +16,7 @@ public partial class HealthPotion : Area2D
     {
         if (body.IsInGroup("Player"))
         {
-            var player = (Zikky)body;
+            var player = (Player)body;
             player.Heal(HealAmount);
             QueueFree();
         }

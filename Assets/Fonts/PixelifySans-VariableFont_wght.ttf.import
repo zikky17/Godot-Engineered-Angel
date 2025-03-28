@@ -2,21 +2,21 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c8gbsgn7250va"
-path="res://.godot/imported/Poppins-Bold.ttf-e084480e44589027ffe7d2709c7d47f7.fontdata"
+uid="uid://cknoeqsei83ro"
+path="res://.godot/imported/PixelifySans-VariableFont_wght.ttf-1f10a8f2c316c1f4817ab69999e1989e.fontdata"
 
 [deps]
 
-source_file="res://Assets/Fonts/Poppins-Bold.ttf"
-dest_files=["res://.godot/imported/Poppins-Bold.ttf-e084480e44589027ffe7d2709c7d47f7.fontdata"]
+source_file="res://Assets/Fonts/PixelifySans-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/PixelifySans-VariableFont_wght.ttf-1f10a8f2c316c1f4817ab69999e1989e.fontdata"]
 
 [params]
 
 Rendering=null
 antialiasing=1
-generate_mipmaps=true
+generate_mipmaps=false
 disable_embedded_bitmaps=true
-multichannel_signed_distance_field=true
+multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
 allow_system_fallback=true

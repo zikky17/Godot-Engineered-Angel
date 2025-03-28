@@ -4,7 +4,7 @@ namespace EngineeredAngel.Interfaces
 {
     public interface IPlayerState
     {
-        public void HandleInput(Zikky player, Vector2 direction, bool isAttacking);
-        public void Update(Zikky player);
+        public void HandleInput(Player player, Vector2 direction, bool isAttacking);
+        public void Update(Player player);
     }
 }

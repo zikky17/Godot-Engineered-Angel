@@ -12,7 +12,7 @@ public partial class EntranceToCreepyHouse : Area2D
 
     private void OnBodyEntered(Node body)
     {
-        if (body is Zikky player)
+        if (body is Player player)
         {
             GD.Print($"Player entered the door. Loading scene: {TargetScenePath}");
 
@@ -23,7 +23,7 @@ public partial class EntranceToCreepyHouse : Area2D
         }
     }
 
-    private void ChangeScene(Zikky player)
+    private void ChangeScene(Player player)
     {
         var nextScene = (PackedScene)GD.Load(TargetScenePath);
         if (nextScene == null)

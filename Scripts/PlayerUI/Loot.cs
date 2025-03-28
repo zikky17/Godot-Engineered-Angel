@@ -24,7 +24,7 @@ public partial class Loot : Node2D
 
     private void OnBodyEntered(Node body)
     {
-        if (body is Zikky player)
+        if (body is Player player)
         {
             if(player.InventoryFull == true)
             {

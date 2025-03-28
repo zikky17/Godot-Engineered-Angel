@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://kyhinwqrvsml" path="res://Assets/Tilemap/Tiled_files/spots.png" id="7_7su62"]
 [ext_resource type="Texture2D" uid="uid://v17h817hfskb" path="res://Assets/Tilemap/Tiled_files/Objects.png" id="8_i5tp0"]
 [ext_resource type="Texture2D" uid="uid://knnitd42wo3v" path="res://Assets/Tilemap/Tiled_files/details.png" id="9_tl30d"]
-[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/zikky.tscn" id="10_3i2mc"]
+[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/Player.tscn" id="10_3i2mc"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="11_kt5eo"]
 [ext_resource type="Script" path="res://Scripts/Doors/EntranceToCreepyHouse.cs" id="11_xgruo"]
 
@@ -8957,9 +8957,6 @@ script = ExtResource("11_xgruo")
 position = Vector2(445.875, 96.25)
 shape = SubResource("RectangleShape2D_ybvga")
 
-[node name="Zikky" parent="." instance=ExtResource("10_3i2mc")]
-position = Vector2(-25, 20)
-
 [node name="Gorgon2" parent="." instance=ExtResource("11_kt5eo")]
 position = Vector2(87, 1131)
 
@@ -9034,3 +9031,6 @@ position = Vector2(2160, 1435)
 
 [node name="Gorgon26" parent="." instance=ExtResource("11_kt5eo")]
 position = Vector2(2244, 1956)
+
+[node name="Player" parent="." instance=ExtResource("10_3i2mc")]
+position = Vector2(-23, 21)

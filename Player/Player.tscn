@@ -1,6 +1,6 @@
-[gd_scene load_steps=163 format=3 uid="uid://cjav4mvnua3c3"]
+[gd_scene load_steps=164 format=3 uid="uid://cjav4mvnua3c3"]
 
-[ext_resource type="Script" path="res://Scripts/Zikky.cs" id="1_pxhj4"]
+[ext_resource type="Script" path="res://Scripts/Player.cs" id="1_gsmi8"]
 [ext_resource type="Texture2D" uid="uid://d4ekurssb0veh" path="res://Assets/Sprites/Zikky/Attack_1.png" id="2_3ti3b"]
 [ext_resource type="PackedScene" uid="uid://bqhyu0lqpq54d" path="res://GameManager/GameManager.tscn" id="2_q0vo8"]
 [ext_resource type="Texture2D" uid="uid://botd3iyxjk4gv" path="res://Assets/Sprites/Zikky/Attack_2.png" id="3_u32tu"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://mqubgjfxxh8m" path="res://Assets/Sprites/Zikky/Run.png" id="10_jqdw1"]
 [ext_resource type="Texture2D" uid="uid://b2ckodwgx8duj" path="res://Assets/Sprites/Zikky/Walk.png" id="11_jcb2j"]
 [ext_resource type="PackedScene" uid="uid://d2yds2oxaroej" path="res://Quests/quest_menu.tscn" id="18_l5kr2"]
+[ext_resource type="Script" path="res://Scripts/PlayerUI/LevelUpPopup.cs" id="19_pbeu4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_smdei"]
 radius = 3.0
@@ -1054,8 +1055,8 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="Zikky" type="CharacterBody2D"]
-script = ExtResource("1_pxhj4")
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_gsmi8")
 
 [node name="GameManager" parent="." instance=ExtResource("2_q0vo8")]
 
@@ -1176,14 +1177,57 @@ z_index = 2
 offset_right = 157.0
 
 [node name="InventoryUI" parent="CharacterMenus" instance=ExtResource("9_ufbba")]
-visible = false
-offset_left = 244.0
-offset_top = 6.0
-offset_right = 376.0
-offset_bottom = 213.0
+offset_left = 253.0
+offset_top = 20.0
+offset_right = 365.0
+offset_bottom = 187.0
 
 [node name="QuestMenu" parent="CharacterMenus" instance=ExtResource("18_l5kr2")]
 visible = false
+
+[node name="LevelUpPopup" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_pbeu4")
+
+[node name="Panel" type="Panel" parent="LevelUpPopup"]
+layout_mode = 0
+offset_right = 95.0
+offset_bottom = 112.0
+
+[node name="StatsButtonContainer" type="VBoxContainer" parent="LevelUpPopup/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HpButton" type="Button" parent="LevelUpPopup/Panel/StatsButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "+ Health +"
+
+[node name="StrengthButton" type="Button" parent="LevelUpPopup/Panel/StatsButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "+ Strenght +"
+
+[node name="DefenseButton" type="Button" parent="LevelUpPopup/Panel/StatsButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "+ Defense +"
+
+[node name="IntelligenceButton" type="Button" parent="LevelUpPopup/Panel/StatsButtonContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "+ Intelligence +"
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

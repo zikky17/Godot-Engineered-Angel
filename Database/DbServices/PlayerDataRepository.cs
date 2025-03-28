@@ -59,14 +59,7 @@ namespace EngineeredAngel.Database.DbServices
             await _gameDbContext.SaveChangesAsync();
         }
 
-        public async Task UpdatePlayerStatsAndLevelAsync(
-            int? gold,
-            int? experience,
-            int? level,
-            int? maxHPIncrease,
-            int? strengthIncrease,
-            int? defenseIncrease,
-            int? intelligenceIncrease)
+        public async Task UpdatePlayerStatsAsync(PlayerStats stats)
         {
             try
             {
@@ -75,41 +68,13 @@ namespace EngineeredAngel.Database.DbServices
 
                 if (player != null)
                 {
-                    if (gold.HasValue)
-                    {
-                        player.Gold += gold.Value;
-                    }
-
-                    if (experience.HasValue)
-                    {
-                        player.Experience += experience.Value;
-                    }
-
-                    if (level.HasValue)
-                    {
-                        player.Level = level.Value;
-                        player.Experience = 0;
-                    }
-
-                    if (maxHPIncrease.HasValue)
-                    {
-                        player.MaxHealth += maxHPIncrease.Value;
-                    }
-
-                    if (strengthIncrease.HasValue)
-                    {
-                        player.Strength += strengthIncrease.Value;
-                    }
-
-                    if (defenseIncrease.HasValue)
-                    {
-                        player.Defence += defenseIncrease.Value;
-                    }
-
-                    if (intelligenceIncrease.HasValue)
-                    {
-                        player.Intelligence += intelligenceIncrease.Value;
-                    }
+                    player.Level = stats.Level;
+                    player.CurrentHP = stats.HP;
+                    player.MaxHealth = stats.MaxHP;
+                    player.Strength = stats.Strength;
+                    player.Defence = stats.Defense;
+                    player.Intelligence = stats.Intelligence;
+                    player.Experience = stats.Experience;
 
                     await context.SaveChangesAsync();
                 }
@@ -120,6 +85,6 @@ namespace EngineeredAngel.Database.DbServices
             }
         }
 
-       
+
     }
 }

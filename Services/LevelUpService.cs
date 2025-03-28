@@ -1,6 +1,7 @@
 ﻿using EngineeredAngel.Database.DbServices;
 using Godot;
 using System;
+using System.Collections.Generic;
 
 namespace EngineeredAngel.Services
 {
@@ -8,52 +9,66 @@ namespace EngineeredAngel.Services
     {
         private AnimatedSprite2D _levelUpAnimation;
         private readonly PlayerDataRepository _playerDataRepository = new();
-        private Zikky _zikky;
+        private Player _zikky;
 
-        public async void CheckLevelUp(int experience, Zikky zikky)
+        private Queue<int> _pendingLevelUps = new();
+        private LevelUpPopup _popup;
+
+        public async void CheckLevelUp(int experience, Player zikky)
         {
             _zikky = zikky;
             _levelUpAnimation = _zikky.GetNode<AnimatedSprite2D>("LevelUpAnimation");
-            await _playerDataRepository.UpdatePlayerStatsAndLevelAsync(null, experience, null, null, null, null, null);
+            _popup = _zikky.GetNode<LevelUpPopup>("LevelUpPopup");
 
-            while (_zikky.CharacterStats.Experience >= GetExpForNextLevel(_zikky.CharacterStats.Level))
+            if (!_popup.IsConnected(LevelUpPopup.SignalName.StatSelected, new Callable(this, nameof(OnStatChosen))))
+                _popup.Connect(LevelUpPopup.SignalName.StatSelected, new Callable(this, nameof(OnStatChosen)));
+
+            _zikky.CharacterStats.Experience += experience;
+
+            await _playerDataRepository.UpdatePlayerStatsAsync(_zikky.CharacterStats);
+
+            int expForNext = GetExpForNextLevel(_zikky.CharacterStats.Level);
+
+            if (_zikky.CharacterStats.Experience >= expForNext)
             {
-                var expNeededForNextLevel = GetExpForNextLevel(_zikky.CharacterStats.Level);
-                GD.Print($"Experience needed for next level: {expNeededForNextLevel}");
-
-                _zikky.CharacterStats.Experience = 0;
-
+                _zikky.CharacterStats.Experience -= expForNext;
                 _zikky.CharacterStats.Level++;
-                ApplyLevelUpBonus();
+                _levelUpAnimation.Play();
+
+                _popup.ShowPopup();
             }
+        }
+
+
+        private async void OnStatChosen(string statName)
+        {
+            switch (statName)
+            {
+                case "HP":
+                    _zikky.CharacterStats.MaxHP += 10;
+                    _zikky.CharacterStats.HP = _zikky.CharacterStats.MaxHP;
+                    break;
+                case "Strength":
+                    _zikky.CharacterStats.Strength += 2;
+                    break;
+                case "Defense":
+                    _zikky.CharacterStats.Defense += 2;
+                    break;
+                case "Intelligence":
+                    _zikky.CharacterStats.Intelligence += 2;
+                    break;
+            }
+
+            await _playerDataRepository.UpdatePlayerStatsAsync(_zikky.CharacterStats);
+
+            GD.Print($"[LevelUp] Lvl {_zikky.CharacterStats.Level} - Chose: {statName}");
         }
 
         private int GetExpForNextLevel(int level)
         {
             const int baseExp = 100;
-
             const double scaleFactor = 2.2;
-
             return (int)(baseExp * Math.Pow(scaleFactor, level - 1));
-        }
-
-        private async void ApplyLevelUpBonus()
-        {
-            _levelUpAnimation.Play();
-            _zikky.CharacterStats.MaxHP += 10;
-            _zikky.CharacterStats.Strength += 2;
-            _zikky.CharacterStats.Defense += 1;
-            _zikky.CharacterStats.Intelligence += 1;
-
-            _zikky.CharacterStats.HP = _zikky.CharacterStats.MaxHP;
-
-            await _playerDataRepository.UpdatePlayerStatsAndLevelAsync(null, null, _zikky.CharacterStats.Level, 10, 2, 1, 1);
-            GD.Print($"Leveled up to {_zikky.CharacterStats.Level}!");
-            GD.Print("New stats:");
-            GD.Print($"- HP: {_zikky.CharacterStats.MaxHP}");
-            GD.Print($"- Strength: {_zikky.CharacterStats.Strength}");
-            GD.Print($"- Defense: {_zikky.CharacterStats.Defense}");
-            GD.Print($"- Intelligence: {_zikky.CharacterStats.Intelligence}");
         }
     }
 }

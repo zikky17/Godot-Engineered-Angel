@@ -5,7 +5,7 @@ namespace EngineeredAngel.PlayerStates
 {
     public class IdleState : IPlayerState
     {
-        public void HandleInput(Zikky player, Vector2 direction, bool isAttacking)
+        public void HandleInput(Player player, Vector2 direction, bool isAttacking)
         {
             if (direction != Vector2.Zero)
             {
@@ -23,7 +23,7 @@ namespace EngineeredAngel.PlayerStates
             }
         }
 
-        public void Update(Zikky player)
+        public void Update(Player player)
         {
 
         }

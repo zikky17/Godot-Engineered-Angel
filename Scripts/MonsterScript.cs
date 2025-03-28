@@ -16,7 +16,7 @@ public partial class MonsterScript : CharacterBody2D
     public bool IsAttacking = false;
     public bool IsDead = false;
 
-    private Zikky _zikky;
+    private Player _Player;
     private ProgressBar _health;
     private Area2D _hitbox;
     private Area2D _territory;
@@ -51,7 +51,7 @@ public partial class MonsterScript : CharacterBody2D
         _chargeSound = monsterData.ChargeSound;
         _deathSound = monsterData.DeathSound;
 
-        _zikky = GetNode<Zikky>("../Zikky");
+        _Player = GetNode<Player>("../Player");
         AnimatedSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         AnimatedSprite.Connect("animation_finished", new Callable(this, nameof(OnAnimationFinished)));
 
@@ -60,7 +60,7 @@ public partial class MonsterScript : CharacterBody2D
         _directionChangeTimer.Connect("timeout", new Callable(this, nameof(OnDirectionChangeTimeout)));
         _directionChangeTimer.Start();
 
-        _questMenu = GetNodeOrNull<QuestMenu>("../Zikky/CharacterMenus/QuestMenu");
+        _questMenu = GetNodeOrNull<QuestMenu>("../Player/CharacterMenus/QuestMenu");
 
         _damageLabel = GetNode<Label>("DamageLabel");
         _damageLabel.Visible = false;
@@ -82,7 +82,7 @@ public partial class MonsterScript : CharacterBody2D
         _territory.Connect("body_exited", new Callable(this, nameof(OnTerritoryBodyExited)));
 
         var levelUpService = new LevelUpService();
-        _rewardService = new RewardService(_zikky, levelUpService);
+        _rewardService = new RewardService(_Player, levelUpService);
 
         AddToGroup("Enemy");
     }
@@ -91,9 +91,9 @@ public partial class MonsterScript : CharacterBody2D
     {
         if (IsDead) return;
 
-        if (MonsterCharge && _zikky != null)
+        if (MonsterCharge && _Player != null)
         {
-            var playerDirection = (_zikky.Position - Position).Normalized();
+            var playerDirection = (_Player.Position - Position).Normalized();
             Position += playerDirection * ChargeSpeed * (float)delta;
             UpdateAnimation(playerDirection);
         }
@@ -109,7 +109,7 @@ public partial class MonsterScript : CharacterBody2D
             TryDamagePlayer();
         }
 
-        if (PlayerInRange && _zikky.IsAttacking)
+        if (PlayerInRange && _Player.IsAttacking)
         {
             OnPlayerAttacked();
         }
@@ -139,7 +139,7 @@ public partial class MonsterScript : CharacterBody2D
 
     private void TryDamagePlayer()
     {
-        if (_zikky == null || _zikky.IsDead) return;
+        if (_Player == null || _Player.IsDead) return;
 
         float currentTime = Time.GetTicksMsec() / 1000f;
         if (currentTime - _lastAttackTime >= AttackCooldown)
@@ -149,17 +149,17 @@ public partial class MonsterScript : CharacterBody2D
             var monsterProfile = new Gorgon().ReturnMonsterData();
             var baseDamage = monsterProfile.DealDamage();
 
-            int finalDamage = _zikky.CharacterStats.CalculateDamage(baseDamage);
-            _zikky.CharacterStats.HP -= finalDamage;
-            _zikky.Health.Value = _zikky.CharacterStats.HP;
+            int finalDamage = _Player.CharacterStats.CalculateDamage(baseDamage);
+            _Player.CharacterStats.HP -= finalDamage;
+            _Player.Health.Value = _Player.CharacterStats.HP;
 
-            _zikky.ShowCombatText(finalDamage, null);
+            _Player.ShowCombatText(finalDamage, null);
 
-            GD.Print($"Player took {finalDamage} damage from {Name}. Remaining HP: {_zikky.CharacterStats.HP}");
+            GD.Print($"Player took {finalDamage} damage from {Name}. Remaining HP: {_Player.CharacterStats.HP}");
 
-            if (_zikky.CharacterStats.HP <= 0 && !_zikky.IsDead)
+            if (_Player.CharacterStats.HP <= 0 && !_Player.IsDead)
             {
-                _zikky.Die();
+                _Player.Die();
             }
         }
     }
@@ -187,9 +187,9 @@ public partial class MonsterScript : CharacterBody2D
 
     private void OnPlayerAttacked()
     {
-        if (IsDead || !PlayerInRange || !_zikky.IsAttacking) return;
+        if (IsDead || !PlayerInRange || !_Player.IsAttacking) return;
 
-        var damage = _zikky.CharacterStats.DealDamage();
+        var damage = _Player.CharacterStats.DealDamage();
         _health.Value -= damage;
         ShowDamage(damage);
 

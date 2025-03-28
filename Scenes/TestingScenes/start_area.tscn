@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://do84heumt7qdf" path="res://Scenes/Consumables/health_potion.tscn" id="5_3pqsh"]
 [ext_resource type="PackedScene" uid="uid://bl6j0q3k72dnf" path="res://Assets/Enemies/Gorgon.tscn" id="6_a8d2u"]
 [ext_resource type="Script" path="res://Scripts/Doors/DoorEntrance.cs" id="7_ip8v2"]
-[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/zikky.tscn" id="8_1d7ke"]
+[ext_resource type="PackedScene" uid="uid://cjav4mvnua3c3" path="res://Player/Player.tscn" id="8_1d7ke"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l7v6"]
 texture = ExtResource("2_1o8sp")

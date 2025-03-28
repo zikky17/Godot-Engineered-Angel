@@ -4,7 +4,7 @@ using Godot;
 
 public partial class PlayerUI : TextureRect
 {
-	private Zikky _zikky;
+	private Player _player;
 	private Label _levelLabel;
 	private Label _goldLabel;
 	private Label _healthLabel;
@@ -13,8 +13,11 @@ public partial class PlayerUI : TextureRect
 	private Label _strengthLabel;
 	private Label _defenceLabel;
 	private Label _intelligenceLabel;
+	private Label _agilityLabel;
 	private Label _maxHpLabel;
+	private Label _playerNameLabel;
 
+	private string playerName;
 	private int health;
 	private int gold;
 	private int level;
@@ -24,21 +27,24 @@ public partial class PlayerUI : TextureRect
 	private int strength;
 	private int defence;
 	private int intelligence;
+	private int agility;
 
 	private readonly PlayerDataRepository _playerDataRepository = new();
 
 	public override void _Ready()
 	{
 
-		_zikky = GetNode<Zikky>("../../../Zikky");
+        _player = GetNode<Player>("../../../Player");
 		_levelLabel = GetNode<Label>("Main_Stats/Level");
+        _playerNameLabel = GetNode<Label>("Main_Stats/PlayerName");
 		_healthLabel = GetNode<Label>("Main_Stats/Health");
 		_goldLabel = GetNode<Label>("Main_Stats/Gold");
 
 		_strengthLabel = GetNode<Label>("Attributes/Strength");
 		_defenceLabel = GetNode<Label>("Attributes/Defence");
 		_intelligenceLabel = GetNode<Label>("Attributes/Intelligence");
-		_maxHpLabel = GetNode<Label>("Attributes/Max_HP");
+		_agilityLabel = GetNode<Label>("Attributes/Agility");
+        _maxHpLabel = GetNode<Label>("Attributes/Max_HP");
 		_experienceLabel = GetNode<Label>("Attributes/Experience");
 
 		UpdateUI();
@@ -53,21 +59,23 @@ public partial class PlayerUI : TextureRect
 	public override void _Process(double delta)
 	{
 
-		if (_zikky == null || _zikky.CharacterStats == null)
+		if (_player == null || _player.CharacterStats == null)
 		{
-			GD.PrintErr("Zikky or its CharacterStats is null. Skipping UI update.");
+			GD.PrintErr("Player or its CharacterStats is null. Skipping UI update.");
 			return;
 		}
 
-		health = _zikky.CharacterStats.HP;
-		gold = _zikky.CharacterStats.Gold;
-		level = _zikky.CharacterStats.Level;
-		experience = _zikky.CharacterStats.Experience;
+		health = _player.CharacterStats.HP;
+		gold = _player.CharacterStats.Gold;
+		level = _player.CharacterStats.Level;
+		experience = _player.CharacterStats.Experience;
+		playerName = _player.CharacterStats.PlayerName;
 
-		maxHp = _zikky.CharacterStats.MaxHP;
-		strength = _zikky.CharacterStats.Strength;
-		defence = _zikky.CharacterStats.Defense;
-		intelligence = _zikky.CharacterStats.Intelligence;
+		maxHp = _player.CharacterStats.MaxHP;
+		strength = _player.CharacterStats.Strength;
+		defence = _player.CharacterStats.Defense;
+		intelligence = _player.CharacterStats.Intelligence;
+		agility = _player.CharacterStats.Agility;	
 		
 		if (health >= 100)
 			_healthLabel.SelfModulate = new Color("#0bfc03");
@@ -85,8 +93,8 @@ public partial class PlayerUI : TextureRect
 
 	private void UpdateUI()
 	{
-
-		_levelLabel.Text = $"Level: {level}";
+		_playerNameLabel.Text = $"Name: {playerName}";
+        _levelLabel.Text = $"Level: {level}";
 		_goldLabel.Text = $"Gold: {gold}";
 		_healthLabel.Text = $"Health: {health}";
 
@@ -94,6 +102,7 @@ public partial class PlayerUI : TextureRect
 		_strengthLabel.Text = $"Strength: {strength}";
 		_defenceLabel.Text = $"Defense: {defence}";
 		_intelligenceLabel.Text = $"Intelligence: {intelligence}";
+		_agilityLabel.Text = $"Agility: {agility}";
 		_maxHpLabel.Text = $"Max HP: {maxHp}";
 	}
 }
